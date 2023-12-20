@@ -22,7 +22,7 @@ const refreshAccessToken = async () => {
   }
 };
 
-// // Interceptors for token expiration
+//Interceptors for token expiration
 Axios.interceptors.response.use(
   (response) => response,
   async (error) => {

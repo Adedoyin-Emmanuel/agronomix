@@ -8,7 +8,7 @@ const userInfoFromLocalStorage =
     : null;
 
 const initialState = {
-  userInfo: userInfoFromLocalStorage
+  userAuthInfo: userInfoFromLocalStorage
     ? JSON.parse(userInfoFromLocalStorage)
     : null,
 };
@@ -18,7 +18,7 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     login: (state, action) => {
-      state.userInfo = action.payload;
+      state.userAuthInfo = action.payload;
       if (typeof window !== "undefined") {
         localStorage.setItem(
           "agronomixUserInfo",
@@ -28,7 +28,7 @@ const authSlice = createSlice({
     },
 
     updateAuthInfo: (state, action) => {
-      state.userInfo = action.payload;
+      state.userAuthInfo = action.payload;
       if (typeof window !== "undefined") {
         localStorage.setItem(
           "agronomixUserInfo",

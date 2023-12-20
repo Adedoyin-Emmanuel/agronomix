@@ -50,7 +50,7 @@ const Navbar: React.FC = (): JSX.Element => {
             <Link href={navItem.link} key={index}>
               {navItem.element}
             </Link>
-          );
+          );    
         })}
       </section>
 

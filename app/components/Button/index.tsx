@@ -18,7 +18,7 @@ const Button = ({
     <button
       disabled={disabled}
       onClick={onClick}
-      className={`capitalize text-white ${className} w-full rounded p-3 btn-secondary transition-colors `}
+      className={`capitalize text-white ${className} w-full rounded p-3 bg-primary transition-colors `}
       {...others}
     >
       {children}

@@ -56,17 +56,45 @@ export const appApiCall = apiSlice.injectEndpoints({
      */
 
     login: builder.mutation({
-      query: (data) => ({}),
+      query: (data) => ({
+        url: `${AUTH_URL}/login`,
+        method: "POST",
+        data,
+      }),
       invalidatesTags: ["Buyer", "Merchant"],
     }),
 
     logout: builder.mutation({
-      query: (data) => ({}),
+      query: () => ({
+        url: `${AUTH_URL}/logout`,
+        method: "POST",
+      }),
       invalidatesTags: ["Buyer", "Merchant"],
+    }),
+
+    createBuyer: builder.mutation({
+      query: (data) => ({
+        url: BUYERS_URL,
+        method: "POST",
+        data,
+      }),
+    }),
+
+    createMerchant: builder.mutation({
+      query: (data) => ({
+        url: MERCHANT_URL,
+        method: "POST",
+        data,
+      }),
     }),
   }),
 });
 
-export const { useLoginMutation, useLogoutMutation } = appApiCall;
+export const {
+  useLoginMutation,
+  useLogoutMutation,
+  useCreateBuyerMutation,
+  useCreateMerchantMutation,
+} = appApiCall;
 export const { saveDashboardInfo, resetApp } = appSlice.actions;
 export default appSlice.reducer;

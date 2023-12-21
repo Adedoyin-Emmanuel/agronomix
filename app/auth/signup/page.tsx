@@ -29,13 +29,12 @@ const Signup = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    console.log(formData);
   };
 
   return (
     <>
       <section className="w-screen h-screen flex items-center justify-center">
-        <Loader />
-
         <form
           className="w-11/12 md:w-1/2 xl:w-1/4"
           onSubmit={(e) => {

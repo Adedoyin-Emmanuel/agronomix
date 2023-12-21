@@ -9,9 +9,19 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useRef, useState } from "react";
 import toast from "react-hot-toast";
+import {
+  useCreateBuyerMutation,
+  useCreateMerchantMutation,
+} from "@/app/store/features/app/app.slice";
+import Confetti from "react-confetti";
 
 const Signup = () => {
+  const router = useRouter();
   const formRef = useRef<HTMLFormElement | any>(null);
+  const [createBuyer, { isLoading: isCreateBuyerLoading }] =
+    useCreateBuyerMutation();
+  const [createMerchant, { isLoading: isCreateMerchantLoading }] =
+    useCreateMerchantMutation();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -20,7 +30,7 @@ const Signup = () => {
     signupAs: "buyer",
   });
 
-  const router = useRouter();
+  const [showConfetti, setShowConfetti] = useState<boolean>(false);
 
   const handleInputChange = (e: React.FormEvent<HTMLFormElement> | any) => {
     const { name, value } = e.target;
@@ -29,12 +39,47 @@ const Signup = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(formData);
+    const { signupAs, ...rest } = formData;
+
+    if (signupAs === "buyer") {
+      try {
+        const response = await createBuyer(rest).unwrap();
+        if (response) {
+          setShowConfetti(true);
+          toast.success(response.message);
+          router.push("/auth/login");
+        }
+      } catch (error: any) {
+        toast.error(error?.data?.message || error.error || error?.data);
+      }
+    } else if (signupAs === "buyer") {
+      try {
+        const { name, signupAs, ...rest } = formData;
+        const newData = {
+          companyName: name,
+          ...rest,
+        };
+        const response = await createMerchant(newData).unwrap();
+        if (response) {
+          setShowConfetti(true);
+          toast.success(response.message);
+          router.push("/auth/login");
+        }
+      } catch (error: any) {
+        toast.error(error?.data?.message || error.error || error?.data);
+      }
+    } else {
+      toast.error("Not a valid user type!");
+    }
   };
 
   return (
     <>
       <section className="w-screen h-screen flex items-center justify-center">
+        {isCreateBuyerLoading || (isCreateMerchantLoading && <Loader />)}
+        {showConfetti && (
+          <Confetti height={window?.innerHeight!} width={window?.innerWidth!} />
+        )}
         <form
           className="w-11/12 md:w-1/2 xl:w-1/4"
           onSubmit={(e) => {
@@ -117,7 +162,9 @@ const Signup = () => {
           </section>
 
           <section className="my-4 mb-5 w-full">
-            <Button>Sign up</Button>
+            <Button disabled={isCreateBuyerLoading || isCreateMerchantLoading}>
+              Sign up
+            </Button>
           </section>
 
           <section>

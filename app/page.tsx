@@ -18,7 +18,7 @@ export default function Home() {
               Experience agro-shopping like never before!
             </Text>
 
-            <Button className="rounded-[30px] w-60">
+            <Button className="rounded-[30px] w-[15rem]">
               <Link href={"/auth/signup"}>get started</Link>
             </Button>
 

@@ -21,8 +21,7 @@ const Navbar: React.FC = (): JSX.Element => {
     setNavToggled(!navToggled);
   };
 
-  const navItemsClassname =
-    "h-5 w-5  transition-color hover:text-secondary";
+  const navItemsClassname = "h-5 w-5  transition-color hover:text-secondary";
   const navItems = [
     {
       link: "https://github.com/adedoyin-emmanuel/caresync",
@@ -30,11 +29,11 @@ const Navbar: React.FC = (): JSX.Element => {
     },
 
     {
-      link: "https://youtube.com/adedoyin-emmanuel/",
+      link: "https://youtube.com/adedoyin-emmanuel-adeniyi/",
       element: <FiYoutube className={navItemsClassname} />,
     },
     {
-      link: "https://github.com/Emmysoft_Tm/",
+      link: "https://x.com/Emmysoft_Tm/",
       element: <FiTwitter className={navItemsClassname} />,
     },
   ];
@@ -129,7 +128,7 @@ l28 53 0 352 c0 318 -2 355 -19 391 -23 51 -79 101 -128 114 -61 17 -698 14
             signup
           </Link>
           <Link
-            href="https://github.com/adedoyin-emmanuel/caresync"
+            href="https://github.com/adedoyin-emmanuel/agronomix"
             className="capitalize flex items-center gap-x-3 my-6"
           >
             star project

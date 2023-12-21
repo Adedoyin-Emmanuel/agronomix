@@ -18,50 +18,26 @@ export default function Home() {
               Experience agro-shopping like never before!
             </Text>
 
-            <Button className="rounded-[30px] w-[16.5rem]">get started</Button>
+            <Button className="rounded-[30px] w-60">get started</Button>
 
-            <div className="carousel carousel-end rounded-box my-5">
-              <div className="carousel-item">
-                <img
-                  src="https://daisyui.com/images/stock/photo-1559703248-dcaaec9fab78.jpg"
-                  alt="Drink"
-                />
+            <div className="carousel carousel-end rounded-box my-5 border-2 border-primary">
+              <div className="carousel-item border-[1px] border-primary">
+                <img src="/assets/corn.png" alt="Corn" />
               </div>
-              <div className="carousel-item">
-                <img
-                  src="https://daisyui.com/images/stock/photo-1565098772267-60af42b81ef2.jpg"
-                  alt="Drink"
-                />
+              <div className="carousel-item border-[1px] border-primary">
+                <img src="/assets/cassava.png" alt="Drink" />
               </div>
-              <div className="carousel-item">
-                <img
-                  src="https://daisyui.com/images/stock/photo-1572635148818-ef6fd45eb394.jpg"
-                  alt="Drink"
-                />
+              <div className="carousel-item border-[1px] border-primary">
+                <img src="/assets/fruit-1.png" alt="Drink" />
               </div>
-              <div className="carousel-item">
-                <img
-                  src="https://daisyui.com/images/stock/photo-1494253109108-2e30c049369b.jpg"
-                  alt="Drink"
-                />
+              <div className="carousel-item border-[1px] border-primary">
+                <img src="/assets/fruit-2.png" alt="Drink" />
               </div>
-              <div className="carousel-item">
-                <img
-                  src="https://daisyui.com/images/stock/photo-1550258987-190a2d41a8ba.jpg"
-                  alt="Drink"
-                />
+              <div className="carousel-item border-[1px] border-primary">
+                <img src="/assets/plough.png" alt="Drink" />
               </div>
-              <div className="carousel-item">
-                <img
-                  src="https://daisyui.com/images/stock/photo-1559181567-c3190ca9959b.jpg"
-                  alt="Drink"
-                />
-              </div>
-              <div className="carousel-item">
-                <img
-                  src="https://daisyui.com/images/stock/photo-1601004890684-d8cbf643f5f2.jpg"
-                  alt="Drink"
-                />
+              <div className="carousel-item border-[1px] border-primary">
+                <img src="/assets/roasted-corn.png" alt="Drink" />
               </div>
             </div>
           </section>

@@ -2,6 +2,7 @@
 import Link from "next/link";
 import React, { useEffect, useRef, useState } from "react";
 import { FiGithub, FiTwitter, FiYoutube } from "react-icons/fi";
+import Image from "next/image";
 
 const Navbar: React.FC = (): JSX.Element => {
   const mobileLinksRef = useRef<HTMLElement>(null);
@@ -40,7 +41,14 @@ const Navbar: React.FC = (): JSX.Element => {
   return (
     <nav className="w-screen flex items-center md:justify-center justify-between md:flex-row flex-col  py-5 overflow-x-hidden z-10">
       <h2 className="font-extrabold text-3xl text-secondary  mx-5 md:flex items-center  hidden cursor-pointer ">
-        <Link href="/">Agronomix</Link>
+        <Link href="/">
+          <Image
+            src={"/assets/leaf.png"}
+            alt="Agronomix Logo"
+            width={"65"}
+            height={"65"}
+          />
+        </Link>
       </h2>
 
       <section className="hidden md:flex items-end justify-end w-4/6 overflow-x-hidden space-x-6">
@@ -56,7 +64,14 @@ const Navbar: React.FC = (): JSX.Element => {
       <section className="md:hidden flex w-full flex-col">
         <section className="header flex w-full items-center justify-between">
           <h2 className="font-extrabold text-secondary text-2xl  mx-5">
-            <Link href="/">Agronomix</Link>
+            <Link href="/">
+              <Image
+                src={"/assets/leaf.png"}
+                alt="Agronomix Logo"
+                width={"65"}
+                height={"65"}
+              />
+            </Link>
           </h2>
 
           <section

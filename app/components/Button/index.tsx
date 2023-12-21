@@ -5,6 +5,7 @@ interface ButtonProps {
   children: React.ReactNode;
   disabled?: boolean;
   onClick?: () => void;
+  animate?: boolean;
 }
 
 const Button = ({
@@ -12,16 +13,19 @@ const Button = ({
   children,
   disabled,
   onClick,
+  animate,
   ...others
 }: ButtonProps) => {
   return (
     <button
       disabled={disabled}
       onClick={onClick}
-      className={`capitalize text-white ${className} w-full rounded p-3 bg-primary  transition-colors `}
+      className={`capitalize text-white ${className} w-full rounded p-3 bg-primary transition-all transform ${
+        animate && "hover:scale-x-105"
+      } hover:bg-accent cursor-pointer`}
       {...others}
     >
-      {children}
+      {disabled ? <>Loading...</> : children}
     </button>
   );
 };

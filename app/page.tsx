@@ -18,7 +18,9 @@ export default function Home() {
               Experience agro-shopping like never before!
             </Text>
 
-            <Button className="rounded-[30px] w-60">get started</Button>
+            <Button className="rounded-[30px] w-60">
+              <Link href={"/auth/signup"}>get started</Link>
+            </Button>
 
             <div className="carousel carousel-end rounded-box my-5 border-2 border-primary">
               <div className="carousel-item border-[1px] border-primary">

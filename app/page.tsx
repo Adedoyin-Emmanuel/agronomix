@@ -18,10 +18,11 @@ export default function Home() {
               Experience agro-shopping like never before!
             </Text>
 
-            <Button className="rounded-[30px] w-[15rem]">
-              <Link href={"/auth/signup"}>get started</Link>
-            </Button>
-
+            <section className="w-60">
+              <Button className="rounded-[30px] w-60">
+                <Link href={"/auth/signup"}>get started</Link>
+              </Button>
+            </section>
             <div className="carousel carousel-end rounded-box my-5 border-2 border-primary">
               <div className="carousel-item border-[1px] border-primary">
                 <img src="/assets/corn.png" alt="Corn" />

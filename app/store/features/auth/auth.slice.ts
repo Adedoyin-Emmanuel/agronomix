@@ -17,7 +17,7 @@ const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    login: (state, action) => {
+    loginUser: (state, action) => {
       state.userAuthInfo = action.payload;
       if (typeof window !== "undefined") {
         localStorage.setItem(
@@ -37,7 +37,7 @@ const authSlice = createSlice({
       }
     },
 
-    logout: (state, action) => {
+    logoutUser: (state, action) => {
       if (typeof window !== "undefined") {
         localStorage.removeItem("agronomixUserInfo");
 
@@ -51,5 +51,5 @@ const authSlice = createSlice({
   },
 });
 
-export const { login, updateAuthInfo, logout } = authSlice.actions;
+export const { loginUser, updateAuthInfo, logoutUser } = authSlice.actions;
 export default authSlice.reducer;

@@ -14,7 +14,6 @@ import { useDispatch } from "react-redux";
 import AppHeader, { MerchantAppHeader } from "../AppHeader";
 import MobileNav, { MerchantMobileNav } from "../MobileNav";
 import Text from "../Text";
-import Verified from "../Verified";
 import Image from "next/image";
 
 interface SidebarLayoutProps {

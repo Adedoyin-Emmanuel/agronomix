@@ -2,9 +2,11 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
-import { BiMessageRoundedDots } from "react-icons/bi";
-import { BsCameraVideo } from "react-icons/bs";
 import { IoAnalytics, IoSettingsOutline } from "react-icons/io5";
+import { TbMoneybag } from "react-icons/tb";
+import { FiSearch } from "react-icons/fi";
+import { BsCart } from "react-icons/bs";
+import { IoBagOutline } from "react-icons/io5";
 import Text from "../Text";
 
 interface MobileNavProps {
@@ -22,7 +24,7 @@ const MobileNav = ({ className, children, ...others }: MobileNavProps) => {
       {children}
 
       <Link
-        href={"/user/dashboard"}
+        href={"/buyer/dashboard"}
         className={`${
           currentPath.includes("dashboard") || currentPath.includes("search")
             ? "text-secondary"
@@ -34,27 +36,27 @@ const MobileNav = ({ className, children, ...others }: MobileNavProps) => {
       </Link>
 
       <Link
-        href={"/user/appointments"}
+        href={"/buyer/discover"}
         className={`${
           currentPath.includes("appointments") && "text-secondary"
         } transition-colors hover:text-secondary duration-100 ease-in flex flex-col items-center justify-center gap-y-2`}
       >
-        <BsCameraVideo className="h-5 w-5" />
-        <Text className="text-[12px]">Appointments</Text>
+        <FiSearch className="h-5 w-5" />
+        <Text className="text-[12px]">Discover</Text>
       </Link>
 
       <Link
-        href={"/user/messages"}
+        href={"/buyer/store"}
         className={`${
           currentPath.includes("messages") && "text-secondary"
         } transition-colors hover:text-secondary duration-100 ease-in flex flex-col items-center justify-center gap-y-2`}
       >
-        <BiMessageRoundedDots className="h-5 w-5" />
-        <Text className="text-[12px]">Messages</Text>
+        <BsCart className="h-5 w-5" />
+        <Text className="text-[12px]">Store</Text>
       </Link>
 
       <Link
-        href={"/user/settings"}
+        href={"/buyer/settings"}
         className={`${
           currentPath.includes("settings") ||
           currentPath.includes("profile") ||
@@ -84,7 +86,7 @@ export const MerchantMobileNav = ({
       {children}
 
       <Link
-        href={"/hospital/dashboard"}
+        href={"/merchant/dashboard"}
         className={`${
           currentPath.includes("dashboard") || currentPath.includes("search")
             ? "text-secondary"
@@ -96,27 +98,27 @@ export const MerchantMobileNav = ({
       </Link>
 
       <Link
-        href={"/hospital/appointments"}
+        href={"/buyer/appointments"}
         className={`${
           currentPath.includes("appointments") && "text-secondary"
         } transition-colors hover:text-secondary duration-100 ease-in flex flex-col items-center justify-center gap-y-2`}
       >
-        <BsCameraVideo className="h-5 w-5" />
-        <Text className="text-[12px]">Appointments</Text>
+        <IoBagOutline className="h-5 w-5" />
+        <Text className="text-[12px]">Products</Text>
       </Link>
 
       <Link
-        href={"/hospital/messages"}
+        href={"/merchant/sales"}
         className={`${
           currentPath.includes("messages") && "text-secondary"
         } transition-colors hover:text-secondary duration-100 ease-in flex flex-col items-center justify-center gap-y-2`}
       >
-        <BiMessageRoundedDots className="h-5 w-5" />
-        <Text className="text-[12px]">Messages</Text>
+        <TbMoneybag className="h-5 w-5" />
+        <Text className="text-[12px]">Sales</Text>
       </Link>
 
       <Link
-        href={"/hospital/settings"}
+        href={"/merchant/settings"}
         className={`${
           currentPath.includes("settings") ||
           currentPath.includes("profile") ||

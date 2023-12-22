@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 import { GoBell } from "react-icons/go";
 import { IoIosArrowBack } from "react-icons/io";
 import { useDispatch } from "react-redux";
+import { BsCart } from "react-icons/bs";
 
 interface AppHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
   className?: string;
@@ -17,20 +18,20 @@ const AppHeader = ({ className, showWelcomeMessage }: AppHeaderProps) => {
   // const { userInfo } = useAppSelector((state) => state.auth);
   const router = useRouter();
 
-  const [isNotificationDropdownVisible, setIsNotificationDropdownVisible] =
+  const [isCartDropdownVisible, setIsNotificationDropdownVisible] =
     useState(false);
   const [isProfileDropdownVisible, setIsProfileDropdownVisible] =
     useState(false);
 
-  const notificationRef: any = useRef(null);
+  const cartRef: any = useRef(null);
   const profileRef: any = useRef(null);
 
   useEffect(() => {
     const closeDropdowns = (event: MouseEvent) => {
       if (
-        isNotificationDropdownVisible &&
-        notificationRef.current &&
-        !notificationRef.current.contains(event.target as Node)
+        isCartDropdownVisible &&
+        cartRef.current &&
+        !cartRef.current.contains(event.target as Node)
       ) {
         setIsNotificationDropdownVisible(false);
       }
@@ -41,7 +42,7 @@ const AppHeader = ({ className, showWelcomeMessage }: AppHeaderProps) => {
     return () => {
       window.removeEventListener("click", closeDropdowns);
     };
-  }, [isNotificationDropdownVisible]);
+  }, [isCartDropdownVisible]);
 
   useEffect(() => {
     const closeDropdowns = (event: MouseEvent) => {
@@ -61,15 +62,15 @@ const AppHeader = ({ className, showWelcomeMessage }: AppHeaderProps) => {
     };
   }, [isProfileDropdownVisible]);
 
-  const toggleNotificationDropdown = () => {
-    setIsNotificationDropdownVisible(!isNotificationDropdownVisible);
+  const toggleCartDropdown = () => {
+    setIsNotificationDropdownVisible(!isCartDropdownVisible);
   };
 
   const toggleProfileDropdown = () => {
     setIsProfileDropdownVisible(!isProfileDropdownVisible);
   };
 
-  const notificationItems = [
+  const cartItems = [
     {
       id: 1,
       text: "New message from Mango",
@@ -178,21 +179,16 @@ const AppHeader = ({ className, showWelcomeMessage }: AppHeaderProps) => {
       )}
 
       <section className="user-profile flex items-center gap-x-4">
-        <section
-          className="notification cursor-pointer relative"
-          ref={notificationRef}
-        >
-          <GoBell
+        <section className="notification cursor-pointer relative" ref={cartRef}>
+          <BsCart
             className="h-6 w-6 transition-colors hover:text-accent cursor-pointer"
-            onClick={toggleNotificationDropdown}
+            onClick={toggleCartDropdown}
           />
 
-          {isNotificationDropdownVisible && (
+          {isCartDropdownVisible && (
             <div className="notification-dropdown absolute  top-full w-72 right-0 bg-white z-[100] rounded-md shadow-md p-4">
-              <h4 className="mb-2 font-bold text-gray-800 capitalize">
-                Notifications
-              </h4>
-              {notificationItems.map((item) => (
+              <h4 className="mb-2 font-bold text-gray-800 capitalize">Cart</h4>
+              {cartItems.map((item) => (
                 <p
                   key={item.id}
                   className="text-sm p-2 hover:bg-purple-100 rounded capitalize"
@@ -211,6 +207,8 @@ const AppHeader = ({ className, showWelcomeMessage }: AppHeaderProps) => {
               className=""
               src="https://api.dicebear.com/7.x/micah/svg?seed=emmysoft"
               alt="user profile image"
+              width={15}
+              height={15}
             />
           </div>
 
@@ -430,11 +428,12 @@ export const MerchantAppHeader = ({
           )}
         </section>
         <div className="avatar cursor-pointer relative" ref={profileRef}>
-          <div className="w-10 rounded-full" onClick={toggleProfileDropdown}>
+          <div className="w-8 rounded-full" onClick={toggleProfileDropdown}>
             <img
               className=""
               src="https://api.dicebear.com/7.x/micah/svg?seed=emmysoft"
               alt="hospital profile image"
+              width={20}
             />
           </div>
 

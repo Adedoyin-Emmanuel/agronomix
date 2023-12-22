@@ -1,4 +1,3 @@
-
 import { AppDispatch, useAppSelector } from "@/app/store/store";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useRef, useState } from "react";
@@ -14,7 +13,8 @@ interface AppHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
 
 const AppHeader = ({ className, showWelcomeMessage }: AppHeaderProps) => {
   const dispatch = useDispatch<AppDispatch>();
- 
+  // const [logout] = useLogoutMutation();
+  // const { userInfo } = useAppSelector((state) => state.auth);
   const router = useRouter();
 
   const [isNotificationDropdownVisible, setIsNotificationDropdownVisible] =
@@ -137,11 +137,17 @@ const AppHeader = ({ className, showWelcomeMessage }: AppHeaderProps) => {
       id: 6,
       text: "Logout",
       onClick: async () => {
-        try {
-        
-        } catch (error: any) {
-          toast.error(error?.data?.message || error.error || error?.data);
-        }
+        // try {
+        //   const response = await logout({}).unwrap();
+        //   if (response) {
+        //     toast.success(response.message);
+        //     dispatch(logoutUser());
+        //     dispatch(resetUser());
+        //     router.push("/auth/login");
+        //   }
+        // } catch (error: any) {
+        //   toast.error(error?.data?.message || error.error || error?.data);
+        // }
       },
     },
   ];
@@ -159,7 +165,7 @@ const AppHeader = ({ className, showWelcomeMessage }: AppHeaderProps) => {
       {showWelcomeMessage ? (
         <section className="user-name">
           <h2 className="font-bold capitalize text-[18px] md:text-[20px]">
-            hi, 👋
+            hi, Emmysoft 👋
           </h2>
         </section>
       ) : (
@@ -201,11 +207,11 @@ const AppHeader = ({ className, showWelcomeMessage }: AppHeaderProps) => {
 
         <div className="avatar cursor-pointer relative" ref={profileRef}>
           <div className="w-10 rounded-full" onClick={toggleProfileDropdown}>
-            {/* <img
+            <img
               className=""
-              src={userInfo?.profilePicture}
+              src="https://api.dicebear.com/7.x/micah/svg?seed=emmysoft"
               alt="user profile image"
-            /> */}
+            />
           </div>
 
           {isProfileDropdownVisible && (
@@ -234,8 +240,9 @@ export const MerchantAppHeader = ({
   className,
   showWelcomeMessage,
 }: AppHeaderProps) => {
-  const dispatch = useDispatch<AppDispatch>();
-
+  // const dispatch = useDispatch<AppDispatch>();
+  // const [logout] = useLogoutMutation();
+  // const { userInfo } = useAppSelector((state) => state.auth);
   const router = useRouter();
 
   const [isNotificationDropdownVisible, setIsNotificationDropdownVisible] =
@@ -356,16 +363,16 @@ export const MerchantAppHeader = ({
       id: 6,
       text: "Logout",
       onClick: async () => {
-        try {
-          // const response = await logout({}).unwrap();
-          // if (response) {
-          //   toast.success(response.message);
-          //   dispatch(logoutUser());
-          //   router.push("/auth/login");
-          // }
-        } catch (error: any) {
-          toast.error(error?.data?.message || error.error || error?.data);
-        }
+        // try {
+        //   const response = await logout({}).unwrap();
+        //   if (response) {
+        //     toast.success(response.message);
+        //     dispatch(logoutUser());
+        //     router.push("/auth/login");
+        //   }
+        // } catch (error: any) {
+        //   toast.error(error?.data?.message || error.error || error?.data);
+        // }
       },
     },
   ];
@@ -383,7 +390,7 @@ export const MerchantAppHeader = ({
       {showWelcomeMessage ? (
         <section className="user-name">
           <h2 className="font-bold capitalize text-[18px] md:text-[20px]">
-            hi, 👋
+            hi, Emmysoft 👋
           </h2>
         </section>
       ) : (
@@ -424,11 +431,11 @@ export const MerchantAppHeader = ({
         </section>
         <div className="avatar cursor-pointer relative" ref={profileRef}>
           <div className="w-10 rounded-full" onClick={toggleProfileDropdown}>
-            {/* <img
+            <img
               className=""
-              src={userInfo?.profilePicture}
+              src="https://api.dicebear.com/7.x/micah/svg?seed=emmysoft"
               alt="hospital profile image"
-            /> */}
+            />
           </div>
 
           {isProfileDropdownVisible && (

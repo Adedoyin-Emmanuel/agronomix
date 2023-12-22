@@ -14,6 +14,7 @@ import AppHeader, { MerchantAppHeader } from "../AppHeader";
 import MobileNav, { MerchantMobileNav } from "../MobileNav";
 import Text from "../Text";
 import Verified from "../Verified";
+import Image from "next/image";
 
 interface SidebarLayoutProps {
   className?: string;
@@ -41,14 +42,21 @@ const SidebarLayout = ({
       <div
         className={`bg-zinc-100 h-screen hidden md:flex md:w-3/12  lg:w-2/12 items-center justify-start flex-col  p-0  fixed ${className} `}
       >
-        <section className="sidebar-header my-4 w-11/12 p-2">
+        <section className="sidebar-header my-3 w-11/12 p-2 ">
           <h2 className="font-bold text-[20px] capitalize flex items-center">
-            caresync
-            <span>
-              <Verified big={true} />
-            </span>
+            Agronomix
+            <div className="transform translate-y-1">
+              <Image
+                src={"/assets/leaf.png"}
+                alt="App logo"
+                width={65}
+                height={65}
+              />
+            </div>
           </h2>
-          <Text className="text-[13px]">Bridging health with technology</Text>
+          <Text className="text-[13px] block transform -translate-y-3">
+            Elevate your agro shopping experience
+          </Text>
         </section>
 
         <section className="w-11/12 p-2">

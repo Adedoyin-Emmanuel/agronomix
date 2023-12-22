@@ -9,16 +9,19 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useRef, useState } from "react";
 import toast from "react-hot-toast";
+import {
+  useLoginMutation,
+  saveDashboardInfo,
+} from "@/app/store/features/app/app.slice";
 
 const Signup = () => {
+  const router = useRouter();
   const formRef = useRef<HTMLFormElement | any>(null);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
     signupAs: "buyer",
   });
-
-  const router = useRouter();
 
   const handleInputChange = (e: React.FormEvent<HTMLFormElement> | any) => {
     const { name, value } = e.target;
@@ -27,6 +30,9 @@ const Signup = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    console.log(formData);
+    toast.success("Login successful");
   };
 
   return (

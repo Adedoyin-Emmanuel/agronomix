@@ -4,15 +4,16 @@ import Button from "@/app/components/Button";
 import Input from "@/app/components/Input";
 import Loader from "@/app/components/Loader";
 import Text from "@/app/components/Text";
-
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useRef, useState } from "react";
 import toast from "react-hot-toast";
-import {
-  useLoginMutation,
-  saveDashboardInfo,
-} from "@/app/store/features/app/app.slice";
+import { useLoginMutation } from "@/app/store/features/app/app.slice";
+import { loginUser } from "@/app/store/features/auth/auth.slice";
+import jwt from "jsonwebtoken";
+import axios from "axios";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "@/app/store/store";
 
 const Signup = () => {
   const router = useRouter();
@@ -20,8 +21,10 @@ const Signup = () => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
-    signupAs: "buyer",
+    userType: "buyer",
   });
+  const dispatch = useDispatch<AppDispatch>();
+  const [login, { isLoading }] = useLoginMutation();
 
   const handleInputChange = (e: React.FormEvent<HTMLFormElement> | any) => {
     const { name, value } = e.target;
@@ -31,13 +34,48 @@ const Signup = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    console.log(formData);
-    toast.success("Login successful");
+    try {
+      const response = await login(formData).unwrap();
+      if (response) {
+        toast.success(response.message);
+        const jwtToken = response.data.accessToken;
+        const jwtPayload: any = jwt.decode(jwtToken);
+        const tempData = jwtPayload;
+        const { role } = tempData;
+        const { accessToken, refreshToken: token, ...data } = response.data;
+        console.log(response.data);
+        const userData = { ...data, role };
+
+        dispatch(loginUser(userData));
+
+        //make request to our auth server
+        try {
+          const serverResponse = await axios.post("/api/auth/set-token", {
+            token,
+          });
+        } catch (error: any) {
+          toast.error("Token not set");
+        }
+
+        //route the user to their respective page
+        if (role === "buyer") {
+          router.push("/buyer/dashboard");
+        } else if (role === "merchant") {
+          router.push("/merchant/dashboard");
+        } else {
+          toast.error("Invalid token, please login!");
+          router.push("/auth/login");
+        }
+      }
+    } catch (error: any) {
+      toast.error(error?.data?.message || error.error || error?.data);
+    }
   };
 
   return (
     <>
       <section className="w-screen h-screen flex items-center justify-center">
+        {isLoading && <Loader />}
         <form
           className="w-11/12 md:w-1/2 xl:w-1/4"
           onSubmit={(e) => {
@@ -51,8 +89,6 @@ const Signup = () => {
             </h3>
             <Text>elevate your agro shopping experience</Text>
           </section>
-          {/* 
-                  <Loader /> */}
 
           <section className="my-4 mb-5">
             <label htmlFor="email" className="text-md block my-2">
@@ -86,8 +122,8 @@ const Signup = () => {
             </label>
             <select
               className="select border-2 border-gray-300 focus:outline-none rounded-md w-full h-16"
-              name="loginAs"
-              value={formData.signupAs}
+              name="userType"
+              value={formData.userType}
               onChange={handleInputChange}
             >
               <option value="buyer">Buyer</option>

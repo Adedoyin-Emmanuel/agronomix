@@ -70,7 +70,7 @@ const MobileNav = ({ className, children, ...others }: MobileNavProps) => {
   );
 };
 
-export const HospitalMobileNav = ({
+export const MerchantMobileNav = ({
   className,
   children,
   ...others

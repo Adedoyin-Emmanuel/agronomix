@@ -1,19 +1,13 @@
-
-"use client"
+"use client";
 import React from "react";
 import { useRouter, usePathname } from "next/navigation";
-
+import Layout from "@/app/components/Layout";
 
 const Index = () => {
-    const pathname = usePathname();
+  const pathname = usePathname();
 
-    return (
-        <div>
-            <h1>Index works!</h1>
-            <p>Current pathname: {pathname}</p>
-        </div>
-    );  
-}
+  return (
+  );
+};
 
 export default Index;
-    

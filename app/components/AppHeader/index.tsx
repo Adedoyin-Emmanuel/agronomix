@@ -203,13 +203,7 @@ const AppHeader = ({ className, showWelcomeMessage }: AppHeaderProps) => {
 
         <div className="avatar cursor-pointer relative" ref={profileRef}>
           <div className="w-10 rounded-full" onClick={toggleProfileDropdown}>
-            <img
-              className=""
-              src="https://api.dicebear.com/7.x/micah/svg?seed=emmysoft"
-              alt="user profile image"
-              width={15}
-              height={15}
-            />
+            <img className="" src="/assets/leaf.png" alt="user profile image" />
           </div>
 
           {isProfileDropdownVisible && (

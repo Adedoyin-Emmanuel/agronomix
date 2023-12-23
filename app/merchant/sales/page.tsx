@@ -8,7 +8,7 @@ const Index = () => {
   return (
     <MerchantSidebarLayout>
       <h2 className="text-2xl font-bold text-primary capitalize">
-        hello merchant dashboard page 🚀
+        hello merchant sales page 🚀
       </h2>
     </MerchantSidebarLayout>
   );

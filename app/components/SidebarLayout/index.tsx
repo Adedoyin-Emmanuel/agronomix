@@ -14,7 +14,6 @@ import { useDispatch } from "react-redux";
 import AppHeader, { MerchantAppHeader } from "../AppHeader";
 import MobileNav, { MerchantMobileNav } from "../MobileNav";
 import Text from "../Text";
-import Verified from "../Verified";
 import Image from "next/image";
 
 interface SidebarLayoutProps {
@@ -62,7 +61,7 @@ const SidebarLayout = ({
 
         <section className="w-11/12 p-2">
           <Link
-            href={"/user/dashboard"}
+            href={"/buyer/dashboard"}
             className={`dashboard cursor-pointer  ${
               currentPath.includes("dashboard")
                 ? "text-white bg-accent"
@@ -74,7 +73,7 @@ const SidebarLayout = ({
           </Link>
 
           <Link
-            href="/user/search"
+            href="/buyer/discover"
             className={`dashboard cursor-pointer  ${
               currentPath.includes("search")
                 ? "text-white bg-accent"
@@ -86,7 +85,7 @@ const SidebarLayout = ({
           </Link>
 
           <Link
-            href="/user/search"
+            href="/buyer/store"
             className={`dashboard cursor-pointer  ${
               currentPath.includes("search")
                 ? "text-white bg-accent"
@@ -98,7 +97,7 @@ const SidebarLayout = ({
           </Link>
 
           <Link
-            href="/user/settings"
+            href="/buyer/settings"
             className={`dashboard cursor-pointer ${
               currentPath.includes("settings") ||
               currentPath.includes("profile") ||
@@ -176,7 +175,7 @@ export const MerchantSidebarLayout = ({
         </section>
         <section className="w-11/12 p-2">
           <Link
-            href={"/hospital/dashboard"}
+            href={"/merchant/dashboard"}
             className={`dashboard cursor-pointer  ${
               currentPath.includes("dashboard")
                 ? "text-white bg-accent"
@@ -188,7 +187,7 @@ export const MerchantSidebarLayout = ({
           </Link>
 
           <Link
-            href="/hospital/search"
+            href="/merchant/search"
             className={`dashboard cursor-pointer  ${
               currentPath.includes("search")
                 ? "text-white bg-accent"
@@ -200,7 +199,7 @@ export const MerchantSidebarLayout = ({
           </Link>
 
           <Link
-            href="/hospital/search"
+            href="/merchant/search"
             className={`dashboard cursor-pointer  ${
               currentPath.includes("search")
                 ? "text-white bg-accent"
@@ -212,7 +211,7 @@ export const MerchantSidebarLayout = ({
           </Link>
 
           <Link
-            href="/hospital/settings"
+            href="/merchant/settings"
             className={`dashboard cursor-pointer ${
               currentPath.includes("settings") ||
               currentPath.includes("profile") ||

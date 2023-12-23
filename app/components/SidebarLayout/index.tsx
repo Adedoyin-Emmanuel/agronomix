@@ -75,7 +75,7 @@ const SidebarLayout = ({
           <Link
             href="/buyer/discover"
             className={`dashboard cursor-pointer  ${
-              currentPath.includes("search")
+              currentPath.includes("discover")
                 ? "text-white bg-accent"
                 : "bg-gray-200"
             } hover:bg-accent duration-100 ease-in hover:text-white transition-colors flex items-center gap-x-4 p-5 rounded my-4`}
@@ -87,7 +87,7 @@ const SidebarLayout = ({
           <Link
             href="/buyer/store"
             className={`dashboard cursor-pointer  ${
-              currentPath.includes("search")
+              currentPath.includes("store")
                 ? "text-white bg-accent"
                 : "bg-gray-200"
             } hover:bg-accent duration-100 ease-in hover:text-white transition-colors flex items-center gap-x-4 p-5 rounded my-4`}
@@ -187,9 +187,9 @@ export const MerchantSidebarLayout = ({
           </Link>
 
           <Link
-            href="/merchant/search"
+            href="/merchant/products"
             className={`dashboard cursor-pointer  ${
-              currentPath.includes("search")
+              currentPath.includes("products")
                 ? "text-white bg-accent"
                 : "bg-gray-200"
             } hover:bg-accent duration-100 ease-in hover:text-white transition-colors flex items-center gap-x-4 p-5 rounded my-4`}
@@ -199,9 +199,9 @@ export const MerchantSidebarLayout = ({
           </Link>
 
           <Link
-            href="/merchant/search"
+            href="/merchant/sales"
             className={`dashboard cursor-pointer  ${
-              currentPath.includes("search")
+              currentPath.includes("sales")
                 ? "text-white bg-accent"
                 : "bg-gray-200"
             } hover:bg-accent duration-100 ease-in hover:text-white transition-colors flex items-center gap-x-4 p-5 rounded my-4`}

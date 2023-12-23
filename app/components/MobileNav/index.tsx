@@ -38,7 +38,7 @@ const MobileNav = ({ className, children, ...others }: MobileNavProps) => {
       <Link
         href={"/buyer/discover"}
         className={`${
-          currentPath.includes("appointments") && "text-secondary"
+          currentPath.includes("discover") && "text-secondary"
         } transition-colors hover:text-secondary duration-100 ease-in flex flex-col items-center justify-center gap-y-2`}
       >
         <FiSearch className="h-5 w-5" />
@@ -48,7 +48,7 @@ const MobileNav = ({ className, children, ...others }: MobileNavProps) => {
       <Link
         href={"/buyer/store"}
         className={`${
-          currentPath.includes("messages") && "text-secondary"
+          currentPath.includes("store") && "text-secondary"
         } transition-colors hover:text-secondary duration-100 ease-in flex flex-col items-center justify-center gap-y-2`}
       >
         <BsCart className="h-5 w-5" />
@@ -98,7 +98,7 @@ export const MerchantMobileNav = ({
       </Link>
 
       <Link
-        href={"/buyer/appointments"}
+        href={"/buyer/products"}
         className={`${
           currentPath.includes("appointments") && "text-secondary"
         } transition-colors hover:text-secondary duration-100 ease-in flex flex-col items-center justify-center gap-y-2`}
@@ -110,7 +110,7 @@ export const MerchantMobileNav = ({
       <Link
         href={"/merchant/sales"}
         className={`${
-          currentPath.includes("messages") && "text-secondary"
+          currentPath.includes("sales") && "text-secondary"
         } transition-colors hover:text-secondary duration-100 ease-in flex flex-col items-center justify-center gap-y-2`}
       >
         <TbMoneybag className="h-5 w-5" />

@@ -19,11 +19,11 @@ const Discover = () => {
             placeholder="Discover products"
             name="productName"
             className="bg-[#F5F5F5] capitalize p-5 rounded-full w-11/12 lg:w-8/12  outline-none border-2 border-accent transition-all duration-150 ease-in my-5 text-sm"
-          ></input>
+          />
         </form>
       </section>
     </SidebarLayout>
-  );
+  );  
 };
 
 export default Discover;

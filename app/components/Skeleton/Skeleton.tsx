@@ -1,19 +1,25 @@
-
-"use client"
 import React from "react";
 
-interface IndexProps {
-    
+interface SkeletonProps {
+  className?: string;
+  width?: number;
+  height?: number;
+  rounded?: boolean;
 }
 
-const Index = ()=> {
+const Skeleton = ({
+  className,
+  width = 20,
+  height = 20,
+  rounded,
+}: SkeletonProps) => {
+  return (
+    <div
+      className={`skeleton bg-[#f2eded] w-${width} h-${height} ${
+        rounded && "rounded-full"
+      } ${className}`}
+    ></div>
+  );
+};
 
-    return (
-        <div>
-            <h1>Index works!</h1>
-        </div>
-    );  
-}
-
-export default Index;
-    
+export default Skeleton;

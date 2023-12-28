@@ -7,7 +7,7 @@ import { GoBell } from "react-icons/go";
 import { IoIosArrowBack } from "react-icons/io";
 import { useDispatch } from "react-redux";
 import { BsCart } from "react-icons/bs";
-import { userInfo } from "os";
+import Skeleton from "../Skeleton/Skeleton";
 
 interface AppHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
   className?: string;
@@ -171,7 +171,7 @@ const AppHeader = ({ className, showWelcomeMessage }: AppHeaderProps) => {
           >
             hi,{" "}
             {!userAuthInfo ? (
-              <div className="inline-block skeleton bg-[#f2eded] w-32 h-7 rounded-md"></div>
+              <Skeleton width={32} height={7} className="rounded-md" />
             ) : (
               <span className="capitalize">
                 {userAuthInfo?.username + " 👋"}
@@ -212,16 +212,15 @@ const AppHeader = ({ className, showWelcomeMessage }: AppHeaderProps) => {
         </section>
 
         <div className="avatar cursor-pointer relative" ref={profileRef}>
-          <div
-            className={`w-10 rounded-full`}
-            onClick={toggleProfileDropdown}
-          >
+          <div className={`w-10 rounded-full`} onClick={toggleProfileDropdown}>
             {userAuthInfo ? (
               <img
                 src={userAuthInfo?.profilePicture}
                 alt="user profile image"
               />
-            ): <div className="skele"></div>}
+            ) : (
+              <Skeleton rounded width={10} height={10} />
+            )}
           </div>
 
           {isProfileDropdownVisible && (
@@ -397,7 +396,7 @@ export const MerchantAppHeader = ({
           >
             hi,{" "}
             {!userAuthInfo ? (
-              <div className="inline-block skeleton bg-[#f2eded] w-32 h-7 rounded-md"></div>
+              <Skeleton width={32} height={7} className="rounded-md" />
             ) : (
               <span className="capitalize">
                 {userAuthInfo?.username + " 👋"}
@@ -443,12 +442,14 @@ export const MerchantAppHeader = ({
         </section>
         <div className="avatar cursor-pointer relative" ref={profileRef}>
           <div className="w-8 rounded-full" onClick={toggleProfileDropdown}>
-            <img
-              className=""
-              src={userAuthInfo?.profilePicture}
-              alt="hospital profile image"
-              width={20}
-            />
+            {userAuthInfo ? (
+              <img
+                src={userAuthInfo?.profilePicture}
+                alt="merchant profile image"
+              />
+            ) : (
+              <Skeleton rounded width={10} height={10} />
+            )}
           </div>
 
           {isProfileDropdownVisible && (

@@ -106,40 +106,30 @@ const AppHeader = ({ className, showWelcomeMessage }: AppHeaderProps) => {
     {
       id: 1,
       text: "Discover",
-      onClick: () => {
-        router.push("/user/appointments");
-      },
+      onClick: () => {},
     },
 
     {
       id: 2,
       text: "Store",
-      onClick: () => {
-        router.push("/user/dashboard");
-      },
+      onClick: () => {},
     },
     {
       id: 3,
       text: "View Profile",
-      onClick: () => {
-        router.push("/user/search");
-      },
+      onClick: () => {},
     },
 
     {
       id: 4,
       text: "Settings",
-      onClick: () => {
-        router.push("/user/profile/me");
-      },
+      onClick: () => {},
     },
 
     {
       id: 5,
       text: "Transaction History ",
-      onClick: () => {
-        router.push("/user/settings");
-      },
+      onClick: () => {},
     },
 
     {
@@ -300,21 +290,21 @@ export const MerchantAppHeader = ({
   const notificationItems = [
     {
       id: 1,
-      text: "New message from Emmysoft",
+      text: "Funds came in",
       onClick: () => {
         console.log(`Hello notification`);
       },
     },
     {
       id: 2,
-      text: "Reminder: Appointment at 5 PM",
+      text: "You added a new product",
       onClick: () => {
         console.log(`Hello notification`);
       },
     },
     {
       id: 3,
-      text: "Emmysoft booked an appointment",
+      text: "Merchant account created",
       onClick: () => {
         console.log(`Hello notification`);
       },
@@ -324,39 +314,31 @@ export const MerchantAppHeader = ({
   const profileMenuItems = [
     {
       id: 1,
-      text: "view appointments",
-      onClick: () => {
-        router.push("/hospital/appointments");
-      },
+      text: "My Products",
+      onClick: () => {},
     },
 
     {
       id: 2,
-      text: "healthcare history",
+      text: "Transaction History",
       onClick: () => {},
     },
     {
       id: 3,
-      text: "your users",
-      onClick: () => {
-        router.push("/hospital/search");
-      },
+      text: "Sales History",
+      onClick: () => {},
     },
 
     {
       id: 4,
       text: "view profile",
-      onClick: () => {
-        router.push("/hospital/profile/me");
-      },
+      onClick: () => {},
     },
 
     {
       id: 5,
       text: "settings",
-      onClick: () => {
-        router.push("/hospital/settings");
-      },
+      onClick: () => {},
     },
 
     {
@@ -420,7 +402,7 @@ export const MerchantAppHeader = ({
               {notificationItems.map((item) => (
                 <p
                   key={item.id}
-                  className="text-sm p-2 hover:bg-purple-100 rounded capitalize"
+                  className="text-sm p-2 hover:bg-accent hover:text-white rounded capitalize"
                   onClick={() => item.onClick()}
                 >
                   {item.text}
@@ -447,7 +429,7 @@ export const MerchantAppHeader = ({
               {profileMenuItems.map((item) => (
                 <p
                   key={item.id}
-                  className="text-[13px] md:text-sm p-3 hover:bg-purple-100 rounded capitalize mt-2 cursor-pointer"
+                  className="text-[13px] md:text-sm p-3 hover:bg-accent hover:text-white rounded capitalize mt-2 cursor-pointer"
                   onClick={() => item.onClick()}
                 >
                   {item.text}

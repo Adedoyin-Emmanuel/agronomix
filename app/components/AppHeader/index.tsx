@@ -1,4 +1,5 @@
 import { AppDispatch, useAppSelector } from "@/app/store/store";
+import { useLogoutMutation } from "@/app/store/features/app/app.slice";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useRef, useState } from "react";
 import toast from "react-hot-toast";
@@ -6,6 +7,7 @@ import { GoBell } from "react-icons/go";
 import { IoIosArrowBack } from "react-icons/io";
 import { useDispatch } from "react-redux";
 import { BsCart } from "react-icons/bs";
+import { userInfo } from "os";
 
 interface AppHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
   className?: string;
@@ -14,8 +16,9 @@ interface AppHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
 
 const AppHeader = ({ className, showWelcomeMessage }: AppHeaderProps) => {
   const dispatch = useDispatch<AppDispatch>();
-  // const [logout] = useLogoutMutation();
-  // const { userInfo } = useAppSelector((state) => state.auth);
+  const [logout] = useLogoutMutation();
+  const { userAuthInfo } = useAppSelector((state) => state.auth);
+
   const router = useRouter();
 
   const [isCartDropdownVisible, setIsNotificationDropdownVisible] =
@@ -164,7 +167,7 @@ const AppHeader = ({ className, showWelcomeMessage }: AppHeaderProps) => {
       {showWelcomeMessage ? (
         <section className="user-name">
           <h2 className="font-bold capitalize text-[18px] md:text-[20px]">
-            hi, Emmysoft 👋
+            holla, {userAuthInfo?.username} 👋
           </h2>
         </section>
       ) : (
@@ -201,7 +204,11 @@ const AppHeader = ({ className, showWelcomeMessage }: AppHeaderProps) => {
 
         <div className="avatar cursor-pointer relative" ref={profileRef}>
           <div className="w-10 rounded-full" onClick={toggleProfileDropdown}>
-            <img className="" src="/assets/leaf.png" alt="user profile image" />
+            <img
+              className=""
+              src={userAuthInfo?.profilePicture}
+              alt="user profile image"
+            />
           </div>
 
           {isProfileDropdownVisible && (
@@ -230,9 +237,10 @@ export const MerchantAppHeader = ({
   className,
   showWelcomeMessage,
 }: AppHeaderProps) => {
-  // const dispatch = useDispatch<AppDispatch>();
-  // const [logout] = useLogoutMutation();
-  // const { userInfo } = useAppSelector((state) => state.auth);
+  const dispatch = useDispatch<AppDispatch>();
+  const [logout] = useLogoutMutation();
+  const { userAuthInfo } = useAppSelector((state) => state.auth);
+
   const router = useRouter();
 
   const [isNotificationDropdownVisible, setIsNotificationDropdownVisible] =
@@ -372,7 +380,7 @@ export const MerchantAppHeader = ({
       {showWelcomeMessage ? (
         <section className="user-name">
           <h2 className="font-bold capitalize text-[18px] md:text-[20px]">
-            hi, Emmysoft 👋
+            hi, {userAuthInfo?.username} 👋
           </h2>
         </section>
       ) : (
@@ -415,7 +423,7 @@ export const MerchantAppHeader = ({
           <div className="w-8 rounded-full" onClick={toggleProfileDropdown}>
             <img
               className=""
-              src="https://api.dicebear.com/7.x/micah/svg?seed=emmysoft"
+              src={userAuthInfo?.profilePicture}
               alt="hospital profile image"
               width={20}
             />

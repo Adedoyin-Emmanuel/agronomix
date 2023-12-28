@@ -7,10 +7,18 @@ const Index = () => {
   const pathname = usePathname();
 
   return (
-    <SidebarLayout>
-      <h2 className="text-2xl font-bold text-primary capitalize">
-        hello dashboard page 🚀
-      </h2>
+    <SidebarLayout showWelcomeMesage>
+      <section className="first-section">
+        <section className="stats">
+          <section className="total-orders"></section>
+          <section className="total-views"></section>
+          <section className="total-collections"></section>
+        </section>
+        <section className="transaction-history"></section>
+      </section>
+      <section className="second-section">
+        <section className="recent-store"></section>
+      </section>
     </SidebarLayout>
   );
 };

@@ -73,21 +73,29 @@ const AppHeader = ({ className, showWelcomeMessage }: AppHeaderProps) => {
   const cartItems = [
     {
       id: 1,
-      text: "New message from Mango",
+      text: "2 Live Chicken",
       onClick: () => {
         console.log(`Hello notification`);
       },
     },
     {
       id: 2,
-      text: "Reminder: Appointment at 3 PM",
+      text: "28 Bag Of Rice",
       onClick: () => {
         console.log(`Hello notification`);
       },
     },
     {
       id: 3,
-      text: "Mayfair accepted your appointment",
+      text: "32 Carton Of Meat",
+      onClick: () => {
+        console.log(`Hello notification`);
+      },
+    },
+
+    {
+      id: 4,
+      text: "48 Carton Of Noddles",
       onClick: () => {
         console.log(`Hello notification`);
       },
@@ -97,7 +105,7 @@ const AppHeader = ({ className, showWelcomeMessage }: AppHeaderProps) => {
   const profileMenuItems = [
     {
       id: 1,
-      text: "view appointments",
+      text: "Discover",
       onClick: () => {
         router.push("/user/appointments");
       },
@@ -105,14 +113,14 @@ const AppHeader = ({ className, showWelcomeMessage }: AppHeaderProps) => {
 
     {
       id: 2,
-      text: "healthcare history",
+      text: "Store",
       onClick: () => {
         router.push("/user/dashboard");
       },
     },
     {
       id: 3,
-      text: "your hospitals",
+      text: "View Profile",
       onClick: () => {
         router.push("/user/search");
       },
@@ -120,7 +128,7 @@ const AppHeader = ({ className, showWelcomeMessage }: AppHeaderProps) => {
 
     {
       id: 4,
-      text: "view profile",
+      text: "Settings",
       onClick: () => {
         router.push("/user/profile/me");
       },
@@ -128,7 +136,7 @@ const AppHeader = ({ className, showWelcomeMessage }: AppHeaderProps) => {
 
     {
       id: 5,
-      text: "settings",
+      text: "Transaction History ",
       onClick: () => {
         router.push("/user/settings");
       },
@@ -191,7 +199,7 @@ const AppHeader = ({ className, showWelcomeMessage }: AppHeaderProps) => {
               {cartItems.map((item) => (
                 <p
                   key={item.id}
-                  className="text-sm p-2 hover:bg-purple-100 rounded capitalize"
+                  className="text-sm p-2 hover:bg-accent hover:text-white rounded capitalize"
                   onClick={() => item.onClick()}
                 >
                   {item.text}
@@ -214,7 +222,7 @@ const AppHeader = ({ className, showWelcomeMessage }: AppHeaderProps) => {
               {profileMenuItems.map((item) => (
                 <p
                   key={item.id}
-                  className="text-[13px] md:text-sm p-3 hover:bg-purple-100 rounded capitalize mt-2 cursor-pointer"
+                  className="text-[13px] md:text-sm p-3 hover:bg-accent hover:text-white rounded capitalize mt-2 cursor-pointer"
                   onClick={() => item.onClick()}
                 >
                   {item.text}

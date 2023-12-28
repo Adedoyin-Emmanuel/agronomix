@@ -166,8 +166,17 @@ const AppHeader = ({ className, showWelcomeMessage }: AppHeaderProps) => {
     >
       {showWelcomeMessage ? (
         <section className="user-name">
-          <h2 className="font-bold capitalize text-[18px] md:text-[20px]">
-            holla, {userAuthInfo?.username} 👋
+          <h2
+            className={`font-bold capitalize text-[18px] md:text-[20px] flex items-center gap-x-2`}
+          >
+            hi,{" "}
+            {!userAuthInfo ? (
+              <div className="inline-block skeleton bg-[#f2eded] w-32 h-7 rounded-md"></div>
+            ) : (
+              <span className="capitalize">
+                {userAuthInfo?.username + " 👋"}
+              </span>
+            )}{" "}
           </h2>
         </section>
       ) : (
@@ -203,12 +212,16 @@ const AppHeader = ({ className, showWelcomeMessage }: AppHeaderProps) => {
         </section>
 
         <div className="avatar cursor-pointer relative" ref={profileRef}>
-          <div className="w-10 rounded-full" onClick={toggleProfileDropdown}>
-            <img
-              className=""
-              src={userAuthInfo?.profilePicture}
-              alt="user profile image"
-            />
+          <div
+            className={`w-10 rounded-full`}
+            onClick={toggleProfileDropdown}
+          >
+            {userAuthInfo ? (
+              <img
+                src={userAuthInfo?.profilePicture}
+                alt="user profile image"
+              />
+            ): <div className="skele"></div>}
           </div>
 
           {isProfileDropdownVisible && (
@@ -379,8 +392,17 @@ export const MerchantAppHeader = ({
     >
       {showWelcomeMessage ? (
         <section className="user-name">
-          <h2 className="font-bold capitalize text-[18px] md:text-[20px]">
-            hi, {userAuthInfo?.username} 👋
+          <h2
+            className={`font-bold capitalize text-[18px] md:text-[20px] flex items-center gap-x-2`}
+          >
+            hi,{" "}
+            {!userAuthInfo ? (
+              <div className="inline-block skeleton bg-[#f2eded] w-32 h-7 rounded-md"></div>
+            ) : (
+              <span className="capitalize">
+                {userAuthInfo?.username + " 👋"}
+              </span>
+            )}{" "}
           </h2>
         </section>
       ) : (

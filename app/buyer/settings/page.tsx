@@ -40,11 +40,11 @@ const Settings = () => {
   };
 
   const handleNavigateToProfile = () => {
-    router.push("/user/profile/me");
+    router.push("/buyer/profile/me");
   };
 
   const handleUpdateProfile = () => {
-    router.push("/user/profile");
+    router.push("/buyer/profile");
   };
 
   const handleVerificationModalClick = () => {
@@ -73,7 +73,7 @@ const Settings = () => {
   // }, [data, skip]);
 
   return (
-    <div className="w-screen h-screen bg-zinc-50">
+    <div className="w-screen h-screen">
       {false ? (
         <Loader />
       ) : (

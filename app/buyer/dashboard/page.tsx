@@ -15,7 +15,7 @@ import {
   FaCheckCircle,
 } from "react-icons/fa";
 
-const Index = () => {
+const Dashboard = () => {
   const pathname = usePathname();
 
   const transactions = [
@@ -126,4 +126,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default Dashboard;

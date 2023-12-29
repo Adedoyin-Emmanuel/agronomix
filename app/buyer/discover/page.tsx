@@ -53,7 +53,7 @@ const Discover = () => {
             className="bg-[#F5F5F5] capitalize p-5 rounded-full w-11/12 lg:w-10/12  outline-none border-2 border-accent transition-all duration-150 ease-in my-5 text-sm"
           />
 
-          <section className="filters md:flex hidden gap-x-3 mt-2">
+          <section className="filters xl:flex hidden gap-x-3 mt-2">
             <span className="capitalize cursor-pointer p-2 border-[1px] rounded hover:bg-accent hover:border-transparent hover:text-white transition-all duration-150 ease-in">
               all
             </span>
@@ -87,7 +87,7 @@ const Discover = () => {
             </span>
           </section>
 
-          <section className="md:hidden w-11/12 flex items-end justify-end p-2">
+          <section className="xl:hidden w-11/12 flex items-end justify-end p-2">
             <section
               className="bg-accent p-2 rounded"
               onClick={handleShowFilter}
@@ -96,7 +96,7 @@ const Discover = () => {
             </section>
           </section>
           <section
-            className="md:hidden hidden w-11/12 filters flex-col rounded p-2 border border-accent gap-y-2"
+            className="xl:hidden hidden w-11/12 filters flex-col rounded p-2 border border-accent gap-y-2 z-[1000]"
             ref={filterContainerRef}
           >
             <span className="capitalize cursor-pointer p-2 border-[1px] rounded hover:bg-accent hover:border-transparent hover:text-white transition-all duration-150 ease-in">

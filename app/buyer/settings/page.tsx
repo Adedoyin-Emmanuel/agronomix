@@ -94,11 +94,11 @@ const Settings = () => {
                       <img
                         className=""
                         src="/assets/corn.png"
-                        alt="user profile image"
+                        alt="buyer profile image"
                       />
                     </div>
                     <section className="pen-container bg-accent flex items-center justify-center rounded-full w-6 h-6 transform-gpu text-white translate-y-12 -translate-x-7 hover:scale-110 duration-100 ease-linear hover:bg-secondary hover:text-slate-200">
-                      <Link href={"/user/profile"}>
+                      <Link href={"/buyer/profile"}>
                         {" "}
                         <BsPenFill />
                       </Link>
@@ -151,7 +151,7 @@ const Settings = () => {
                 >
                   <FaKey className="h-5 w-5" />
 
-                  <Link href="/user/profile" className="details">
+                  <Link href="/buyer/profile" className="details">
                     <h3 className="account font-bold capitalize text-[16px]">
                       account{" "}
                     </h3>
@@ -165,7 +165,7 @@ const Settings = () => {
                   <BiSolidUser className="h-5 w-5" />
 
                   <section className="details">
-                    <Link href={"/user/profile/me"}>
+                    <Link href={"/buyer/profile/me"}>
                       <h3 className="account font-bold capitalize text-[16px]">
                         profile{" "}
                       </h3>

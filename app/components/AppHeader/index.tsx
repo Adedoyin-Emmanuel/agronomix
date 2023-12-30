@@ -1,4 +1,5 @@
 import { AppDispatch, useAppSelector } from "@/app/store/store";
+import { useLogoutMutation } from "@/app/store/features/app/app.slice";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useRef, useState } from "react";
 import toast from "react-hot-toast";
@@ -6,6 +7,7 @@ import { GoBell } from "react-icons/go";
 import { IoIosArrowBack } from "react-icons/io";
 import { useDispatch } from "react-redux";
 import { BsCart } from "react-icons/bs";
+import Skeleton from "../Skeleton/Skeleton";
 
 interface AppHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
   className?: string;
@@ -14,8 +16,9 @@ interface AppHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
 
 const AppHeader = ({ className, showWelcomeMessage }: AppHeaderProps) => {
   const dispatch = useDispatch<AppDispatch>();
-  // const [logout] = useLogoutMutation();
-  // const { userInfo } = useAppSelector((state) => state.auth);
+  const [logout] = useLogoutMutation();
+  const { userAuthInfo } = useAppSelector((state) => state.auth);
+
   const router = useRouter();
 
   const [isCartDropdownVisible, setIsNotificationDropdownVisible] =
@@ -73,21 +76,29 @@ const AppHeader = ({ className, showWelcomeMessage }: AppHeaderProps) => {
   const cartItems = [
     {
       id: 1,
-      text: "New message from Mango",
+      text: "2 Live Chicken",
       onClick: () => {
         console.log(`Hello notification`);
       },
     },
     {
       id: 2,
-      text: "Reminder: Appointment at 3 PM",
+      text: "28 Bag Of Rice",
       onClick: () => {
         console.log(`Hello notification`);
       },
     },
     {
       id: 3,
-      text: "Mayfair accepted your appointment",
+      text: "32 Carton Of Meat",
+      onClick: () => {
+        console.log(`Hello notification`);
+      },
+    },
+
+    {
+      id: 4,
+      text: "48 Carton Of Noddles",
       onClick: () => {
         console.log(`Hello notification`);
       },
@@ -97,41 +108,31 @@ const AppHeader = ({ className, showWelcomeMessage }: AppHeaderProps) => {
   const profileMenuItems = [
     {
       id: 1,
-      text: "view appointments",
-      onClick: () => {
-        router.push("/user/appointments");
-      },
+      text: "Discover",
+      onClick: () => {},
     },
 
     {
       id: 2,
-      text: "healthcare history",
-      onClick: () => {
-        router.push("/user/dashboard");
-      },
+      text: "Store",
+      onClick: () => {},
     },
     {
       id: 3,
-      text: "your hospitals",
-      onClick: () => {
-        router.push("/user/search");
-      },
+      text: "View Profile",
+      onClick: () => {},
     },
 
     {
       id: 4,
-      text: "view profile",
-      onClick: () => {
-        router.push("/user/profile/me");
-      },
+      text: "Settings",
+      onClick: () => {},
     },
 
     {
       id: 5,
-      text: "settings",
-      onClick: () => {
-        router.push("/user/settings");
-      },
+      text: "Transaction History ",
+      onClick: () => {},
     },
 
     {
@@ -165,8 +166,17 @@ const AppHeader = ({ className, showWelcomeMessage }: AppHeaderProps) => {
     >
       {showWelcomeMessage ? (
         <section className="user-name">
-          <h2 className="font-bold capitalize text-[18px] md:text-[20px]">
-            hi, Emmysoft 👋
+          <h2
+            className={`font-bold capitalize text-[18px] md:text-[20px] flex items-center gap-x-2`}
+          >
+            hi,{" "}
+            {!userAuthInfo ? (
+              <Skeleton width={32} height={7} className="rounded-md" />
+            ) : (
+              <span className="capitalize">
+                {userAuthInfo?.username + " 👋"}
+              </span>
+            )}{" "}
           </h2>
         </section>
       ) : (
@@ -191,7 +201,7 @@ const AppHeader = ({ className, showWelcomeMessage }: AppHeaderProps) => {
               {cartItems.map((item) => (
                 <p
                   key={item.id}
-                  className="text-sm p-2 hover:bg-purple-100 rounded capitalize"
+                  className="text-sm p-2 hover:bg-accent hover:text-white rounded capitalize"
                   onClick={() => item.onClick()}
                 >
                   {item.text}
@@ -202,14 +212,15 @@ const AppHeader = ({ className, showWelcomeMessage }: AppHeaderProps) => {
         </section>
 
         <div className="avatar cursor-pointer relative" ref={profileRef}>
-          <div className="w-10 rounded-full" onClick={toggleProfileDropdown}>
-            <img
-              className=""
-              src="https://api.dicebear.com/7.x/micah/svg?seed=emmysoft"
-              alt="user profile image"
-              width={15}
-              height={15}
-            />
+          <div className={`w-10 rounded-full`} onClick={toggleProfileDropdown}>
+            {userAuthInfo ? (
+              <img
+                src={userAuthInfo?.profilePicture}
+                alt="user profile image"
+              />
+            ) : (
+              <Skeleton rounded width={10} height={10} />
+            )}
           </div>
 
           {isProfileDropdownVisible && (
@@ -220,7 +231,7 @@ const AppHeader = ({ className, showWelcomeMessage }: AppHeaderProps) => {
               {profileMenuItems.map((item) => (
                 <p
                   key={item.id}
-                  className="text-[13px] md:text-sm p-3 hover:bg-purple-100 rounded capitalize mt-2 cursor-pointer"
+                  className="text-[13px] md:text-sm p-3 hover:bg-accent hover:text-white rounded capitalize mt-2 cursor-pointer"
                   onClick={() => item.onClick()}
                 >
                   {item.text}
@@ -238,9 +249,10 @@ export const MerchantAppHeader = ({
   className,
   showWelcomeMessage,
 }: AppHeaderProps) => {
-  // const dispatch = useDispatch<AppDispatch>();
-  // const [logout] = useLogoutMutation();
-  // const { userInfo } = useAppSelector((state) => state.auth);
+  const dispatch = useDispatch<AppDispatch>();
+  const [logout] = useLogoutMutation();
+  const { userAuthInfo } = useAppSelector((state) => state.auth);
+
   const router = useRouter();
 
   const [isNotificationDropdownVisible, setIsNotificationDropdownVisible] =
@@ -298,21 +310,21 @@ export const MerchantAppHeader = ({
   const notificationItems = [
     {
       id: 1,
-      text: "New message from Emmysoft",
+      text: "Funds came in",
       onClick: () => {
         console.log(`Hello notification`);
       },
     },
     {
       id: 2,
-      text: "Reminder: Appointment at 5 PM",
+      text: "You added a new product",
       onClick: () => {
         console.log(`Hello notification`);
       },
     },
     {
       id: 3,
-      text: "Emmysoft booked an appointment",
+      text: "Merchant account created",
       onClick: () => {
         console.log(`Hello notification`);
       },
@@ -322,39 +334,31 @@ export const MerchantAppHeader = ({
   const profileMenuItems = [
     {
       id: 1,
-      text: "view appointments",
-      onClick: () => {
-        router.push("/hospital/appointments");
-      },
+      text: "My Products",
+      onClick: () => {},
     },
 
     {
       id: 2,
-      text: "healthcare history",
+      text: "Transaction History",
       onClick: () => {},
     },
     {
       id: 3,
-      text: "your users",
-      onClick: () => {
-        router.push("/hospital/search");
-      },
+      text: "Sales History",
+      onClick: () => {},
     },
 
     {
       id: 4,
       text: "view profile",
-      onClick: () => {
-        router.push("/hospital/profile/me");
-      },
+      onClick: () => {},
     },
 
     {
       id: 5,
       text: "settings",
-      onClick: () => {
-        router.push("/hospital/settings");
-      },
+      onClick: () => {},
     },
 
     {
@@ -387,8 +391,17 @@ export const MerchantAppHeader = ({
     >
       {showWelcomeMessage ? (
         <section className="user-name">
-          <h2 className="font-bold capitalize text-[18px] md:text-[20px]">
-            hi, Emmysoft 👋
+          <h2
+            className={`font-bold capitalize text-[18px] md:text-[20px] flex items-center gap-x-2`}
+          >
+            hi,{" "}
+            {!userAuthInfo ? (
+              <Skeleton width={32} height={7} className="rounded-md" />
+            ) : (
+              <span className="capitalize">
+                {userAuthInfo?.username + " 👋"}
+              </span>
+            )}{" "}
           </h2>
         </section>
       ) : (
@@ -418,7 +431,7 @@ export const MerchantAppHeader = ({
               {notificationItems.map((item) => (
                 <p
                   key={item.id}
-                  className="text-sm p-2 hover:bg-purple-100 rounded capitalize"
+                  className="text-sm p-2 hover:bg-accent hover:text-white rounded capitalize"
                   onClick={() => item.onClick()}
                 >
                   {item.text}
@@ -429,12 +442,14 @@ export const MerchantAppHeader = ({
         </section>
         <div className="avatar cursor-pointer relative" ref={profileRef}>
           <div className="w-8 rounded-full" onClick={toggleProfileDropdown}>
-            <img
-              className=""
-              src="https://api.dicebear.com/7.x/micah/svg?seed=emmysoft"
-              alt="hospital profile image"
-              width={20}
-            />
+            {userAuthInfo ? (
+              <img
+                src={userAuthInfo?.profilePicture}
+                alt="merchant profile image"
+              />
+            ) : (
+              <Skeleton rounded width={10} height={10} />
+            )}
           </div>
 
           {isProfileDropdownVisible && (
@@ -445,7 +460,7 @@ export const MerchantAppHeader = ({
               {profileMenuItems.map((item) => (
                 <p
                   key={item.id}
-                  className="text-[13px] md:text-sm p-3 hover:bg-purple-100 rounded capitalize mt-2 cursor-pointer"
+                  className="text-[13px] md:text-sm p-3 hover:bg-accent hover:text-white rounded capitalize mt-2 cursor-pointer"
                   onClick={() => item.onClick()}
                 >
                   {item.text}

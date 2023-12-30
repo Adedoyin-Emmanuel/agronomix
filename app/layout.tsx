@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Toaster } from "react-hot-toast";
-import "react-loading-skeleton/dist/skeleton.css";
 import { ReduxProvider } from "./store/providers/provider";
 
 export const metadata: Metadata = {

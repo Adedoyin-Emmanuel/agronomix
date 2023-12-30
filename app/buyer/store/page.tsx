@@ -1,16 +1,17 @@
 "use client";
 import React from "react";
 import { useRouter, usePathname } from "next/navigation";
+import SidebarLayout from "@/app/components/SidebarLayout";
 import { MerchantSidebarLayout } from "@/app/components/SidebarLayout";
 const Index = () => {
   const pathname = usePathname();
 
   return (
-    <MerchantSidebarLayout>
+    <SidebarLayout>
       <h2 className="text-2xl font-bold text-primary capitalize">
-        hello merchant dashboard page 🚀
+        hello store page 🚀
       </h2>
-    </MerchantSidebarLayout>
+    </SidebarLayout>
   );
 };
 

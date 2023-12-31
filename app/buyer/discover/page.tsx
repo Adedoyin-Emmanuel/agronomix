@@ -149,7 +149,7 @@ const Discover = () => {
                   <img
                     src={"/assets/corn.png"}
                     alt="product"
-                    className="w-full h-full"
+                    className="w-full h-full object-cover"
                   />
                 </section>
 
@@ -192,7 +192,7 @@ const Discover = () => {
                   <img
                     src={"/assets/cassava.png"}
                     alt="product"
-                    className="w-full h-full"
+                    className="w-full h-full object-cover"
                   />
                 </section>
 
@@ -235,7 +235,7 @@ const Discover = () => {
                   <img
                     src={"/assets/roasted-corn.png"}
                     alt="product"
-                    className="w-full h-full"
+                    className="w-full h-full object-cover"
                   />
                 </section>
 
@@ -278,7 +278,7 @@ const Discover = () => {
                   <img
                     src={"/assets/fruit-1.png"}
                     alt="product"
-                    className="w-full h-full"
+                    className="w-full h-full object-cover"
                   />
                 </section>
 
@@ -331,7 +331,7 @@ const Discover = () => {
                   <img
                     src={"/assets/tractor.png"}
                     alt="product"
-                    className="w-full h-full"
+                    className="w-full h-full object-cover"
                   />
                 </section>
 
@@ -374,7 +374,7 @@ const Discover = () => {
                   <img
                     src={"/assets/fruit-2.png"}
                     alt="product"
-                    className="w-full h-full"
+                    className="w-full h-full object-cover"
                   />
                 </section>
 
@@ -417,7 +417,7 @@ const Discover = () => {
                   <img
                     src={"/assets/plough.png"}
                     alt="product"
-                    className="w-full h-full"
+                    className="w-full h-full object-cover"
                   />
                 </section>
 
@@ -458,15 +458,15 @@ const Discover = () => {
               <section className="product grid grid-rows-2 md:w-52 w-11/12  h-80 border border-accent rounded">
                 <section className="image">
                   <img
-                    src={"/assets/roasted-corn.png"}
+                    src={"/assets/chicken.jpg"}
                     alt="product"
-                    className="w-full h-full"
+                    className="w-full h-full object-cover"
                   />
                 </section>
 
                 <section className="others p-1">
                   <section className="title my-2">
-                    <p className="capitalize font-bold">Fresh Agbado</p>
+                    <p className="capitalize font-bold">Chicken</p>
                   </section>
 
                   <section className="merchant-name flex items-center gap-x-1 my-2">

@@ -170,7 +170,7 @@ const AppHeader = ({ className, showWelcomeMessage }: AppHeaderProps) => {
             className={`font-bold capitalize text-[18px] md:text-[20px] flex items-center gap-x-2`}
           >
             hi,{" "}
-            {!userAuthInfo ? (
+          {!userAuthInfo ? (
               <Skeleton className="rounded-md w-44 h-8" />
             ) : (
               <span className="capitalize">

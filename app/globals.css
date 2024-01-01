@@ -12,6 +12,7 @@
 *,
 body {
   font-family: SpaceMono !important;
+  box-sizing: border-box;
 }
 
 .fade-in {
@@ -20,8 +21,8 @@ body {
   animation: fadeIn 0.5s linear;
 }
 
-.fade-out{  
-  transition:.5s;
+.fade-out {
+  transition: 0.5s;
   animation: fadeOut 0.5s linear;
 }
 
@@ -43,7 +44,6 @@ body {
     display: none;
   }
 }
-
 
 :root {
   --foreground-rgb: 0, 0, 0;

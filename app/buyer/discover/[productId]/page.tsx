@@ -16,7 +16,7 @@ const page = ({ params }: { params: { productId: string } }) => {
         <form className="flex items-center justify-center p-2 mt-5 flex-col  mx-auto w-full lg:w-8/12 ">
           <input
             type="text"
-            placeholder="Discover products"
+            placeholder="Search products"
             name="productName"
             className="bg-[#F5F5F5] capitalize p-5 rounded-full lg:w-11/12 w-full outline-none border-2 border-accent transition-all duration-150 ease-in my-5 text-sm"
           />
@@ -57,14 +57,14 @@ const page = ({ params }: { params: { productId: string } }) => {
                 />
               </section>
 
-              <section className="product-body grid md:grid-cols-2 w-full">
-                <section className="product-description border-r-[1px] border-accent">
+              <section className="grid md:grid-cols-2 w-full">
+                <section className="border-r-[1px] border-accent">
                   <h1 className="text-[20px] font-bold capitalize p-2 border-y-[1px] border-accent">
                     live chicken
                   </h1>
                   <section className="w-full flex p-2 items-center justify-between flex-wrap border-b-[1px] border-accent">
                     <h2 className="text-[20px] font-bold">#10k</h2>
-                    <section className="merchant flex items-center gap-x-1 ">
+                    <section className="flex items-center gap-x-1 ">
                       <img
                         src="/assets/cassava.png"
                         alt="merchant profile image"
@@ -74,7 +74,7 @@ const page = ({ params }: { params: { productId: string } }) => {
                         @emmysoft
                       </Text>
                     </section>
-                    <section className="rating flex items-center gap-x-2 ">
+                    <section className="flex items-center gap-x-2 ">
                       <section className="flex items-center gap-x-1">
                         <FaStar className="text-accent" />
                       </section>
@@ -90,7 +90,7 @@ const page = ({ params }: { params: { productId: string } }) => {
                   </Text>
                 </section>
 
-                <section className="product-cart p-1 border-t-[1px] border-accent">
+                <section className="p-1 border-t-[1px] border-accent">
                   <form className="p-2">
                     <label htmlFor="price" className="block text-sm my-2">
                       Name a fair price

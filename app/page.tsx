@@ -27,42 +27,42 @@ export default function Home() {
               <div className="carousel-item border-[1px] border-primary">
                 <img
                   src="/assets/chicken.jpg"
-                  alt="Corn"
+                  alt="chicken"
                   className="object-cover"
                 />
               </div>
               <div className="carousel-item border-[1px] border-primary">
                 <img
                   src="/assets/fruit-2.png"
-                  alt="Drink"
+                  alt="fruits & vegetables"
                   className="object-cover"
                 />
               </div>
               <div className="carousel-item border-[1px] border-primary">
                 <img
-                  src="/assets/fruit-1.png"
-                  alt="Drink"
+                  src="/assets/meat.jpg"
+                  alt="meat"
                   className="object-cover"
                 />
               </div>
               <div className="carousel-item border-[1px] border-primary">
                 <img
-                  src="/assets/fruit-2.png"
-                  alt="Drink"
+                  src="/assets/potato.jpg"
+                  alt="potato"
                   className="object-cover"
                 />
               </div>
               <div className="carousel-item border-[1px] border-primary">
                 <img
-                  src="/assets/plough.png"
-                  alt="Drink"
+                  src="/assets/corn.png"
+                  alt="corn"
                   className="object-cover"
                 />
               </div>
               <div className="carousel-item border-[1px] border-primary">
                 <img
-                  src="/assets/roasted-corn.png"
-                  alt="Drink"
+                  src="/assets/cassava.png"
+                  alt="cassava"
                   className="object-cover"
                 />
               </div>

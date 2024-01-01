@@ -171,7 +171,7 @@ const AppHeader = ({ className, showWelcomeMessage }: AppHeaderProps) => {
           >
             hi,{" "}
             {!userAuthInfo ? (
-              <Skeleton width={32} height={7} className="rounded-md" />
+              <Skeleton className="rounded-md" width={44} height={8} />
             ) : (
               <span className="capitalize">
                 {userAuthInfo?.username + " 👋"}
@@ -396,7 +396,7 @@ export const MerchantAppHeader = ({
           >
             hi,{" "}
             {!userAuthInfo ? (
-              <Skeleton width={32} height={7} className="rounded-md" />
+              <Skeleton className="rounded-md" width={44} height={8} />
             ) : (
               <span className="capitalize">
                 {userAuthInfo?.username + " 👋"}

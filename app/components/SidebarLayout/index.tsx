@@ -62,7 +62,7 @@ const SidebarLayout = ({
         <section className="w-11/12 p-2">
           <Link
             href={"/buyer/dashboard"}
-            className={`dashboard cursor-pointer  ${
+            className={`cursor-pointer  ${
               currentPath.includes("dashboard")
                 ? "text-white bg-accent"
                 : "bg-gray-200"
@@ -74,8 +74,9 @@ const SidebarLayout = ({
 
           <Link
             href="/buyer/discover"
-            className={`dashboard cursor-pointer  ${
-              currentPath.includes("discover")
+            className={`cursor-pointer  ${
+              currentPath.includes("discover") ||
+              currentPath.includes("checkout")
                 ? "text-white bg-accent"
                 : "bg-gray-200"
             } hover:bg-accent duration-100 ease-in hover:text-white transition-colors flex items-center gap-x-4 p-5 rounded my-4`}
@@ -86,7 +87,7 @@ const SidebarLayout = ({
 
           <Link
             href="/buyer/store"
-            className={`dashboard cursor-pointer  ${
+            className={`cursor-pointer  ${
               currentPath.includes("store")
                 ? "text-white bg-accent"
                 : "bg-gray-200"
@@ -98,7 +99,7 @@ const SidebarLayout = ({
 
           <Link
             href="/buyer/settings"
-            className={`dashboard cursor-pointer ${
+            className={`cursor-pointer ${
               currentPath.includes("settings") ||
               currentPath.includes("profile") ||
               currentPath.includes("profile/me")
@@ -113,7 +114,7 @@ const SidebarLayout = ({
           <Link
             href=""
             onClick={handleLogoutClick}
-            className={`dashboard cursor-pointer  ${
+            className={`cursor-pointer  ${
               currentPath.includes("logout")
                 ? "text-white bg-accent"
                 : "bg-gray-200"
@@ -176,7 +177,7 @@ export const MerchantSidebarLayout = ({
         <section className="w-11/12 p-2">
           <Link
             href={"/merchant/dashboard"}
-            className={`dashboard cursor-pointer  ${
+            className={`cursor-pointer  ${
               currentPath.includes("dashboard")
                 ? "text-white bg-accent"
                 : "bg-gray-200"
@@ -188,7 +189,7 @@ export const MerchantSidebarLayout = ({
 
           <Link
             href="/merchant/products"
-            className={`dashboard cursor-pointer  ${
+            className={`cursor-pointer  ${
               currentPath.includes("products")
                 ? "text-white bg-accent"
                 : "bg-gray-200"
@@ -200,7 +201,7 @@ export const MerchantSidebarLayout = ({
 
           <Link
             href="/merchant/sales"
-            className={`dashboard cursor-pointer  ${
+            className={`cursor-pointer  ${
               currentPath.includes("sales")
                 ? "text-white bg-accent"
                 : "bg-gray-200"
@@ -212,7 +213,7 @@ export const MerchantSidebarLayout = ({
 
           <Link
             href="/merchant/settings"
-            className={`dashboard cursor-pointer ${
+            className={`cursor-pointer ${
               currentPath.includes("settings") ||
               currentPath.includes("profile") ||
               currentPath.includes("profile/me")
@@ -225,7 +226,7 @@ export const MerchantSidebarLayout = ({
           </Link>
           <Link
             href="logout"
-            className={`dashboard cursor-pointer  ${
+            className={`cursor-pointer  ${
               currentPath.includes("logout")
                 ? "text-white bg-accent"
                 : "bg-gray-200"

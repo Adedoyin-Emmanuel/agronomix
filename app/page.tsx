@@ -25,22 +25,46 @@ export default function Home() {
             </section>
             <div className="carousel carousel-end rounded-box my-5 border-2 border-primary">
               <div className="carousel-item border-[1px] border-primary">
-                <img src="/assets/corn.png" alt="Corn" />
+                <img
+                  src="/assets/chicken.jpg"
+                  alt="Corn"
+                  className="object-cover"
+                />
               </div>
               <div className="carousel-item border-[1px] border-primary">
-                <img src="/assets/cassava.png" alt="Drink" />
+                <img
+                  src="/assets/fruit-2.png"
+                  alt="Drink"
+                  className="object-cover"
+                />
               </div>
               <div className="carousel-item border-[1px] border-primary">
-                <img src="/assets/fruit-1.png" alt="Drink" />
+                <img
+                  src="/assets/fruit-1.png"
+                  alt="Drink"
+                  className="object-cover"
+                />
               </div>
               <div className="carousel-item border-[1px] border-primary">
-                <img src="/assets/fruit-2.png" alt="Drink" />
+                <img
+                  src="/assets/fruit-2.png"
+                  alt="Drink"
+                  className="object-cover"
+                />
               </div>
               <div className="carousel-item border-[1px] border-primary">
-                <img src="/assets/plough.png" alt="Drink" />
+                <img
+                  src="/assets/plough.png"
+                  alt="Drink"
+                  className="object-cover"
+                />
               </div>
               <div className="carousel-item border-[1px] border-primary">
-                <img src="/assets/roasted-corn.png" alt="Drink" />
+                <img
+                  src="/assets/roasted-corn.png"
+                  alt="Drink"
+                  className="object-cover"
+                />
               </div>
             </div>
           </section>

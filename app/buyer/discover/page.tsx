@@ -144,7 +144,7 @@ const Discover = () => {
             </h3>
 
             <section className="products flex flex-col items-center justify-center lg:grid sm:grid-cols-2 xl:grid-cols-4 w-full gap-10 my-5">
-              <section className="product grid grid-rows-2 md:w-52 w-11/12  h-80 border border-accent rounded">
+              <section className="product grid grid-rows-2 md:w-52 w-11/12  h-80 border border-accent rounded cursor-pointer transform-gpu hover:scale-105 duration-150 ease-in">
                 <section className="image">
                   <img
                     src={"/assets/corn.png"}
@@ -187,7 +187,7 @@ const Discover = () => {
                 </section>
               </section>
 
-              <section className="product grid grid-rows-2 md:w-52 w-11/12  h-80 border border-accent rounded">
+              <section className="product grid grid-rows-2 md:w-52 w-11/12  h-80 border border-accent rounded cursor-pointer transform-gpu hover:scale-105 duration-150 ease-in">
                 <section className="image">
                   <img
                     src={"/assets/cassava.png"}
@@ -230,7 +230,7 @@ const Discover = () => {
                 </section>
               </section>
 
-              <section className="product grid grid-rows-2 md:w-52 w-11/12  h-80 border border-accent rounded">
+              <section className="product grid grid-rows-2 md:w-52 w-11/12  h-80 border border-accent rounded cursor-pointer transform-gpu hover:scale-105 duration-150 ease-in">
                 <section className="image">
                   <img
                     src={"/assets/roasted-corn.png"}
@@ -273,7 +273,7 @@ const Discover = () => {
                 </section>
               </section>
 
-              <section className="product grid grid-rows-2 md:w-52 w-11/12  h-80 border border-accent rounded">
+              <section className="product grid grid-rows-2 md:w-52 w-11/12  h-80 border border-accent rounded cursor-pointer transform-gpu hover:scale-105 duration-150 ease-in">
                 <section className="image">
                   <img
                     src={"/assets/fruit-1.png"}
@@ -326,7 +326,7 @@ const Discover = () => {
             </h3>
 
             <section className="products flex flex-col items-center justify-center lg:grid sm:grid-cols-2 xl:grid-cols-4 w-full gap-10 my-5">
-              <section className="product grid grid-rows-2 md:w-52 w-11/12  h-80 border border-accent rounded">
+              <section className="product grid grid-rows-2 md:w-52 w-11/12  h-80 border border-accent rounded cursor-pointer transform-gpu hover:scale-105 duration-150 ease-in">
                 <section className="image">
                   <img
                     src={"/assets/tractor.png"}
@@ -369,7 +369,7 @@ const Discover = () => {
                 </section>
               </section>
 
-              <section className="product grid grid-rows-2 md:w-52 w-11/12  h-80 border border-accent rounded">
+              <section className="product grid grid-rows-2 md:w-52 w-11/12  h-80 border border-accent rounded cursor-pointer transform-gpu hover:scale-105 duration-150 ease-in">
                 <section className="image">
                   <img
                     src={"/assets/fruit-2.png"}
@@ -412,7 +412,7 @@ const Discover = () => {
                 </section>
               </section>
 
-              <section className="product grid grid-rows-2 md:w-52 w-11/12  h-80 border border-accent rounded">
+              <section className="product grid grid-rows-2 md:w-52 w-11/12  h-80 border border-accent rounded cursor-pointer transform-gpu hover:scale-105 duration-150 ease-in">
                 <section className="image">
                   <img
                     src={"/assets/plough.png"}
@@ -455,7 +455,7 @@ const Discover = () => {
                 </section>
               </section>
 
-              <section className="product grid grid-rows-2 md:w-52 w-11/12  h-80 border border-accent rounded">
+              <section className="product grid grid-rows-2 md:w-52 w-11/12  h-80 border border-accent rounded cursor-pointer transform-gpu hover:scale-105 duration-150 ease-in">
                 <section className="image">
                   <img
                     src={"/assets/chicken.jpg"}

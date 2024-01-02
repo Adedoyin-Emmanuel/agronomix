@@ -45,15 +45,15 @@ export default function Me() {
                   </div>
 
                   <section className="profile w-full p-1 md:p-0 md:w-1/2 xl:w-2/6">
-                    <section className="w-full flex items-center justify-between mt-5">
+                    <section className="w-full flex items-center justify-between mt-5 flex-wrap">
                       <h3 className="font-bold text-[20px] capitalize flex items-center gap-x-1">
                         Adedoyin Emmanuel Adeniyi
                         <span> {true && <Verified big={true} />}</span>
                       </h3>
 
                       <Link href={"/buyer/profile"}>
-                        <section className="bg-accent rounded-[20px] text-sm py-1 px-3 text-white text-center capitalize cursor-pointer hover:bg-secondary transition-colors duration-100 ease-in">
-                          update profile
+                        <section className="bg-accent rounded-[20px] text-sm py-1 px-3 text-white text-center capitalize cursor-pointer hover:bg-secondary transition-colors duration-100 ease-in my-2">
+                          update
                         </section>
                       </Link>
                     </section>

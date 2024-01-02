@@ -1,13 +1,40 @@
 "use client";
+
 import React from "react";
-import { useRouter, usePathname } from "next/navigation";
+import { usePathname } from "next/navigation";
 import SidebarLayout from "@/app/components/SidebarLayout";
 import Text from "@/app/components/Text";
 import Button from "@/app/components/Button";
 import Input from "@/app/components/Input";
+import { FaPen } from "react-icons/fa";
 
-const Index = () => {
+const CheckoutPage = () => {
   const pathname = usePathname();
+
+  const products = [
+    {
+      id: 1,
+      name: "Fresh Chicken",
+      image: "/assets/chicken.jpg",
+      merchant: {
+        name: "@emmysoft",
+        profileLink: "https://example.com/emmysoft",
+      },
+      price: 25,
+      quantity: 1,
+    },
+    {
+      id: 2,
+      name: "Sweet Potato",
+      image: "/assets/potato.jpg",
+      merchant: {
+        name: "@organicfarm",
+        profileLink: "https://example.com/organicfarm",
+      },
+      price: 15,
+      quantity: 2,
+    },
+  ];
 
   return (
     <SidebarLayout>
@@ -23,94 +50,66 @@ const Index = () => {
             <Button>continue shopping</Button>
           </section>
         </section>
-        <br />
-        <br />
-        <br />
-        <main className="grid grid-cols-2 mx-auto">
-          <section className="w-full products bg-red-500">
-            <section className="product rounded border border-accent">
-              <section className="image">
-                <img src="/assets/chicken.jpg" alt="product image" />
-              </section>
-              <section className="details">
-                <section className="header">
-                  <Text className="font-bold">Fresh chicken</Text>
-                  <Text className="font-bold">#25</Text>
+        <main className="grid grid-cols-1 w-full lg:w-7/12 gap-4 mx-auto my-4">
+          {/* Products Section */}
+          <section className="w-full my-3">
+            {products.map((product) => (
+              <>
+                <section
+                  key={product.id}
+                  className="product mb-4 rounded border border-accent"
+                >
+                  <section className="w-full flex items-center">
+                    <section className="image mr-4 h-full">
+                      <img
+                        src={product.image}
+                        alt={`${product.name} image`}
+                        className="w-28 h-28 object-cover"
+                      />
+                    </section>
+                    <section className="flex flex-col">
+                      <Text className="font-bold">{product.name}</Text>
+                      <Text className="text-sm underline" noCapitalize>
+                        <a
+                          href={product.merchant.profileLink}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          {product.merchant.name}
+                        </a>
+                      </Text>
+                      <Text>
+                        Price:{" "}
+                        <span className="font-bold">#{product.price}</span>
+                      </Text>
+                      <Text>
+                        Quantity:{" "}
+                        <span className="font-bold">{product.quantity}</span>
+                      </Text>
+                    </section>
+                  </section>
                 </section>
-
-                <section className="merchant">
-                  <Text className="text-sm underline" noCapitalize>
-                    @emmysoft
-                  </Text>
+                <section className="w-full flex justify-end transform -translate-y-12 -translate-x-4">
+                  <FaPen
+                    className="cursor-pointer"
+                    onClick={() => {
+                      console.log(product.id);
+                    }}
+                  />
                 </section>
-                <section className="footer">
-                  <Text className="font-bold">Qty: 1</Text>
-                  <Text className="underline">Remove</Text>
-                </section>
-              </section>
+              </>
+            ))}
+            <section className="w-full flex items-center justify-between border border-accent py-4 px-1">
+              <h3 className="capitalize font-bold text-[20px]">total</h3>
+              <Text className="font-bold">#500</Text>
             </section>
-          </section>
-
-          <form className="w-full p-3 payment-details bg-green-500 ">
-            <h3 className="font-bold text-[18px] capitalize">pay with</h3>
-
-            <section className="flex items-center gap-x-3">
-              <div className="w-20 h-20 bg-accent rounded"></div>
-              <div className="w-20 h-20 bg-accent rounded"></div>
-              <div className="w-20 h-20 bg-accent rounded"></div>
-            </section>
-
-            <section className="my-3">
-              <label htmlFor="cardName" className="capitalize block my-2">
-                name on card
-              </label>
-              <Input
-                type="text"
-                placeholder="Enter the name on your card"
-                name="cardName"
-              />
-            </section>
-
-            <section className="my-3">
-              <label htmlFor="cardNumber" className="capitalize block my-2">
-                card number
-              </label>
-              <Input type="number" placeholder="Enter card number" />
-            </section>
-
-            <section className="my-3">
-              <label htmlFor="cardDate" className="capitalize block my-2">
-                card expiry date
-              </label>
-              <Input type="number" placeholder="MM/YY" />
-            </section>
-            <hr />
-            <Text className="font-bold text-[18px]">Contact information</Text>
             <br />
-
-            <section className="my-3">
-              <label htmlFor="email" className="capitalize block my-2">
-                Email
-              </label>
-              <Input type="text" placeholder="Enter your email" name="email" />
-            </section>
-
-            <section className="my-3">
-              <label htmlFor="email" className="text-md block my-2">
-                country
-              </label>
-              <select
-                className="select border-2 border-gray-300 focus:outline-none rounded-md w-full h-16"
-                name="country"
-              >
-                <option value="nigeria">Nigeria</option>
-              </select>
-            </section>
-          </form>
+            <Button>Pay</Button>
+          </section>
         </main>
       </section>
     </SidebarLayout>
   );
 };
 
-export default Index;
+export default CheckoutPage;

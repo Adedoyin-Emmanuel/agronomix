@@ -170,7 +170,7 @@ const AppHeader = ({ className, showWelcomeMessage }: AppHeaderProps) => {
             className={`font-bold capitalize text-[18px] md:text-[20px] flex items-center gap-x-2`}
           >
             hi,{" "}
-          {!userAuthInfo ? (
+            {!userAuthInfo ? (
               <Skeleton className="rounded-md w-44 h-8" />
             ) : (
               <span className="capitalize">
@@ -441,7 +441,7 @@ export const MerchantAppHeader = ({
           )}
         </section>
         <div className="avatar cursor-pointer relative" ref={profileRef}>
-          <div className="w-8 rounded-full" onClick={toggleProfileDropdown}>
+          <div className="w-10 rounded-full" onClick={toggleProfileDropdown}>
             {userAuthInfo ? (
               <img
                 src={userAuthInfo?.profilePicture}

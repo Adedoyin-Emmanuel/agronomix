@@ -1,7 +1,7 @@
 "use client";
 
 import Loader from "@/app/components/Loader";
-import SidebarLayout from "@/app/components/SidebarLayout";
+import { MerchantSidebarLayout } from "@/app/components/SidebarLayout";
 import Text from "@/app/components/Text";
 import Verified from "@/app/components/Verified";
 
@@ -29,7 +29,7 @@ export default function Me() {
       ) : false ? (
         <Text>An error occured</Text>
       ) : (
-        <SidebarLayout>
+        <MerchantSidebarLayout>
           <section className=" my-5">
             <section className="w-full">
               <section className="w-full my-5">
@@ -92,7 +92,7 @@ export default function Me() {
               </section>
             </section>
           </section>
-        </SidebarLayout>
+        </MerchantSidebarLayout>
       )}
     </div>
   );

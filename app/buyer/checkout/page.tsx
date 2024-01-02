@@ -1,6 +1,5 @@
 "use client";
-
-import React from "react";
+import React, { useState } from "react";
 import { usePathname } from "next/navigation";
 import SidebarLayout from "@/app/components/SidebarLayout";
 import Text from "@/app/components/Text";
@@ -11,7 +10,10 @@ import { FaPen } from "react-icons/fa";
 const CheckoutPage = () => {
   const pathname = usePathname();
 
-  const products = [
+  const [showSidebar, setShowSidebar] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState<any>(null);
+  const [quantity, setQuantity] = useState(1);
+  const [products, setProducts] = useState([
     {
       id: 1,
       name: "Fresh Chicken",
@@ -34,7 +36,40 @@ const CheckoutPage = () => {
       price: 15,
       quantity: 2,
     },
-  ];
+  ]);
+
+  const handlePenClick = (product: any) => {
+    setSelectedProduct(product);
+    setQuantity(product.quantity);
+    setShowSidebar(true);
+  };
+
+  const handleSidebarClose = () => {
+    setShowSidebar(false);
+  };
+
+  const handleQuantityChange = (newQuantity: any) => {
+    setQuantity(newQuantity);
+  };
+
+  const handleUpdateQuantity = () => {
+    // Update the quantity for the selected product in the products array
+    const updatedProducts = products.map((product) => {
+      if (product.id === selectedProduct.id) {
+        return {
+          ...product,
+          quantity: quantity == 0 ? 1 : quantity,
+        };
+      }
+      return product;
+    });
+
+    // Set the updated products array
+    setProducts(updatedProducts);
+
+    // Close the sidebar
+    setShowSidebar(false);
+  };
 
   return (
     <SidebarLayout>
@@ -92,9 +127,7 @@ const CheckoutPage = () => {
                 <section className="w-full flex justify-end transform -translate-y-12 -translate-x-4">
                   <FaPen
                     className="cursor-pointer"
-                    onClick={() => {
-                      console.log(product.id);
-                    }}
+                    onClick={() => handlePenClick(product)}
                   />
                 </section>
               </>
@@ -108,6 +141,30 @@ const CheckoutPage = () => {
           </section>
         </main>
       </section>
+
+      {/* Sidebar for Quantity Adjustment */}
+      {showSidebar && selectedProduct && (
+        <section className="fixed top-0 right-0 h-full w-full bg-gray-800 bg-opacity-50 flex items-center justify-center p-2">
+          <section className="bg-white p-4 rounded">
+            <h3 className="font-bold mb-4">Adjust Quantity</h3>
+            <Input
+              type="number"
+              value={quantity}
+              min={1}
+              onChange={(e) => handleQuantityChange(e.target.value)}
+            />
+            <Button className="mt-4" onClick={handleUpdateQuantity}>
+              Update Quantity
+            </Button>
+            <Button
+              className="mt-3 bg-transparent border border-accent text-black hover:bg-red-400 hover:text-white hover:border-red-400 transition duration-150 ease-linear"
+              onClick={handleSidebarClose}
+            >
+              Close
+            </Button>
+          </section>
+        </section>
+      )}
     </SidebarLayout>
   );
 };

@@ -11,15 +11,14 @@ import { FaPen } from "react-icons/fa";
 const CheckoutPage = () => {
   const pathname = usePathname();
 
-  // Sample product data for testing
   const products = [
     {
       id: 1,
       name: "Fresh Chicken",
-      image: "/assets/chicken.jpg", // Placeholder image
+      image: "/assets/chicken.jpg",
       merchant: {
         name: "@emmysoft",
-        profileLink: "https://example.com/emmysoft", // Placeholder link
+        profileLink: "https://example.com/emmysoft",
       },
       price: 25,
       quantity: 1,
@@ -27,10 +26,10 @@ const CheckoutPage = () => {
     {
       id: 2,
       name: "Sweet Potato",
-      image: "/assets/potato.jpg", // Placeholder image
+      image: "/assets/potato.jpg",
       merchant: {
         name: "@organicfarm",
-        profileLink: "https://example.com/organicfarm", // Placeholder link
+        profileLink: "https://example.com/organicfarm",
       },
       price: 15,
       quantity: 2,

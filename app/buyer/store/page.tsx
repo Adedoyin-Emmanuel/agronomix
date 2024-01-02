@@ -50,7 +50,7 @@ const Store: React.FC = () => {
         <section className="flex items-center justify-between my-3">
           <section>
             <h3 className="font-bold text-2xl capitalize text-accent">
-              My Collection
+              My Collections
             </h3>
           </section>
           <section>

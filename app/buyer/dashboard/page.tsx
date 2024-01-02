@@ -118,7 +118,7 @@ const Dashboard = () => {
               <Text>No collections found!</Text>
             </section>
 
-            <Button className="text-center">Add new collection</Button>
+            <Button className="text-center">View all collections</Button>
           </section>
         </section>
       </section>

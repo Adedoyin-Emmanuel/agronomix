@@ -146,7 +146,7 @@ const Settings = () => {
               </Modal>
               <section className="action-container w-full flex flex-col items-center md:justify-center">
                 <section
-                  className="account-details my-5 flex items-center border-transparent bg-gray-100 border-[1px] hover:border-accent transition-colors duration-100 ease-in rounded cursor-pointer gap-x-10 w-full p-4 md:w-6/12"
+                  className="account-details my-2 flex items-center border-transparent border-[1px] hover:border-accent transition-colors duration-100 ease-in rounded cursor-pointer gap-x-10 w-full p-4 md:w-6/12"
                   onClick={handleUpdateProfile}
                 >
                   <FaKey className="h-5 w-5" />
@@ -159,7 +159,7 @@ const Settings = () => {
                   </Link>
                 </section>
                 <section
-                  className="account-details my-5 flex items-center border-transparent bg-gray-100 border-[1px] hover:border-accent transition-colors duration-100 ease-in rounded cursor-pointer gap-x-10 w-full p-4 md:w-6/12"
+                  className="account-details my-2 flex items-center border-transparent border-[1px] hover:border-accent transition-colors duration-100 ease-in rounded cursor-pointer gap-x-10 w-full p-4 md:w-6/12"
                   onClick={handleNavigateToProfile}
                 >
                   <BiSolidUser className="h-5 w-5" />
@@ -174,7 +174,7 @@ const Settings = () => {
                   </section>
                 </section>
                 <section
-                  className="account-verify my-5 flex items-center border-transparent bg-gray-100 border-[1px] hover:border-accent transition-colors duration-100 ease-in rounded cursor-pointer gap-x-10 w-full p-4 md:w-6/12"
+                  className="account-verify my-2 flex items-center border-transparent border-[1px] hover:border-accent transition-colors duration-100 ease-in rounded cursor-pointer gap-x-10 w-full p-4 md:w-6/12"
                   onClick={handleVerificationModalClick}
                 >
                   <MdVerified className="h-5 w-5" />
@@ -186,7 +186,7 @@ const Settings = () => {
                     <Text className="text-sm">get your account verified</Text>
                   </section>
                 </section>
-                <section className="account-details my-5 flex items-center border-transparent bg-gray-100 border-[1px] hover:border-accent transition-colors duration-100 ease-in rounded cursor-pointer gap-x-10 w-full p-4 md:w-6/12">
+                <section className="account-details my-2 flex items-center border-transparent border-[1px] hover:border-accent transition-colors duration-100 ease-in rounded cursor-pointer gap-x-10 w-full p-4 md:w-6/12">
                   <BsPeopleFill className="h-5 w-5" />
 
                   <section className="details">
@@ -199,7 +199,7 @@ const Settings = () => {
                   </section>
                 </section>
                 <section
-                  className="account-details my-5 flex items-center border-transparent bg-gray-100 border-[1px] hover:border-accent transition-colors duration-100 ease-in rounded cursor-pointer gap-x-10 w-full p-4 md:w-6/12"
+                  className="account-details my-2 flex items-center border-transparent border-[1px] hover:border-accent transition-colors duration-100 ease-in rounded cursor-pointer gap-x-10 w-full p-4 md:w-6/12"
                   onClick={handleLogoutClick}
                 >
                   <FiLogOut className="h-5 w-5" />

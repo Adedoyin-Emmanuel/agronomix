@@ -7,7 +7,7 @@ import Button from "@/app/components/Button";
 import Input from "@/app/components/Input";
 import { FaPen } from "react-icons/fa";
 
-const CheckoutPage = () => {
+const Checkout = () => {
   const pathname = usePathname();
 
   const [showSidebar, setShowSidebar] = useState(false);
@@ -169,4 +169,4 @@ const CheckoutPage = () => {
   );
 };
 
-export default CheckoutPage;
+export default Checkout;

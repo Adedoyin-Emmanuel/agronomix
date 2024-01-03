@@ -6,6 +6,8 @@ import { FaStar } from "react-icons/fa";
 import { BiBookmark, BiSolidBookmark } from "react-icons/bi";
 import Text from "@/app/components/Text";
 import { FaAward } from "react-icons/fa6";
+import Link from "next/link";
+import { FaPlus } from "react-icons/fa6";
 const Index = () => {
   const pathname = usePathname();
   const [totalProducts, setTotalProducts] = useState<number>(10);
@@ -137,6 +139,15 @@ const Index = () => {
           </section>
         </section>
       </section>
+      <Link href="/" title="">
+        <section className="fixed bottom-20 right-10">
+          <section
+            className={`w-14 h-14 flex items-center justify-center  bg-accent rounded-full shadow cursor-pointer relative transform-gpu transition-transform duration-200 scale-100 hover:scale-110 `}
+          >
+            <FaPlus className="h-8 w-8 text-white" />
+          </section>
+        </section>
+      </Link>
     </MerchantSidebarLayout>
   );
 };

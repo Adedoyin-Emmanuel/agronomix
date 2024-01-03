@@ -20,9 +20,9 @@ const Button = ({
     <button
       disabled={disabled}
       onClick={onClick}
-      className={`capitalize text-white ${className} w-full rounded p-3 bg-primary transition-all transform ${
+      className={`capitalize text-white  w-full rounded p-3 bg-primary transition-all transform ${
         animate && "hover:scale-x-105"
-      } hover:bg-accent cursor-pointer`}
+      } hover:bg-accent cursor-pointer ${className}`}
       {...others}
     >
       {disabled ? <>Loading...</> : children}

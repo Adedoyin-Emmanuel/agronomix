@@ -157,7 +157,7 @@ const Checkout = () => {
               Update Quantity
             </Button>
             <Button
-              className="mt-3 bg-transparent border border-accent text-black hover:bg-red-400 hover:text-white hover:border-red-400 transition duration-150 ease-linear"
+              className="mt-3 bg-red-400 hover:bg-red-500 transition duration-200 ease-linear"
               onClick={handleSidebarClose}
             >
               Close

@@ -26,6 +26,22 @@ body {
   animation: fadeOut 0.5s linear;
 }
 
+.sc-slide {
+  margin: 0 !important;
+}
+
+.scroll-carousel-viewport {
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100%;
+  height: 450px !important;
+}
+
+.caurosel-image {
+  padding: 0 !important;
+  margin: 0 !important;
+  height: 450px !important;
+}
 @keyframes fadeIn {
   0% {
     opacity: 0;

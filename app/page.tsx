@@ -1,10 +1,21 @@
+"use client";
 import Button from "./components/Button";
 import Navbar from "./components/Navbar";
 import Link from "next/link";
 import Text from "./components/Text";
 import React, { useState } from "react";
+import ScrollCarousel from "scroll-carousel-react";
 
 export default function Home() {
+  const images = [
+    "/assets/chicken.jpg",
+    "/assets/fruit-2.png",
+    "/assets/meat.jpg",
+    "/assets/potato.jpg",
+    "/assets/corn.png",
+    "/assets/cassava.png",
+  ];
+
   return (
     <section>
       <Navbar />
@@ -23,50 +34,26 @@ export default function Home() {
                 <Link href={"/auth/signup"}>get started</Link>
               </Button>
             </section>
-            <div className="carousel carousel-end rounded-box my-5 border-2 border-primary">
-              <div className="carousel-item border-[1px] border-primary">
-                <img
-                  src="/assets/chicken.jpg"
-                  alt="chicken"
-                  className="object-cover"
-                />
-              </div>
-              <div className="carousel-item border-[1px] border-primary">
-                <img
-                  src="/assets/fruit-2.png"
-                  alt="fruits & vegetables"
-                  className="object-cover"
-                />
-              </div>
-              <div className="carousel-item border-[1px] border-primary">
-                <img
-                  src="/assets/meat.jpg"
-                  alt="meat"
-                  className="object-cover"
-                />
-              </div>
-              <div className="carousel-item border-[1px] border-primary">
-                <img
-                  src="/assets/potato.jpg"
-                  alt="potato"
-                  className="object-cover"
-                />
-              </div>
-              <div className="carousel-item border-[1px] border-primary">
-                <img
-                  src="/assets/corn.png"
-                  alt="corn"
-                  className="object-cover"
-                />
-              </div>
-              <div className="carousel-item border-[1px] border-primary">
-                <img
-                  src="/assets/cassava.png"
-                  alt="cassava"
-                  className="object-cover"
-                />
-              </div>
-            </div>
+            <ScrollCarousel
+              autoplay
+              autoplaySpeed={8}
+              speed={7}
+              onReady={() => console.log("I love C#")}
+              className="carousel carousel-end rounded-box my-5 border-2 border-primary p-0 m-0 "
+            >
+              {images.map((item) => (
+                <div
+                  key={item}
+                  className="carousel-item border-[1px] border-primary w-full h-full p-0 m-0"
+                >
+                  <img
+                    src={item}
+                    alt="caurosel image"
+                    className="object-cover p-0 m-0 caurosel-image"
+                  />
+                </div>
+              ))}
+            </ScrollCarousel>
           </section>
         </div>
       </section>

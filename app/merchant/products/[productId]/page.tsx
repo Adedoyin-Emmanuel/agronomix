@@ -10,7 +10,7 @@ import Link from "next/link";
 import { FaPen } from "react-icons/fa";
 import Button from "@/app/components/Button";
 import Input from "@/app/components/Input";
-const Index = () => {
+const ProductId = () => {
   const pathname = usePathname();
   const [totalProducts, setTotalProducts] = useState<number>(10);
 
@@ -100,4 +100,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default ProductId;

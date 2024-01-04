@@ -26,8 +26,8 @@ const Signup = () => {
   const [createMerchant, { isLoading: isCreateMerchantLoading }] =
     useCreateMerchantMutation();
 
-  const loginAs = [{ userType: "Buyer" }, { userType: "Merchant" }];
-  const [selected, setSelected] = useState(loginAs[0]);
+  const signupAs = [{ userType: "Buyer" }, { userType: "Merchant" }];
+  const [selected, setSelected] = useState(signupAs[0]);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -173,7 +173,7 @@ const Signup = () => {
                 leaveTo="opacity-0"
               >
                 <Listbox.Options className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm cursor-pointer">
-                  {loginAs.map((item, itemIndex) => (
+                  {signupAs.map((item, itemIndex) => (
                     <Listbox.Option
                       key={itemIndex}
                       className={({ active }) =>

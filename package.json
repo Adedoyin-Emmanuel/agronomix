@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@headlessui/react": "^1.7.17",
+    "@heroicons/react": "^2.1.1",
     "@reduxjs/toolkit": "^2.0.1",
     "@smastrom/react-rating": "^1.4.0",
     "axios": "^1.6.2",

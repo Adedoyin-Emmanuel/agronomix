@@ -12,7 +12,7 @@ import Input from "@/app/components/Input";
 import { FaUpload } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 
-const MerchantProductPage = () => {
+const MerchantProductEdit = () => {
   const pathname = usePathname();
 
   return (
@@ -151,4 +151,4 @@ const MerchantProductPage = () => {
   );
 };
 
-export default MerchantProductPage;
+export default MerchantProductEdit;

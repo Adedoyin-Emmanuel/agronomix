@@ -108,6 +108,23 @@ const MerchantProductPage = () => {
             </section>
           </section>
 
+          <section className="my-5">
+            <label className="block my-1">Product Status:</label>
+            <section className="flex gap-x-3">
+              <input
+                type="checkbox"
+                name="publishProduct"
+                className="checkbox text-accent"
+              />
+              <Text>
+                Unpublish{" "}
+                <span className="text-sm">
+                  (This will only save the product and not publish it)
+                </span>
+              </Text>
+            </section>
+          </section>
+
           <br />
           <section className="my-4 mb-5  mx-auto">
             <Button>Create product</Button>

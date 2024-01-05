@@ -130,6 +130,73 @@ export const appApiCall = apiSlice.injectEndpoints({
       }),
     }),
 
+    updateMerchant: builder.mutation({
+      query: (data) => ({
+        url: MERCHANT_URL,
+        method: "PUT",
+        data,
+      }),
+
+      invalidatesTags: ["Buyer", "Merchant"],
+    }),
+
+    searchMerchant: builder.query({
+      query: (data) => ({
+        url: `${MERCHANT_URL}/search`,
+        method: "GET",
+        params: {
+          searchTerm: data,
+        },
+      }),
+      providesTags: ["Buyer", "Merchant"],
+    }),
+
+    getOnlineMerchant: builder.query({
+      query: (data) => ({
+        url: `${MERCHANT_URL}/online`,
+        method: "GET",
+      }),
+      providesTags: ["Buyer", "Merchant"],
+    }),
+
+    getCurrentMerchant: builder.query({
+      query: (data) => ({
+        url: `${MERCHANT_URL}/me`,
+        method: "GET",
+      }),
+      providesTags: ["Buyer", "Merchant"],
+    }),
+
+    getMerchantById: builder.query({
+      query: (data) => ({
+        url: MERCHANT_URL,
+        method: "GET",
+        params: {
+          id: data,
+        },
+        providesTags: ["Buyer", "Merchant"],
+      }),
+    }),
+
+    getAllMerchant: builder.query({
+      query: (data) => ({
+        url: MERCHANT_URL,
+        method: "GET",
+      }),
+      providesTags: ["Buyer", "Merchant"],
+    }),
+
+    deleteMerchant: builder.mutation({
+      query: (data) => ({
+        url: MERCHANT_URL,
+        method: "DELETE",
+        params: {
+          id: data,
+        },
+      }),
+      invalidatesTags: ["Buyer", "Merchant"],
+    }),
+
     /**
      * @summary Product endpoints
      */
@@ -137,9 +204,24 @@ export const appApiCall = apiSlice.injectEndpoints({
 });
 
 export const {
+  /**
+   * @summary Auth endpoint hooks
+   */
   useLoginMutation,
   useLogoutMutation,
+  useChangePasswordMutation,
+  useForgotPasswordMutation,
+  useResetPasswordMutation,
+  useVerfiyEmailQuery,
+
+  /**
+   * @summary Buyer endpoint hooks
+   */
   useCreateBuyerMutation,
+
+  /**
+   * @summary Buyer endpoint hooks
+   */
   useCreateMerchantMutation,
 } = appApiCall;
 export const { saveDashboardInfo, resetApp } = appSlice.actions;

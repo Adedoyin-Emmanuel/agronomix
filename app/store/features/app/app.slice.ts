@@ -72,6 +72,44 @@ export const appApiCall = apiSlice.injectEndpoints({
       invalidatesTags: ["Buyer", "Merchant"],
     }),
 
+    forgotPassword: builder.mutation({
+      query: (data) => ({
+        url: `${AUTH_URL}/forgot-password`,
+        method: "POST",
+        data,
+      }),
+    }),
+
+    resetPassword: builder.mutation({
+      query: (data) => ({
+        url: `${AUTH_URL}/reset-password`,
+        method: "POST",
+        data,
+      }),
+    }),
+
+    verfiyEmail: builder.query({
+      query: (data) => ({
+        url: `${AUTH_URL}/verify-email`,
+        method: "GET",
+        params: {
+          email: data,
+        },
+      }),
+    }),
+
+    changePassword: builder.mutation({
+      query: (data) => ({
+        url: `${AUTH_URL}/change-password`,
+        method: "POST",
+        data,
+      }),
+    }),
+
+    /**
+     * @summary Buyer endpoints
+     */
+
     createBuyer: builder.mutation({
       query: (data) => ({
         url: BUYERS_URL,
@@ -80,6 +118,10 @@ export const appApiCall = apiSlice.injectEndpoints({
       }),
     }),
 
+    /**
+     * @summary Merchant endpoints
+     */
+
     createMerchant: builder.mutation({
       query: (data) => ({
         url: MERCHANT_URL,
@@ -87,6 +129,10 @@ export const appApiCall = apiSlice.injectEndpoints({
         data,
       }),
     }),
+
+    /**
+     * @summary Product endpoints
+     */
   }),
 });
 

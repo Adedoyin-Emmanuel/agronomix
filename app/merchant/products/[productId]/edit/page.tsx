@@ -11,6 +11,7 @@ import Button from "@/app/components/Button";
 import Input from "@/app/components/Input";
 import { FaUpload } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
+import ScrollCarousel from "scroll-carousel-react";
 
 const MerchantProductEdit = () => {
   const pathname = usePathname();
@@ -104,6 +105,7 @@ const MerchantProductEdit = () => {
               </section>
             </section>
           </section>
+
 
           <section className="my-5">
             <label className="block my-1">Add New Product Images:</label>

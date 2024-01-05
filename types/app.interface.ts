@@ -37,3 +37,17 @@ export interface Product {
   image: string;
   tags: string[];
 }
+
+export interface BuyerDashboardInfo {
+  _id: string;
+  username: string;
+  name: string;
+  email: string;
+  profilePicture: string;
+  role: "buyer";
+  updatedAt: Date;
+  createdAt: Date;
+  online: boolean;  
+  bio: string;
+  isVerified: boolean;
+}

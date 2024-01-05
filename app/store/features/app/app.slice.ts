@@ -5,7 +5,7 @@ import { apiSlice } from "../api/api.slice";
 import { saveToLocalStorage, loadFromLocalStorage } from "@/app/helpers/utils";
 import { Buyer, Merchant } from "@/types/app.interface";
 
-const BUYERS_URL = "/buyer";
+const BUYER_URL = "/buyer";
 const MERCHANT_URL = "/merchant";
 const AUTH_URL = "/auth";
 const PRODUCT_URL = "/product";
@@ -112,10 +112,77 @@ export const appApiCall = apiSlice.injectEndpoints({
 
     createBuyer: builder.mutation({
       query: (data) => ({
-        url: BUYERS_URL,
+        url: BUYER_URL,
         method: "POST",
         data,
       }),
+    }),
+
+    updateBuyer: builder.mutation({
+      query: (data) => ({
+        url: BUYER_URL,
+        method: "PUT",
+        data,
+      }),
+
+      invalidatesTags: ["Buyer", "Merchant"],
+    }),
+
+    searchBuyer: builder.query({
+      query: (data) => ({
+        url: `${BUYER_URL}/search`,
+        method: "GET",
+        params: {
+          searchTerm: data,
+        },
+      }),
+      providesTags: ["Buyer", "Merchant"],
+    }),
+
+    getOnlineBuyers: builder.query({
+      query: (data) => ({
+        url: `${BUYER_URL}/online`,
+        method: "GET",
+      }),
+      providesTags: ["Buyer", "Merchant"],
+    }),
+
+    getCurrentBuyer: builder.query({
+      query: (data) => ({
+        url: `${BUYER_URL}/me`,
+        method: "GET",
+      }),
+      providesTags: ["Buyer", "Merchant"],
+    }),
+
+    getBuyerById: builder.query({
+      query: (data) => ({
+        url: BUYER_URL,
+        method: "GET",
+        params: {
+          id: data,
+        },
+        providesTags: ["Buyer", "Merchant"],
+      }),
+    }),
+
+    getAllBuyers: builder.query({
+      query: (data) => ({
+        url: MERCHANT_URL,
+        method: "GET",
+      }),
+      providesTags: ["Buyer", "Merchant"],
+    }),
+
+    deleteBuyer: builder.mutation({
+      query: (data) => ({
+        url: MERCHANT_URL,
+        method: "DELETE",
+        params: {
+          id: data,
+        },
+      }),
+      invalidatesTags: ["Buyer", "Merchant"],
     }),
 
     /**
@@ -151,7 +218,7 @@ export const appApiCall = apiSlice.injectEndpoints({
       providesTags: ["Buyer", "Merchant"],
     }),
 
-    getOnlineMerchant: builder.query({
+    getOnlineMerchants: builder.query({
       query: (data) => ({
         url: `${MERCHANT_URL}/online`,
         method: "GET",
@@ -178,7 +245,7 @@ export const appApiCall = apiSlice.injectEndpoints({
       }),
     }),
 
-    getAllMerchant: builder.query({
+    getAllMerchants: builder.query({
       query: (data) => ({
         url: MERCHANT_URL,
         method: "GET",

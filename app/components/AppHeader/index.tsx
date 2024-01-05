@@ -1,13 +1,13 @@
 import { AppDispatch, useAppSelector } from "@/app/store/store";
-import { useLogoutMutation } from "@/app/store/features/app/app.slice";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useRef, useState } from "react";
 import toast from "react-hot-toast";
-import { GoBell } from "react-icons/go";
 import { IoIosArrowBack } from "react-icons/io";
 import { useDispatch } from "react-redux";
-import { BsCart } from "react-icons/bs";
 import Skeleton from "../Skeleton/Skeleton";
+import { logoutUser } from "@/app/store/features/auth/auth.slice";
+import { useLogoutMutation } from "@/app/store/features/app/app.slice";
+import { resetApp } from "@/app/store/features/app/app.slice";
 
 interface AppHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
   className?: string;
@@ -109,47 +109,59 @@ const AppHeader = ({ className, showWelcomeMessage }: AppHeaderProps) => {
     {
       id: 1,
       text: "Discover",
-      onClick: () => {},
+      onClick: () => {
+        router.push("/buyer/discover");
+      },
     },
 
     {
       id: 2,
       text: "Store",
-      onClick: () => {},
+      onClick: () => {
+        router.push("/buyer/store");
+      },
     },
     {
       id: 3,
       text: "View Profile",
-      onClick: () => {},
+      onClick: () => {
+        router.push("/buyer/profile/me");
+      },
     },
 
     {
       id: 4,
       text: "Settings",
-      onClick: () => {},
+      onClick: () => {
+        router.push("/buyer/settings");
+      },
     },
 
     {
       id: 5,
       text: "Transaction History ",
-      onClick: () => {},
+      onClick: () => {
+        toast.success("We will implement that later");
+      },
     },
 
     {
       id: 6,
       text: "Logout",
       onClick: async () => {
-        // try {
-        //   const response = await logout({}).unwrap();
-        //   if (response) {
-        //     toast.success(response.message);
-        //     dispatch(logoutUser());
-        //     dispatch(resetUser());
-        //     router.push("/auth/login");
-        //   }
-        // } catch (error: any) {
-        //   toast.error(error?.data?.message || error.error || error?.data);
-        // }
+        try {
+          const response = await logout({}).unwrap();
+          if (response) {
+            if (response) {
+              toast.success(response.message);
+              dispatch(logoutUser({}));
+              dispatch(resetApp({}));
+              router.push("/auth/login");
+            }
+          }
+        } catch (error: any) {
+          toast.error(error?.data?.message || error.error || error?.data);
+        }
       },
     },
   ];

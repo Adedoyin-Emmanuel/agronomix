@@ -40,7 +40,6 @@ const Signup = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    console.log(formData);
     try {
       const response = await login(formData).unwrap();
       if (response) {
@@ -50,7 +49,6 @@ const Signup = () => {
         const tempData = jwtPayload;
         const { role } = tempData;
         const { accessToken, refreshToken: token, ...data } = response.data;
-        console.log(response.data);
         const userData = { ...data, role };
 
         dispatch(loginUser(userData));
@@ -60,6 +58,7 @@ const Signup = () => {
           const serverResponse = await axios.post("/api/auth/set-token", {
             token,
           });
+
         } catch (error: any) {
           toast.error("Token not set");
         }

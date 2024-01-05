@@ -388,16 +388,19 @@ export const MerchantAppHeader = ({
       id: 6,
       text: "Logout",
       onClick: async () => {
-        // try {
-        //   const response = await logout({}).unwrap();
-        //   if (response) {
-        //     toast.success(response.message);
-        //     dispatch(logoutUser());
-        //     router.push("/auth/login");
-        //   }
-        // } catch (error: any) {
-        //   toast.error(error?.data?.message || error.error || error?.data);
-        // }
+        try {
+          const response = await logout({}).unwrap();
+          if (response) {
+            if (response) {
+              toast.success(response.message);
+              dispatch(logoutUser({}));
+              dispatch(resetApp({}));
+              router.push("/auth/login");
+            }
+          }
+        } catch (error: any) {
+          toast.error(error?.data?.message || error.error || error?.data);
+        }
       },
     },
   ];

@@ -335,11 +335,35 @@ export const {
    * @summary Buyer endpoint hooks
    */
   useCreateBuyerMutation,
+  useUpdateBuyerMutation,
+  useGetOnlineBuyersQuery,
+  useGetCurrentBuyerQuery,
+  useGetAllBuyersQuery,
+  useSearchBuyerQuery,
+  useGetBuyerByIdQuery,
+  useDeleteBuyerMutation,
 
   /**
-   * @summary Buyer endpoint hooks
+   * @summary Merchant endpoint hooks
    */
   useCreateMerchantMutation,
+  useUpdateMerchantMutation,
+  useGetOnlineMerchantsQuery,
+  useGetCurrentMerchantQuery,
+  useGetAllMerchantsQuery,
+  useSearchMerchantQuery,
+  useGetMerchantByIdQuery,
+  useDeleteMerchantMutation,
+
+  /**
+   * @summary Product endpoint hooks
+   */
+
+  useCreateProductMutation,
+  useUpdateProductMutation,
+  useGetProductByIdQuery,
+  useGetAllProductsQuery,
+  useSearchProductsQuery,
 } = appApiCall;
 export const { saveDashboardInfo, resetApp } = appSlice.actions;
 export default appSlice.reducer;

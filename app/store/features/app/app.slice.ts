@@ -3,7 +3,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { apiSlice } from "../api/api.slice";
 import { saveToLocalStorage, loadFromLocalStorage } from "@/app/helpers/utils";
-import { Buyer, Merchant } from "@/types/app.interface";
+import { Buyer, Merchant, BuyerDashboardInfo } from "@/types/app.interface";
 
 const BUYER_URL = "/buyer";
 const MERCHANT_URL = "/merchant";
@@ -16,7 +16,10 @@ const REVIEW_URL = "/review";
 const initialState = {
   dashboardInfo:
     typeof window !== "undefined"
-      ? (loadFromLocalStorage("agronomixDashboardInfo", null) as any | null) // TODO change the any type to the userDashboard Interface
+      ? (loadFromLocalStorage(
+          "agronomixDashboardInfo",
+          null
+        ) as BuyerDashboardInfo | null) // TODO change the any type to the userDashboard Interface
       : null,
 };
 

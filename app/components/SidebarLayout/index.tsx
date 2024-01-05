@@ -6,15 +6,14 @@ import { usePathname, useRouter } from "next/navigation";
 import React from "react";
 import toast from "react-hot-toast";
 import { TbMoneybag } from "react-icons/tb";
-import { FiLogOut, FiSearch } from "react-icons/fi";
-import { IoAnalytics, IoSettingsOutline } from "react-icons/io5";
-import { BsCart } from "react-icons/bs";
-import { IoBagOutline } from "react-icons/io5";
 import { useDispatch } from "react-redux";
 import AppHeader, { MerchantAppHeader } from "../AppHeader";
 import MobileNav, { MerchantMobileNav } from "../MobileNav";
 import Text from "../Text";
 import Image from "next/image";
+import { logoutUser } from "@/app/store/features/auth/auth.slice";
+import { useLogoutMutation } from "@/app/store/features/app/app.slice";
+import { resetApp } from "@/app/store/features/app/app.slice";
 
 interface SidebarLayoutProps {
   className?: string;
@@ -29,10 +28,20 @@ const SidebarLayout = ({
 }: SidebarLayoutProps) => {
   const currentPath = usePathname();
   const dispatch = useDispatch<AppDispatch>();
+  const [logout] = useLogoutMutation();
   const router = useRouter();
 
   const handleLogoutClick = async () => {
     try {
+      const response = await logout({}).unwrap();
+      if (response) {
+        if (response) {
+          toast.success(response.message);
+          dispatch(logoutUser({}));
+          dispatch(resetApp({}));
+          router.push("/auth/login");
+        }
+      }
     } catch (error: any) {
       toast.error(error?.data?.message || error.error || error?.data);
     }
@@ -226,6 +235,28 @@ export const MerchantSidebarLayout = ({
   showWelcomeMesage,
 }: SidebarLayoutProps) => {
   const currentPath = usePathname();
+    const dispatch = useDispatch<AppDispatch>();
+    const [logout] = useLogoutMutation();
+    const router = useRouter();
+
+
+
+
+  const handleLogoutClick = async () => {
+    try {
+      const response = await logout({}).unwrap();
+      if (response) {
+        if (response) {
+          toast.success(response.message);
+          dispatch(logoutUser({}));
+          dispatch(resetApp({}));
+          router.push("/auth/login");
+        }
+      }
+    } catch (error: any) {
+      toast.error(error?.data?.message || error.error || error?.data);
+    }
+  };
 
   return (
     <section className="parent h-screen w-screen flex justify-between">
@@ -344,7 +375,8 @@ export const MerchantSidebarLayout = ({
             <Text>Settings</Text>
           </Link>
           <Link
-            href="logout"
+            href=""
+            onClick={handleLogoutClick}
             className={`cursor-pointer  ${
               currentPath.includes("logout")
                 ? "text-white bg-accent"

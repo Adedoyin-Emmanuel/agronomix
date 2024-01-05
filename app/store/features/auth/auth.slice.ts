@@ -1,6 +1,7 @@
 "use client";
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 const userInfoFromLocalStorage =
   typeof window !== "undefined"
@@ -41,12 +42,20 @@ const authSlice = createSlice({
       if (typeof window !== "undefined") {
         localStorage.removeItem("agronomixUserInfo");
 
-        //logout the user
-        const logoutUser = async () => {
-          await axios.post("/api/auth/reset-token");
-        };
-        logoutUser();
+        axios
+          .post("/api/auth/reset-token")
+          .then((response) => {
+            //console.log(response);
+          })
+          .catch((error) => {
+            console.error("Error logging out user:", error);
+            toast.error("An error occured while logging out");
+          });
+
+        return state;
       }
+
+      return state;
     },
   },
 });

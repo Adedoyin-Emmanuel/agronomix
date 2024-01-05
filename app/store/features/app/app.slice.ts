@@ -267,6 +267,56 @@ export const appApiCall = apiSlice.injectEndpoints({
     /**
      * @summary Product endpoints
      */
+
+    createProduct: builder.mutation({
+      query: (data) => ({
+        url: PRODUCT_URL,
+        method: "POST",
+        data,
+      }),
+      invalidatesTags: ["Buyer", "Merchant"],
+    }),
+
+    updateProduct: builder.mutation({
+      query: (data) => ({
+        url: PRODUCT_URL,
+        method: "PUT",
+        data,
+      }),
+      invalidatesTags: ["Buyer", "Merchant"],
+    }),
+
+    getProductById: builder.query({
+      query: (data) => ({
+        url: PRODUCT_URL,
+        method: "GET",
+        params: {
+          id: data,
+        },
+      }),
+
+      providesTags: ["Buyer", "Merchant"],
+    }),
+
+    getAllProducts: builder.query({
+      query: (data) => ({
+        url: PRODUCT_URL,
+        method: "GET",
+      }),
+
+      providesTags: ["Buyer", "Merchant"],
+    }),
+
+    searchProducts: builder.query({
+      query: (data) => ({
+        url: `${PRODUCT_URL}/search`,
+        method: "GET",
+        params: {
+          searchTerm: data,
+        },
+      }),
+      providesTags: ["Buyer", "Merchant"],
+    }),
   }),
 });
 

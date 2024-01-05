@@ -48,4 +48,6 @@ export interface BuyerDashboardInfo {
   updatedAt: Date;
   createdAt: Date;
   online: boolean;  
+  bio: string;
+  isVerified: boolean;
 }

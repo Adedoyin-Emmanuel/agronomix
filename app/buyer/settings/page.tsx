@@ -10,24 +10,23 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import toast from "react-hot-toast";
-import { BiSolidUser } from "react-icons/bi";
-import { BsPenFill, BsPeopleFill } from "react-icons/bs";
-import { FaKey } from "react-icons/fa";
-import { MdVerified } from "react-icons/md";
+import { BsPenFill } from "react-icons/bs";
 import { useDispatch } from "react-redux";
 import Loader from "@/app/components/Loader";
 import { useLogoutMutation } from "@/app/store/features/app/app.slice";
 import { resetApp } from "@/app/store/features/app/app.slice";
 import { logoutUser } from "@/app/store/features/auth/auth.slice";
 import { useVerfiyEmailQuery } from "@/app/store/features/app/app.slice";
+import Skeleton from "@/app/components/Skeleton/Skeleton";
 
 const Settings = () => {
   const router = useRouter();
   const [logout] = useLogoutMutation();
   const dispatch = useDispatch();
   const [skip, setSkip] = useState<boolean>(true);
-  const { dashboardInfo } = useAppSelector((state) => state.app);
-  const email = dashboardInfo?.email;
+  const { userAuthInfo } = useAppSelector((state) => state.auth);
+
+  const email = userAuthInfo?.email;
   const { data, isError, isLoading } = useVerfiyEmailQuery(email, { skip });
   const verificationRef = useRef<HTMLDialogElement | any>(null);
 
@@ -93,33 +92,49 @@ const Settings = () => {
                 <section className="profile-section w-full md:p-2 my-5 flex items-center md:justify-center flex-col gap-y-7 gap-x-5 md:gap-x-20">
                   <div className="avatar cursor-pointer">
                     <div className="w-20 rounded-full">
-                      <img
-                        className=""
-                        src="/assets/corn.png"
-                        alt="buyer profile image"
-                      />
+                      {userAuthInfo?.profilePicture ? (
+                        <img
+                          className=""
+                          src={userAuthInfo?.profilePicture}
+                          alt="buyer profile image"
+                        />
+                      ) : (
+                        <Skeleton className="w-20 h-20 rounded-full" />
+                      )}
                     </div>
-                    <section className="pen-container bg-accent flex items-center justify-center rounded-full w-6 h-6 transform-gpu text-white translate-y-12 -translate-x-7 hover:scale-110 duration-100 ease-linear hover:bg-secondary hover:text-slate-200">
+                    <section className="pen-container bg-accent flex items-center justify-center rounded-full w-6 h-6 transform-gpu text-white translate-y-16 -translate-x-7 hover:scale-110 duration-100 ease-linear hover:bg-secondary hover:text-slate-200">
                       <Link href={"/buyer/profile"}>
                         {" "}
                         <BsPenFill />
                       </Link>
                     </section>
                   </div>
-                  <section className="user-info w-full flex items-start flex-col md:items-center">
+                  <section className="user-info w-full flex items-start flex-col md:items-center p-1">
                     <h1 className="font-bold capitalize flex items-center gap-x-1">
-                      Adedoyin Emmanuel Adeniyi
-                      <span>{true && <Verified />}</span>
+                      {userAuthInfo?.name ? (
+                        userAuthInfo?.name
+                      ) : (
+                        <Skeleton className="w-32 h-5 rounded" />
+                      )}
+                      <span>{userAuthInfo?.isVerified && <Verified />}</span>
                     </h1>
                     <section className="block">
                       <Text
-                        className="block text-start text-sm font-bold"
+                        className="block text-start text-sm font-bold my-1"
                         noCapitalize={true}
                       >
-                        @emmysoft
+                        {userAuthInfo?.username ? (
+                          "@" + userAuthInfo?.username
+                        ) : (
+                          <Skeleton className="w-24 h-5 rounded" />
+                        )}
                       </Text>
-                      <Text className="block text-start text-sm">
-                        I build stuff
+                      <Text className="block text-start text-sm py-1">
+                        {userAuthInfo?.bio ? (
+                          userAuthInfo?.bio
+                        ) : (
+                          <Skeleton className="w-72 h-4 rounded" />
+                        )}
                       </Text>
                     </section>
                   </section>

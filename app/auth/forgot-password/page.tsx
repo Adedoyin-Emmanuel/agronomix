@@ -7,11 +7,18 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
+import { Fragment } from "react";
+import { Listbox, Transition } from "@headlessui/react";
+import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
+
 
 const ForgotPassword = () => {
+
+  const userType = [{ userType: "Buyer" }, { userType: "Merchant" }];
+  const [selected, setSelected] = useState(userType[0]);
   const [formData, setFormData] = useState({
     email: "",
-    userType: "buyer",
+    userType: selected.userType.toLowerCase(),
   });
 
   const handleInputChange = (e: React.FormEvent<HTMLFormElement> | any) => {
@@ -56,20 +63,61 @@ const ForgotPassword = () => {
             onChange={handleInputChange}
           />
         </section>
-        <section className="my-4 mb-5">
-          <label htmlFor="signupAs" className="text-md block my-2">
-            User Type
-          </label>
-          <select
-            className="select border-2 border-gray-300 focus:outline-none rounded-md w-full h-16"
-            name="userType"
-            value={formData.userType}
-            onChange={handleInputChange}
-          >
-            <option value="buyer">Buyer</option>
-            <option value="merchant">Merchant</option>
-          </select>
-        </section>
+     
+
+        <Listbox value={selected} onChange={setSelected}>
+          <div className="relative mt-1 z-[1000] my-4 mb-5">
+            <label htmlFor="loginAs" className="text-md block my-2">
+              User Type
+            </label>
+            <Listbox.Button className="relative w-full rounded-md bg-white py-5  border-[1px] border-gray-300 pl-3 pr-10 text-left focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm cursor-pointer">
+              <span className="block truncate">{selected.userType}</span>
+              <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
+                <ChevronUpDownIcon
+                  className="h-5 w-5 text-gray-400"
+                  aria-hidden="true"
+                />
+              </span>
+            </Listbox.Button>
+            <Transition
+              as={Fragment}
+              leave="transition ease-in duration-100"
+              leaveFrom="opacity-100"
+              leaveTo="opacity-0"
+            >
+              <Listbox.Options className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm cursor-pointer">
+                {userType.map((item, itemIndex) => (
+                  <Listbox.Option
+                    key={itemIndex}
+                    className={({ active }) =>
+                      `relative cursor-default select-none py-2 pl-10 pr-4 ${
+                        active ? "bg-accent text-white" : "text-gray-900"
+                      }`
+                    }
+                    value={item}
+                  >
+                    {({ selected }) => (
+                      <>
+                        <span
+                          className={`block truncate ${
+                            selected ? "font-medium" : "font-normal"
+                          }`}
+                        >
+                          {item.userType}
+                        </span>
+                        {selected ? (
+                          <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-amber-600">
+                            <CheckIcon className="h-5 w-5" aria-hidden="true" />
+                          </span>
+                        ) : null}
+                      </>
+                    )}
+                  </Listbox.Option>
+                ))}
+              </Listbox.Options>
+            </Transition>
+          </div>
+        </Listbox>
 
         <section className="my-4 mb-5 w-full">
           <Button>send email</Button>

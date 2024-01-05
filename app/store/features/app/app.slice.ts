@@ -5,7 +5,7 @@ import { apiSlice } from "../api/api.slice";
 import { saveToLocalStorage, loadFromLocalStorage } from "@/app/helpers/utils";
 import { Buyer, Merchant } from "@/types/app.interface";
 
-const BUYERS_URL = "/buyer";
+const BUYER_URL = "/buyer";
 const MERCHANT_URL = "/merchant";
 const AUTH_URL = "/auth";
 const PRODUCT_URL = "/product";
@@ -72,13 +72,122 @@ export const appApiCall = apiSlice.injectEndpoints({
       invalidatesTags: ["Buyer", "Merchant"],
     }),
 
-    createBuyer: builder.mutation({
+    forgotPassword: builder.mutation({
       query: (data) => ({
-        url: BUYERS_URL,
+        url: `${AUTH_URL}/forgot-password`,
         method: "POST",
         data,
       }),
     }),
+
+    resetPassword: builder.mutation({
+      query: (data) => ({
+        url: `${AUTH_URL}/reset-password`,
+        method: "POST",
+        data,
+      }),
+    }),
+
+    verfiyEmail: builder.query({
+      query: (data) => ({
+        url: `${AUTH_URL}/verify-email`,
+        method: "GET",
+        params: {
+          email: data,
+        },
+      }),
+    }),
+
+    changePassword: builder.mutation({
+      query: (data) => ({
+        url: `${AUTH_URL}/change-password`,
+        method: "POST",
+        data,
+      }),
+    }),
+
+    /**
+     * @summary Buyer endpoints
+     */
+
+    createBuyer: builder.mutation({
+      query: (data) => ({
+        url: BUYER_URL,
+        method: "POST",
+        data,
+      }),
+    }),
+
+    updateBuyer: builder.mutation({
+      query: (data) => ({
+        url: BUYER_URL,
+        method: "PUT",
+        data,
+      }),
+
+      invalidatesTags: ["Buyer", "Merchant"],
+    }),
+
+    searchBuyer: builder.query({
+      query: (data) => ({
+        url: `${BUYER_URL}/search`,
+        method: "GET",
+        params: {
+          searchTerm: data,
+        },
+      }),
+      providesTags: ["Buyer", "Merchant"],
+    }),
+
+    getOnlineBuyers: builder.query({
+      query: (data) => ({
+        url: `${BUYER_URL}/online`,
+        method: "GET",
+      }),
+      providesTags: ["Buyer", "Merchant"],
+    }),
+
+    getCurrentBuyer: builder.query({
+      query: (data) => ({
+        url: `${BUYER_URL}/me`,
+        method: "GET",
+      }),
+      providesTags: ["Buyer", "Merchant"],
+    }),
+
+    getBuyerById: builder.query({
+      query: (data) => ({
+        url: BUYER_URL,
+        method: "GET",
+        params: {
+          id: data,
+        },
+        providesTags: ["Buyer", "Merchant"],
+      }),
+    }),
+
+    getAllBuyers: builder.query({
+      query: (data) => ({
+        url: MERCHANT_URL,
+        method: "GET",
+      }),
+      providesTags: ["Buyer", "Merchant"],
+    }),
+
+    deleteBuyer: builder.mutation({
+      query: (data) => ({
+        url: MERCHANT_URL,
+        method: "DELETE",
+        params: {
+          id: data,
+        },
+      }),
+      invalidatesTags: ["Buyer", "Merchant"],
+    }),
+
+    /**
+     * @summary Merchant endpoints
+     */
 
     createMerchant: builder.mutation({
       query: (data) => ({
@@ -87,14 +196,174 @@ export const appApiCall = apiSlice.injectEndpoints({
         data,
       }),
     }),
+
+    updateMerchant: builder.mutation({
+      query: (data) => ({
+        url: MERCHANT_URL,
+        method: "PUT",
+        data,
+      }),
+
+      invalidatesTags: ["Buyer", "Merchant"],
+    }),
+
+    searchMerchant: builder.query({
+      query: (data) => ({
+        url: `${MERCHANT_URL}/search`,
+        method: "GET",
+        params: {
+          searchTerm: data,
+        },
+      }),
+      providesTags: ["Buyer", "Merchant"],
+    }),
+
+    getOnlineMerchants: builder.query({
+      query: (data) => ({
+        url: `${MERCHANT_URL}/online`,
+        method: "GET",
+      }),
+      providesTags: ["Buyer", "Merchant"],
+    }),
+
+    getCurrentMerchant: builder.query({
+      query: (data) => ({
+        url: `${MERCHANT_URL}/me`,
+        method: "GET",
+      }),
+      providesTags: ["Buyer", "Merchant"],
+    }),
+
+    getMerchantById: builder.query({
+      query: (data) => ({
+        url: MERCHANT_URL,
+        method: "GET",
+        params: {
+          id: data,
+        },
+        providesTags: ["Buyer", "Merchant"],
+      }),
+    }),
+
+    getAllMerchants: builder.query({
+      query: (data) => ({
+        url: MERCHANT_URL,
+        method: "GET",
+      }),
+      providesTags: ["Buyer", "Merchant"],
+    }),
+
+    deleteMerchant: builder.mutation({
+      query: (data) => ({
+        url: MERCHANT_URL,
+        method: "DELETE",
+        params: {
+          id: data,
+        },
+      }),
+      invalidatesTags: ["Buyer", "Merchant"],
+    }),
+
+    /**
+     * @summary Product endpoints
+     */
+
+    createProduct: builder.mutation({
+      query: (data) => ({
+        url: PRODUCT_URL,
+        method: "POST",
+        data,
+      }),
+      invalidatesTags: ["Buyer", "Merchant"],
+    }),
+
+    updateProduct: builder.mutation({
+      query: (data) => ({
+        url: PRODUCT_URL,
+        method: "PUT",
+        data,
+      }),
+      invalidatesTags: ["Buyer", "Merchant"],
+    }),
+
+    getProductById: builder.query({
+      query: (data) => ({
+        url: PRODUCT_URL,
+        method: "GET",
+        params: {
+          id: data,
+        },
+      }),
+
+      providesTags: ["Buyer", "Merchant"],
+    }),
+
+    getAllProducts: builder.query({
+      query: (data) => ({
+        url: PRODUCT_URL,
+        method: "GET",
+      }),
+
+      providesTags: ["Buyer", "Merchant"],
+    }),
+
+    searchProducts: builder.query({
+      query: (data) => ({
+        url: `${PRODUCT_URL}/search`,
+        method: "GET",
+        params: {
+          searchTerm: data,
+        },
+      }),
+      providesTags: ["Buyer", "Merchant"],
+    }),
   }),
 });
 
 export const {
+  /**
+   * @summary Auth endpoint hooks
+   */
   useLoginMutation,
   useLogoutMutation,
+  useChangePasswordMutation,
+  useForgotPasswordMutation,
+  useResetPasswordMutation,
+  useVerfiyEmailQuery,
+
+  /**
+   * @summary Buyer endpoint hooks
+   */
   useCreateBuyerMutation,
+  useUpdateBuyerMutation,
+  useGetOnlineBuyersQuery,
+  useGetCurrentBuyerQuery,
+  useGetAllBuyersQuery,
+  useSearchBuyerQuery,
+  useGetBuyerByIdQuery,
+  useDeleteBuyerMutation,
+
+  /**
+   * @summary Merchant endpoint hooks
+   */
   useCreateMerchantMutation,
+  useUpdateMerchantMutation,
+  useGetOnlineMerchantsQuery,
+  useGetCurrentMerchantQuery,
+  useGetAllMerchantsQuery,
+  useSearchMerchantQuery,
+  useGetMerchantByIdQuery,
+  useDeleteMerchantMutation,
+
+  /**
+   * @summary Product endpoint hooks
+   */
+
+  useCreateProductMutation,
+  useUpdateProductMutation,
+  useGetProductByIdQuery,
+  useGetAllProductsQuery,
+  useSearchProductsQuery,
 } = appApiCall;
 export const { saveDashboardInfo, resetApp } = appSlice.actions;
 export default appSlice.reducer;

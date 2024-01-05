@@ -33,7 +33,7 @@ const Signup = () => {
     email: "",
     username: "",
     password: "",
-    signupAs: selected.userType.toLowerCase(),
+    signupAs: selected.userType .toLowerCase(),
   });
 
   const [showConfetti, setShowConfetti] = useState<boolean>(false);

@@ -1,6 +1,5 @@
 "use client";
 import Button from "@/app/components/Button";
-import Input from "@/app/components/Input";
 import Loader from "@/app/components/Loader";
 import SidebarLayout from "@/app/components/SidebarLayout";
 import Text from "@/app/components/Text";
@@ -11,6 +10,7 @@ import { useDispatch } from "react-redux";
 import { useUpdateBuyerMutation } from "@/app/store/features/app/app.slice";
 import Skeleton from "@/app/components/Skeleton/Skeleton";
 import Modal from "@/app/components/Modal";
+import { CreateUploadflyClient } from "@uploadfly/js";
 
 export default function Profile() {
   const dispatch = useDispatch();
@@ -19,7 +19,9 @@ export default function Profile() {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
   const [imageUrl, setImageUrl] = useState<string | null>(null);
-  const modalRef = useRef<HTMLDialogElement | any>(null);
+    const modalRef = useRef<HTMLDialogElement | any>(null);
+    const API_KEY = process.env.NEXT_PUBLIC_UPLOADFLY_API_KEY as string;
+  const uploadFly = new CreateUploadflyClient(API_KEY);
 
   const showModal = () => {
     if (modalRef && modalRef.current) {
@@ -30,6 +32,7 @@ export default function Profile() {
   const closeModal = () => {
     if (modalRef && modalRef.current) {
       modalRef?.current.closeModal();
+      handleCancel();
     }
   };
 
@@ -96,7 +99,7 @@ export default function Profile() {
                       <img src={imageUrl!} className="w-60 h-60 rounded-full" />
                     </section>
                     <section className="mt-8 w-full flex items-end justify-end">
-                      <Button>Proceed</Button>
+                      <Button onClick={handleContinue}>Proceed</Button>
                     </section>
                   </section>
                 </Modal>

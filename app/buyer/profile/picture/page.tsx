@@ -12,6 +12,7 @@ import Skeleton from "@/app/components/Skeleton/Skeleton";
 import Modal from "@/app/components/Modal";
 import { CreateUploadflyClient } from "@uploadfly/js";
 import chance from "chance";
+import { updateAuthInfo } from "@/app/store/features/auth/auth.slice";
 
 export default function Profile() {
   const dispatch = useDispatch();
@@ -69,9 +70,6 @@ export default function Profile() {
 
     /**
      * @summary the flyName is the name of the file to be uploaded to uploadfly
-     * if you're thinking there is a chance of conflict,
-     * well there isn't because apart from the fact that is very random, top that, it is 20 characters
-     * the files are saved under a specific user so bottom line there isn't any harm.
      */
     const flyName = chanceInstance.string({
       length: 20,
@@ -82,18 +80,25 @@ export default function Profile() {
 
     try {
       setUploadingImage(true);
-      const response = await uploadFly.upload(selectedImage as File, {
+      const uploadFlyResponse = await uploadFly.upload(selectedImage as File, {
         filename: flyName,
       });
 
-      if (response?.success) {
-        const flyUrl = response?.data?.url;
-        toast.success("Image uploaded successfully");
+      if (uploadFlyResponse?.success) {
+        const flyUrl = uploadFlyResponse?.data?.url;
+        setUploadingImage(false);
 
+        // This response is from my own API so no need to add agronomixResponse 😀
+        const response = await updateBuyer({ profilePicture: flyUrl }).unwrap();
+
+        if (response?.data) {
+          toast.success("Profile picture updated");
+          dispatch(updateAuthInfo(response?.data));
+        }
         //this is what we're saving in the database
       }
 
-      console.log(response);
+      console.log(uploadFlyResponse);
     } catch (error: any) {
       toast.error(error?.message);
     }

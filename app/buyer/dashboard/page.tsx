@@ -4,9 +4,6 @@ import { useRouter, usePathname } from "next/navigation";
 import SidebarLayout from "@/app/components/SidebarLayout";
 import { MerchantSidebarLayout } from "@/app/components/SidebarLayout";
 import Text from "@/app/components/Text";
-import { BsCart } from "react-icons/bs";
-import { FiEye } from "react-icons/fi";
-import { TbMoneybag } from "react-icons/tb";
 import Button from "@/app/components/Button";
 import {
   FaShoppingCart,
@@ -14,9 +11,14 @@ import {
   FaCreditCard,
   FaCheckCircle,
 } from "react-icons/fa";
+import { useDispatch } from "react-redux";
+import { useAppSelector } from "@/app/store/store";
+import { AppDispatch } from "@/app/store/store";
 
 const Dashboard = () => {
   const pathname = usePathname();
+  const dispatch = useDispatch<AppDispatch>();
+  const { userAuthInfo } = useAppSelector((state) => state.auth);
 
   const transactions = [
     {
@@ -84,19 +86,36 @@ const Dashboard = () => {
     );
   };
 
+  const totalSales = 150;
+  const totalRevenue = 450000;
+
   return (
     <SidebarLayout showWelcomeMesage>
       <section className="general-container w-full mx-auto items-start flex flex-col xl:flex-row gap-x-5">
         <section className="first-section w-full xl:w-8/12  md:flex flex-col items-center justify-center ">
-          <section className="stats-container grid p-1 lg:grid-cols-3 gap-10 w-full">
+          {/* <section className="stats-container grid p-1 lg:grid-cols-3 gap-10 w-full">
+           
             <section className="bg-gray-100 h-28 w-52 rounded my-5 flex items-center flex-col justify-around cursor-pointer hover:bg-accent hover:text-white transition-colors duration-100 ease-in">
+             
+
+              <Text>{0} Views</Text>
+            </section>
+
+            <section className="bg-gray-100 h-28 w-52 rounded my-5 flex items-center flex-col justify-around cursor-pointer hover:bg-accent hover:text-white transition-colors duration-100 ease-in">
+             
+
+              <Text>{0} Collections</Text>
+            </section>
+          </section> */}
+          <section className="stats-container grid p-1 lg:grid-cols-3 gap-10 w-full my-4">
+            <section className="sales-info  border-[1px] border-accent hover:bg-accent hover:text-white duration-200 transition ease-in-out cursor-pointer p-4 rounded flex items-center gap-x-5">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
                 strokeWidth={1.5}
                 stroke="currentColor"
-                className="w-8 h-8"
+                className="w-8 h-8 mr-2"
               >
                 <path
                   strokeLinecap="round"
@@ -105,17 +124,20 @@ const Dashboard = () => {
                 />
               </svg>
 
-              <Text>{0} Orders</Text>
+              <section>
+                <h4 className="font-bold">Total Orders</h4>
+                <Text className="text-xl">{totalSales}</Text>
+              </section>
             </section>
 
-            <section className="bg-gray-100 h-28 w-52 rounded my-5 flex items-center flex-col justify-around cursor-pointer hover:bg-accent hover:text-white transition-colors duration-100 ease-in">
+            <section className="sales-info  border-[1px] border-accent hover:bg-accent hover:text-white duration-200 transition ease-in-out cursor-pointer p-4 rounded flex items-center gap-x-5">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
                 strokeWidth={1.5}
                 stroke="currentColor"
-                className="w-8 h-8"
+                className="w-8 h-8 mr-2"
               >
                 <path
                   strokeLinecap="round"
@@ -129,17 +151,20 @@ const Dashboard = () => {
                 />
               </svg>
 
-              <Text>{0} Views</Text>
+              <section>
+                <h4 className="font-bold">Total Reviews</h4>
+                <Text className="text-xl">{totalRevenue}</Text>
+              </section>
             </section>
 
-            <section className="bg-gray-100 h-28 w-52 rounded my-5 flex items-center flex-col justify-around cursor-pointer hover:bg-accent hover:text-white transition-colors duration-100 ease-in">
+            <section className="sales-info  border-[1px] border-accent hover:bg-accent hover:text-white duration-200 transition ease-in-out cursor-pointer p-4 rounded flex items-center gap-x-5">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
                 strokeWidth={1.5}
                 stroke="currentColor"
-                className="w-8 h-8"
+                className="w-8 h-8 mr-2"
               >
                 <path
                   strokeLinecap="round"
@@ -148,9 +173,13 @@ const Dashboard = () => {
                 />
               </svg>
 
-              <Text>{0} Collections</Text>
+              <section>
+                <h4 className="font-bold">Total Collections</h4>
+                <Text className="text-xl">28</Text>
+              </section>
             </section>
           </section>
+
           <section className="transaction-history w-full">
             <TransactionHistory />
           </section>

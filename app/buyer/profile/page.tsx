@@ -9,9 +9,9 @@ import Text from "@/app/components/Text";
 import { useAppSelector } from "@/app/store/store";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
-import { AiOutlineCamera } from "react-icons/ai";
 import { useDispatch } from "react-redux";
 import { useUpdateBuyerMutation } from "@/app/store/features/app/app.slice";
+import { updateAuthInfo } from "@/app/store/features/auth/auth.slice";
 import Skeleton from "@/app/components/Skeleton/Skeleton";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -39,17 +39,24 @@ export default function Profile() {
     e.preventDefault();
 
     try {
-      const dataToSubmit = {
-        body: formData,
-        id: 123,
-      };
-      const response: any = await updateBuyer(dataToSubmit).unwrap();
-
-      //dispatch the saveDashboardInfo since the response is also the user object
-      toast.success("");
+      const response: any = await updateBuyer(formData).unwrap();
       if (response?.data) {
-        // dispatch(updateUserInfo(response.data));
-        // dispatch(saveDashboardInfo(response.data));
+        console.log(response?.data);
+
+        /**
+         * @summary Since the userAuthInfo is used to spread the user info
+         * around the entire application, we would've to dispatch a
+         * reducer to update it
+         */
+
+        //the respose from the API dosen't contain a role property so we've to add it manaually
+        const dataToDispatch = {
+          ...response?.data,
+          role: "buyer",
+        };
+
+        dispatch(updateAuthInfo(dataToDispatch));
+        toast.success(response?.message);
       }
     } catch (error: any) {
       console.log(error.message);
@@ -181,7 +188,7 @@ export default function Profile() {
                   </section>
 
                   <section className="my-4 mb-5 w-full">
-                    <Button disabled={false}> Update info</Button>
+                    <Button disabled={isLoading}> Update info</Button>
                   </section>
                 </form>
               </section>

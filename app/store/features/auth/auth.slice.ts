@@ -29,6 +29,13 @@ const authSlice = createSlice({
       }
     },
 
+    /**
+     * @summary The updateAuthInfo is a special reducer that changes the data
+     * saved when the user logs in, when the user updates their profile
+     * So they wouldn't have to log out before they see their updated details.
+     *
+     */
+
     updateAuthInfo: (state, action) => {
       state.userAuthInfo = action.payload;
       if (typeof window !== "undefined") {

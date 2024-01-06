@@ -13,9 +13,12 @@ import { AiOutlineCamera } from "react-icons/ai";
 import { useDispatch } from "react-redux";
 import { useUpdateBuyerMutation } from "@/app/store/features/app/app.slice";
 import Skeleton from "@/app/components/Skeleton/Skeleton";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function Profile() {
   const dispatch = useDispatch();
+  const router = useRouter();
   const { userAuthInfo } = useAppSelector((state) => state.auth);
   const [updateBuyer, { isLoading }] = useUpdateBuyerMutation();
 
@@ -55,6 +58,9 @@ export default function Profile() {
     }
   };
 
+  const navigateToPicturePage = (): void => {
+    router.push("/buyer/profile/picture");
+  };
   return (
     <div className="w-screen h-screen">
       <SidebarLayout>
@@ -75,14 +81,36 @@ export default function Profile() {
                         className=""
                         src={userAuthInfo?.profilePicture}
                         alt="buyer profile image"
+                        onClick={navigateToPicturePage}
                       />
                     ) : (
                       <Skeleton className="w-24 h-24 rounded-full" />
                     )}
                   </div>
-                  <section className="pen-container bg-accent flex items-center justify-center rounded-full w-8 h-8 transform-gpu text-white translate-y-16 -translate-x-10 hover:scale-110 duration-100 ease-linear hover:bg-secondary hover:text-slate-200">
-                    <AiOutlineCamera className="h-6 w-6" />
-                  </section>
+                  <Link
+                    href="/buyer/profile/picture"
+                    className="bg-accent flex items-center justify-center rounded-full w-8 h-8 transform-gpu text-white translate-y-16 -translate-x-10 hover:scale-110 duration-100 ease-linear hover:bg-secondary hover:text-slate-200"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth={1.5}
+                      stroke="currentColor"
+                      className="w-6 h-6"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M6.827 6.175A2.31 2.31 0 0 1 5.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 0 0-1.134-.175 2.31 2.31 0 0 1-1.64-1.055l-.822-1.316a2.192 2.192 0 0 0-1.736-1.039 48.774 48.774 0 0 0-5.232 0 2.192 2.192 0 0 0-1.736 1.039l-.821 1.316Z"
+                      />
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M16.5 12.75a4.5 4.5 0 1 1-9 0 4.5 4.5 0 0 1 9 0ZM18.75 10.5h.008v.008h-.008V10.5Z"
+                      />
+                    </svg>
+                  </Link>
                 </div>
 
                 <form

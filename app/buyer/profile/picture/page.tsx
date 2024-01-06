@@ -19,8 +19,8 @@ export default function Profile() {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
   const [imageUrl, setImageUrl] = useState<string | null>(null);
-    const modalRef = useRef<HTMLDialogElement | any>(null);
-    const API_KEY = process.env.NEXT_PUBLIC_UPLOADFLY_API_KEY as string;
+  const modalRef = useRef<HTMLDialogElement | any>(null);
+  const API_KEY = process.env.NEXT_PUBLIC_UPLOADFLY_API_KEY as string;
   const uploadFly = new CreateUploadflyClient(API_KEY);
 
   const showModal = () => {

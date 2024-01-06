@@ -49,13 +49,8 @@ export default function Profile() {
          * reducer to update it
          */
 
-        //the respose from the API dosen't contain a role property so we've to add it manaually
-        const dataToDispatch = {
-          ...response?.data,
-          role: "buyer",
-        };
-
-        dispatch(updateAuthInfo(dataToDispatch));
+        console.log(response?.data);
+        dispatch(updateAuthInfo(response?.data));
         toast.success(response?.message);
       }
     } catch (error: any) {

@@ -11,6 +11,7 @@ export interface Buyer {
   location?: string;
   online?: boolean;
   bio: string;
+  collections: string[];
 }
 
 export interface Merchant {

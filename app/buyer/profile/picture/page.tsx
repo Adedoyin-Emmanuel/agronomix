@@ -11,17 +11,24 @@ import { useUpdateBuyerMutation } from "@/app/store/features/app/app.slice";
 import Skeleton from "@/app/components/Skeleton/Skeleton";
 import Modal from "@/app/components/Modal";
 import { CreateUploadflyClient } from "@uploadfly/js";
+import chance from "chance";
 
 export default function Profile() {
   const dispatch = useDispatch();
   const { userAuthInfo } = useAppSelector((state) => state.auth);
   const [updateBuyer, { isLoading }] = useUpdateBuyerMutation();
+  const [uploadingImage, setUploadingImage] = useState<boolean>(false);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
   const [imageUrl, setImageUrl] = useState<string | null>(null);
   const modalRef = useRef<HTMLDialogElement | any>(null);
   const API_KEY = process.env.NEXT_PUBLIC_UPLOADFLY_API_KEY as string;
   const uploadFly = new CreateUploadflyClient(API_KEY);
+  const chanceInstance = new chance();
+
+  /**
+   * @summary a fly is a file uploaded to uploadfly you get the vibe 😅
+   */
 
   const showModal = () => {
     if (modalRef && modalRef.current) {
@@ -40,22 +47,56 @@ export default function Profile() {
     event: React.ChangeEvent<HTMLInputElement> | any
   ) => {
     const file = event.target.files?.[0];
-    console.log(file);
+
     if (file) {
-      setIsDialogOpen(true);
-      setSelectedImage(file);
-      setImageUrl(file ? URL.createObjectURL(file) : null);
-      console.log(URL.createObjectURL(file));
-      showModal();
+      // Check if the file type is an image
+      if (file.type.startsWith("image/")) {
+        setIsDialogOpen(true);
+        setSelectedImage(file);
+        setImageUrl(file ? URL.createObjectURL(file) : null);
+        showModal();
+      } else {
+        toast.error("Please select a valid image file");
+      }
     } else {
       toast.error("Please select an image");
     }
   };
 
-  const handleContinue = () => {
-    console.log("Uploading image:", selectedImage);
+  const handleContinue = async () => {
     setIsDialogOpen(false);
     closeModal();
+
+    /**
+     * @summary the flyName is the name of the file to be uploaded to uploadfly
+     * if you're thinking there is a chance of conflict,
+     * well there isn't because apart from the fact that is very random, top that, it is 20 characters
+     * the files are saved under a specific user so bottom line there isn't any harm.
+     */
+    const flyName = chanceInstance.string({
+      length: 20,
+      casing: "lower",
+      alpha: true,
+      numeric: true,
+    });
+
+    try {
+      setUploadingImage(true);
+      const response = await uploadFly.upload(selectedImage as File, {
+        filename: flyName,
+      });
+
+      if (response?.success) {
+        const flyUrl = response?.data?.url;
+        toast.success("Image uploaded successfully");
+
+        //this is what we're saving in the database
+      }
+
+      console.log(response);
+    } catch (error: any) {
+      toast.error(error?.message);
+    }
   };
 
   const handleCancel = () => {
@@ -66,7 +107,7 @@ export default function Profile() {
   return (
     <div className="w-screen h-screen">
       <SidebarLayout>
-        {isLoading ? (
+        {isLoading || uploadingImage ? (
           <Loader />
         ) : (
           <section className="appointments my-5">

@@ -7,22 +7,24 @@ import SidebarLayout from "@/app/components/SidebarLayout";
 import Text from "@/app/components/Text";
 
 import { useAppSelector } from "@/app/store/store";
-//import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 import { AiOutlineCamera } from "react-icons/ai";
 import { useDispatch } from "react-redux";
+import { useUpdateBuyerMutation } from "@/app/store/features/app/app.slice";
+import Skeleton from "@/app/components/Skeleton/Skeleton";
 
 export default function Profile() {
-
   const dispatch = useDispatch();
+  const { userAuthInfo } = useAppSelector((state) => state.auth);
+  const [updateBuyer, { isLoading }] = useUpdateBuyerMutation();
 
   const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    username: "",
-    bio: "",
-    location: ""
+    name: userAuthInfo?.name,
+    email: userAuthInfo?.email,
+    username: userAuthInfo?.username,
+    bio: userAuthInfo?.bio,
+    location: userAuthInfo?.location,
   });
 
   const handleInputChange = (e: React.FormEvent<HTMLFormElement> | any) => {
@@ -36,16 +38,16 @@ export default function Profile() {
     try {
       const dataToSubmit = {
         body: formData,
-        id: 123
+        id: 123,
       };
-      //const response: any = await updateUser(dataToSubmit).unwrap();
+      const response: any = await updateBuyer(dataToSubmit).unwrap();
 
       //dispatch the saveDashboardInfo since the response is also the user object
       toast.success("");
-      // if (response?.data) {
-      //   // dispatch(updateUserInfo(response.data));
-      //   // dispatch(saveDashboardInfo(response.data));
-      // }
+      if (response?.data) {
+        // dispatch(updateUserInfo(response.data));
+        // dispatch(saveDashboardInfo(response.data));
+      }
     } catch (error: any) {
       console.log(error.message);
 
@@ -54,11 +56,11 @@ export default function Profile() {
   };
 
   return (
-    <div className="w-screen h-screen bg-zinc-50">
-      {false ? (
-        <Loader />
-      ) : (
-        <SidebarLayout>
+    <div className="w-screen h-screen">
+      <SidebarLayout>
+        {isLoading ? (
+          <Loader />
+        ) : (
           <section className="appointments my-5">
             <h3 className="font-bold text-2xl capitalize text-accent">
               profile
@@ -68,11 +70,15 @@ export default function Profile() {
               <section className="image-section flex flex-col items-center justify-center">
                 <div className="avatar cursor-pointer">
                   <div className="w-24 rounded-full">
-                    <img
-                      className=""
-                      src={"/assets/corn.png"}
-                      alt="user profile image"
-                    />
+                    {userAuthInfo?.profilePicture ? (
+                      <img
+                        className=""
+                        src={userAuthInfo?.profilePicture}
+                        alt="buyer profile image"
+                      />
+                    ) : (
+                      <Skeleton className="w-24 h-24 rounded-full" />
+                    )}
                   </div>
                   <section className="pen-container bg-accent flex items-center justify-center rounded-full w-8 h-8 transform-gpu text-white translate-y-16 -translate-x-10 hover:scale-110 duration-100 ease-linear hover:bg-secondary hover:text-slate-200">
                     <AiOutlineCamera className="h-6 w-6" />
@@ -153,8 +159,8 @@ export default function Profile() {
               </section>
             </section>
           </section>
-        </SidebarLayout>
-      )}
+        )}
+      </SidebarLayout>
     </div>
   );
 }

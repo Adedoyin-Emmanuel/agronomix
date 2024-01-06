@@ -89,6 +89,7 @@ export default function Profile() {
       if (response?.success) {
         const flyUrl = response?.data?.url;
         toast.success("Image uploaded successfully");
+        setUploadingImage(false);
 
         //this is what we're saving in the database
       }

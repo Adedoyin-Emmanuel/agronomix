@@ -10,6 +10,7 @@ export interface Buyer {
   orderHistory: string[];
   location?: string;
   online?: boolean;
+  bio: string;
 }
 
 export interface Merchant {
@@ -25,6 +26,7 @@ export interface Merchant {
   orderHistory: string[];
   location?: string;
   online?: boolean;
+  bio: string;
 }
 
 export interface Product {
@@ -38,16 +40,14 @@ export interface Product {
   tags: string[];
 }
 
-export interface BuyerDashboardInfo {
-  _id: string;
-  username: string;
-  name: string;
-  email: string;
-  profilePicture: string;
+export interface BuyerDashboardInfo extends Buyer {
   role: "buyer";
   updatedAt: Date;
   createdAt: Date;
-  online: boolean;  
-  bio: string;
-  isVerified: boolean;
+}
+
+export interface MerchantDashboardInfo extends Merchant {
+  role: "merchant";
+  updatedAt: Date;
+  createdAt: Date;
 }

@@ -358,30 +358,40 @@ export const MerchantAppHeader = ({
     {
       id: 1,
       text: "My Products",
-      onClick: () => {},
+      onClick: () => {
+        router.push("/merchant/products");
+      },
     },
 
     {
       id: 2,
       text: "Transaction History",
-      onClick: () => {},
+      onClick: () => {
+        router.push("/merchant/dashboard");
+      },
     },
     {
       id: 3,
-      text: "Sales History",
-      onClick: () => {},
+      text: "Sales",
+      onClick: () => {
+        router.push("/merchant/sales");
+      },
     },
 
     {
       id: 4,
       text: "view profile",
-      onClick: () => {},
+      onClick: () => {
+        router.push("/merchant/profile/me");
+      },
     },
 
     {
       id: 5,
       text: "settings",
-      onClick: () => {},
+      onClick: () => {
+        router.push("/merchant/settings");
+      },
     },
 
     {

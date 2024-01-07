@@ -28,6 +28,7 @@ export interface Merchant {
   location?: string;
   online?: boolean;
   bio: string;
+  customers: string[];
 }
 
 export interface Product {
@@ -41,14 +42,8 @@ export interface Product {
   tags: string[];
 }
 
-export interface BuyerDashboardInfo extends Buyer {
-  role: "buyer";
+export interface DashboardInfo extends Buyer, Merchant {
   updatedAt: Date;
   createdAt: Date;
-}
-
-export interface MerchantDashboardInfo extends Merchant {
-  role: "merchant";
-  updatedAt: Date;
-  createdAt: Date;
+  role: "buyer" | "merchant";
 }

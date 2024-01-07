@@ -123,7 +123,7 @@ const Dashboard = () => {
               <Skeleton className="w-auto h-24 rounded" />
             )}
 
-            {true ? (
+            {userAuthInfo?.customers ? (
               <section className="border-[1px] border-accent hover:bg-accent hover:text-white duration-200 transition ease-in-out cursor-pointer p-4 rounded flex items-center gap-x-5">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -147,7 +147,9 @@ const Dashboard = () => {
 
                 <section>
                   <h4 className="font-bold">Total Reviews</h4>
-                  <Text className="text-xl">{totalRevenue}</Text>
+                  <Text className="text-xl">
+                    {userAuthInfo?.customers.length}
+                  </Text>
                 </section>
               </section>
             ) : (
@@ -167,13 +169,13 @@ const Dashboard = () => {
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z"
+                    d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0 1 11.964-3.07M12 6.375a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0Zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0Z"
                   />
                 </svg>
 
                 <section>
-                  <h4 className="font-bold">Total Sales</h4>
-                  <Text className="text-xl">#{0}</Text>
+                  <h4 className="font-bold">Total Customers</h4>
+                  <Text className="text-xl">{0}</Text>
                 </section>
               </section>
             ) : (

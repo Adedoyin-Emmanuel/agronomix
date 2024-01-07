@@ -26,7 +26,7 @@ const Signup = () => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
-    userType: selected.userType.toLowerCase(),
+    userType: "",
   });
   const dispatch = useDispatch<AppDispatch>();
 
@@ -40,8 +40,15 @@ const Signup = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    const { userType, ...rest } = formData;
+
+    const dataToSend = {
+      ...rest,
+      userType: selected.userType.toLowerCase(),
+    };
+
     try {
-      const response = await login(formData).unwrap();
+      const response = await login(dataToSend).unwrap();
       if (response) {
         toast.success(response.message);
         const jwtToken = response.data.accessToken;
@@ -58,7 +65,6 @@ const Signup = () => {
           const serverResponse = await axios.post("/api/auth/set-token", {
             token,
           });
-
         } catch (error: any) {
           toast.error("Token not set");
         }

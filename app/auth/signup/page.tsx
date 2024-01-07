@@ -33,7 +33,7 @@ const Signup = () => {
     email: "",
     username: "",
     password: "",
-    signupAs: selected.userType .toLowerCase(),
+    signupAs: "",
   });
 
   const [showConfetti, setShowConfetti] = useState<boolean>(false);
@@ -46,8 +46,9 @@ const Signup = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const { signupAs, ...rest } = formData;
+    const userType = selected.userType.toLowerCase();
 
-    if (signupAs === "buyer") {
+    if (userType === "buyer") {
       try {
         const response = await createBuyer(rest).unwrap();
         if (response) {
@@ -58,13 +59,14 @@ const Signup = () => {
       } catch (error: any) {
         toast.error(error?.data?.message || error.error || error?.data);
       }
-    } else if (signupAs === "buyer") {
+    } else if (userType === "merchant") {
       try {
         const { name, signupAs, ...rest } = formData;
         const newData = {
           companyName: name,
           ...rest,
         };
+
         const response = await createMerchant(newData).unwrap();
         if (response) {
           setShowConfetti(true);

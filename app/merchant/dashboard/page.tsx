@@ -15,6 +15,7 @@ import { useDispatch } from "react-redux";
 import { useAppSelector } from "@/app/store/store";
 import { AppDispatch } from "@/app/store/store";
 import Skeleton from "@/app/components/Skeleton/Skeleton";
+import ProductLabel from "@/app/components/ProductLabel/ProductLabel";
 
 const Dashboard = () => {
   const pathname = usePathname();
@@ -190,8 +191,13 @@ const Dashboard = () => {
               your products
             </h3>
 
-            <section className="collections my-5 w-full flex items-center justify-center">
-              <Text>No product found!</Text>
+            <section className="my-5">
+              <ProductLabel
+                href="#"
+                productImage="/assets/potato.jpg"
+                productName="Potato"
+                isPublished
+              />
             </section>
 
             <Button className="text-center">View all products</Button>

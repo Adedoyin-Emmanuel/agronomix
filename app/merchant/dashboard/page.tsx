@@ -1,7 +1,6 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import { useRouter, usePathname } from "next/navigation";
-import SidebarLayout from "@/app/components/SidebarLayout";
 import { MerchantSidebarLayout } from "@/app/components/SidebarLayout";
 import Text from "@/app/components/Text";
 import Button from "@/app/components/Button";
@@ -16,12 +15,34 @@ import { useAppSelector } from "@/app/store/store";
 import { AppDispatch } from "@/app/store/store";
 import Skeleton from "@/app/components/Skeleton/Skeleton";
 import ProductLabel from "@/app/components/ProductLabel/ProductLabel";
+import { useGetCurrentMerchantQuery } from "@/app/store/features/app/app.slice";
+import { updateAuthInfo } from "@/app/store/features/auth/auth.slice";
 
 const Dashboard = () => {
   const pathname = usePathname();
   const dispatch = useDispatch<AppDispatch>();
   const { userAuthInfo } = useAppSelector((state) => state.auth);
+  const {
+    data,
+    isLoading: currentMerchantDataLoading,
+    isError,
+    isSuccess,
+    refetch,
+  } = useGetCurrentMerchantQuery({});
 
+  useEffect(() => {
+    if (isSuccess && data) {
+      console.log(data.data);
+
+      const refetchData = async () => {
+        const response = await refetch();
+        return response;
+      };
+
+      refetchData().then((data) => {});
+      dispatch(updateAuthInfo(data?.data));
+    }
+  }, [data]);
   const transactions = [
     {
       id: 1,

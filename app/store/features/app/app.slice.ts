@@ -40,6 +40,9 @@ const appSlice = createSlice({
       );
     },
 
+    
+
+
     /**
      * @see clear data reducers, basically resets the state and removes data from local storage.
      *

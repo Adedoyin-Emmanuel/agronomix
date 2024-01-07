@@ -12,6 +12,7 @@ export interface Buyer {
   online?: boolean;
   bio: string;
   collections: string[];
+  reviews: string[];
 }
 
 export interface Merchant {
@@ -29,6 +30,7 @@ export interface Merchant {
   online?: boolean;
   bio: string;
   customers: string[];
+  reviews: string[];
 }
 
 export interface Product {
@@ -40,6 +42,8 @@ export interface Product {
   quantity: number;
   image: string;
   tags: string[];
+  rating: number;
+  reviews: string[];
 }
 
 export interface DashboardInfo extends Buyer, Merchant {

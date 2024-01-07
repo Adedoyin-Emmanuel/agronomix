@@ -139,7 +139,7 @@ const Index = () => {
           </section>
         </section>
       </section>
-      <Link href="/" title="">
+      <Link href="/merchant/products/new" title="">
         <section className="fixed bottom-20 right-10">
           <section
             className={`w-14 h-14 flex items-center justify-center  bg-accent rounded-full shadow cursor-pointer relative transform-gpu transition-transform duration-200 scale-100 hover:scale-110 `}

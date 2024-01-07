@@ -122,7 +122,7 @@ const Dashboard = () => {
               <Skeleton className="w-auto h-24 rounded" />
             )}
 
-            {false ? (
+            {userAuthInfo?.reviews ? (
               <section className="border-[1px] border-accent hover:bg-accent hover:text-white duration-200 transition ease-in-out cursor-pointer p-4 rounded flex items-center gap-x-5">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -146,7 +146,9 @@ const Dashboard = () => {
 
                 <section>
                   <h4 className="font-bold">Total Reviews</h4>
-                  <Text className="text-xl">{totalRevenue}</Text>
+                  <Text className="text-xl">
+                    {userAuthInfo?.reviews.length}
+                  </Text>
                 </section>
               </section>
             ) : (

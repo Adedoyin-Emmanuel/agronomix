@@ -120,7 +120,7 @@ const Settings = () => {
                     </h1>
                     <section className="block">
                       <Text
-                        className="block text-start text-sm font-bold my-1"
+                        className="block text-start text-sm my-1"
                         noCapitalize={true}
                       >
                         {userAuthInfo?.username ? (

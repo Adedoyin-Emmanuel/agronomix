@@ -143,8 +143,8 @@ export default function Me() {
                       <SlBadge className="w-6 h-6" />
                       <Text className="text-sm">
                         {" "}
-                        {true ? (
-                          0 + " Reviews"
+                        {userAuthInfo?.reviews ? (
+                          userAuthInfo?.reviews.length + " Reviews"
                         ) : (
                           <Skeleton className="w-32 h-5 rounded" />
                         )}

@@ -69,13 +69,13 @@ export default function Profile() {
         {isLoading ? (
           <Loader />
         ) : (
-          <section className="appointments my-5">
+          <section className="my-5">
             <h3 className="font-bold text-2xl capitalize text-accent">
               profile
             </h3>
             <Text className="text-sm">update your profile</Text>
-            <section className="update-profile w-full my-8">
-              <section className="image-section flex flex-col items-center justify-center">
+            <section className="w-full my-8">
+              <section className="flex flex-col items-center justify-center">
                 <div className="avatar cursor-pointer">
                   <div className="w-24 rounded-full">
                     {userAuthInfo?.profilePicture ? (

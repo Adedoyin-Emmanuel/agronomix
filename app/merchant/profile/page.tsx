@@ -7,21 +7,27 @@ import { MerchantSidebarLayout } from "@/app/components/SidebarLayout";
 import Text from "@/app/components/Text";
 
 import { useAppSelector } from "@/app/store/store";
-//import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
-import { AiOutlineCamera } from "react-icons/ai";
 import { useDispatch } from "react-redux";
+import { useUpdateMerchantMutation } from "@/app/store/features/app/app.slice";
+import { updateAuthInfo } from "@/app/store/features/auth/auth.slice";
+import Skeleton from "@/app/components/Skeleton/Skeleton";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function Profile() {
   const dispatch = useDispatch();
+  const router = useRouter();
+  const { userAuthInfo } = useAppSelector((state) => state.auth);
+  const [updateMerchant, { isLoading }] = useUpdateMerchantMutation();
 
   const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    username: "",
-    bio: "",
-    location: "",
+    name: userAuthInfo?.companyName,
+    email: userAuthInfo?.email,
+    username: userAuthInfo?.username,
+    bio: userAuthInfo?.bio,
+    location: userAuthInfo?.location,
   });
 
   const handleInputChange = (e: React.FormEvent<HTMLFormElement> | any) => {
@@ -33,18 +39,20 @@ export default function Profile() {
     e.preventDefault();
 
     try {
-      const dataToSubmit = {
-        body: formData,
-        id: 123,
-      };
-      //const response: any = await updateUser(dataToSubmit).unwrap();
+      const response: any = await updateMerchant(formData).unwrap();
+      if (response?.data) {
+        console.log(response?.data);
 
-      //dispatch the saveDashboardInfo since the response is also the user object
-      toast.success("");
-      // if (response?.data) {
-      //   // dispatch(updateUserInfo(response.data));
-      //   // dispatch(saveDashboardInfo(response.data));
-      // }
+        /**
+         * @summary Since the userAuthInfo is used to spread the merchant info
+         * around the entire application, we would've to dispatch a
+         * reducer to update it
+         */
+
+        console.log(response?.data);
+        dispatch(updateAuthInfo(response?.data));
+        toast.success(response?.message);
+      }
     } catch (error: any) {
       console.log(error.message);
 
@@ -52,30 +60,59 @@ export default function Profile() {
     }
   };
 
+  const navigateToPicturePage = (): void => {
+    router.push("/merchant/profile/picture");
+  };
   return (
-    <div className="w-screen h-screen bg-zinc-50">
-      {false ? (
-        <Loader />
-      ) : (
-        <MerchantSidebarLayout>
-          <section className="appointments my-5">
+    <div className="w-screen h-screen">
+      <MerchantSidebarLayout>
+        {isLoading ? (
+          <Loader />
+        ) : (
+          <section className="my-5">
             <h3 className="font-bold text-2xl capitalize text-accent">
               profile
             </h3>
             <Text className="text-sm">update your profile</Text>
-            <section className="update-profile w-full my-8">
-              <section className="image-section flex flex-col items-center justify-center">
+            <section className="w-full my-8">
+              <section className="flex flex-col items-center justify-center">
                 <div className="avatar cursor-pointer">
                   <div className="w-24 rounded-full">
-                    <img
-                      className=""
-                      src={"/assets/corn.png"}
-                      alt="user profile image"
-                    />
+                    {userAuthInfo?.profilePicture ? (
+                      <img
+                        className=""
+                        src={userAuthInfo?.profilePicture}
+                        alt="merchant profile image"
+                        onClick={navigateToPicturePage}
+                      />
+                    ) : (
+                      <Skeleton className="w-24 h-24 rounded-full" />
+                    )}
                   </div>
-                  <section className="pen-container bg-accent flex items-center justify-center rounded-full w-8 h-8 transform-gpu text-white translate-y-16 -translate-x-10 hover:scale-110 duration-100 ease-linear hover:bg-secondary hover:text-slate-200">
-                    <AiOutlineCamera className="h-6 w-6" />
-                  </section>
+                  <Link
+                    href="/merchant/profile/picture"
+                    className="bg-accent flex items-center justify-center rounded-full w-8 h-8 transform-gpu text-white translate-y-16 -translate-x-10 hover:scale-110 duration-100 ease-linear hover:bg-secondary hover:text-slate-200"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth={1.5}
+                      stroke="currentColor"
+                      className="w-6 h-6"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M6.827 6.175A2.31 2.31 0 0 1 5.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 0 0-1.134-.175 2.31 2.31 0 0 1-1.64-1.055l-.822-1.316a2.192 2.192 0 0 0-1.736-1.039 48.774 48.774 0 0 0-5.232 0 2.192 2.192 0 0 0-1.736 1.039l-.821 1.316Z"
+                      />
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M16.5 12.75a4.5 4.5 0 1 1-9 0 4.5 4.5 0 0 1 9 0ZM18.75 10.5h.008v.008h-.008V10.5Z"
+                      />
+                    </svg>
+                  </Link>
                 </div>
 
                 <form
@@ -146,14 +183,14 @@ export default function Profile() {
                   </section>
 
                   <section className="my-4 mb-5 w-full">
-                    <Button disabled={false}> Update info</Button>
+                    <Button disabled={isLoading}> Update info</Button>
                   </section>
                 </form>
               </section>
             </section>
           </section>
-        </MerchantSidebarLayout>
-      )}
+        )}
+      </MerchantSidebarLayout>
     </div>
   );
 }

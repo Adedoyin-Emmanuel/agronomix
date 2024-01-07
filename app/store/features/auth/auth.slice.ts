@@ -2,7 +2,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import toast from "react-hot-toast";
-import { Buyer, Merchant, BuyerDashboardInfo } from "@/types/app.interface";
+import { Buyer, Merchant, DashboardInfo } from "@/types/app.interface";
+import { Interface } from "readline";
 
 const userInfoFromLocalStorage =
   typeof window !== "undefined"
@@ -11,7 +12,7 @@ const userInfoFromLocalStorage =
 
 const initialState = {
   userAuthInfo: userInfoFromLocalStorage
-    ? (JSON.parse(userInfoFromLocalStorage) as BuyerDashboardInfo)
+    ? (JSON.parse(userInfoFromLocalStorage) as DashboardInfo)
     : null,
 };
 

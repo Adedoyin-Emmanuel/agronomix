@@ -131,8 +131,8 @@ export default function Me() {
 
                       <Text className="text-sm">
                         {" "}
-                        {userAuthInfo?.location ? (
-                          userAuthInfo?.location || "Lagos Nigeria"
+                        {userAuthInfo?.orders ? (
+                          userAuthInfo?.orders.length + " Orders" || "0 Orders"
                         ) : (
                           <Skeleton className="w-32 h-5 rounded" />
                         )}
@@ -143,8 +143,8 @@ export default function Me() {
                       <SlBadge className="w-6 h-6" />
                       <Text className="text-sm">
                         {" "}
-                        {userAuthInfo?.location ? (
-                          userAuthInfo?.location || "Lagos Nigeria"
+                        {true ? (
+                          0 + " Reviews"
                         ) : (
                           <Skeleton className="w-32 h-5 rounded" />
                         )}
@@ -169,7 +169,10 @@ export default function Me() {
 
                       <Text className="text-sm">
                         {userAuthInfo?.location ? (
-                          userAuthInfo?.location || "Lagos Nigeria"
+                          "Joined " +
+                          moment(new Date(userAuthInfo?.createdAt))
+                            .startOf("seconds")
+                            .fromNow()
                         ) : (
                           <Skeleton className="w-32 h-5 rounded" />
                         )}

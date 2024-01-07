@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import Text from "../Text";
-import { Product } from "@/types/app.interface";
+import Link from "next/link";
 
 interface ProductCardProps {
   className?: string;
@@ -11,6 +11,7 @@ interface ProductCardProps {
   productRevenue: number;
   productPrice: number;
   isPublished: boolean;
+  href: string;
 }
 
 const ProductCard = ({
@@ -21,6 +22,7 @@ const ProductCard = ({
   productRevenue,
   productPrice,
   isPublished,
+  href,
 }: ProductCardProps) => {
   const publishedIcon = (
     <svg
@@ -29,7 +31,7 @@ const ProductCard = ({
       viewBox="0 0 24 24"
       strokeWidth={1.5}
       stroke="currentColor"
-      className="w-6 h-6 text-accent cursor-pointer"
+      className="w-5 h-5 text-accent cursor-pointer"
     >
       <path
         strokeLinecap="round"
@@ -51,7 +53,7 @@ const ProductCard = ({
       viewBox="0 0 24 24"
       strokeWidth={1.5}
       stroke="currentColor"
-      className="w-6 h-6 text-red-500 cursor-pointer"
+      className="w-5 h-5 text-red-500 cursor-pointer"
     >
       <path
         strokeLinecap="round"
@@ -62,44 +64,46 @@ const ProductCard = ({
   );
 
   return (
-    <section
-      className={`grid grid-rows-2 md:w-96 my-2  h-80 border border-accent rounded cursor-pointer transform-gpu hover:scale-105 duration-150 ease-in ${className}`}
-    >
-      <section className="image">
-        <img
-          src={imageUrl}
-          alt={`An image related to ${productName}`}
-          className="w-full h-full object-cover"
-        />
-      </section>
-
-      <section className="p-1">
-        <section className="title my-2">
-          <p className="capitalize font-bold">{productName}</p>
+    <Link href={href}>
+      <section
+        className={`grid grid-rows-2 md:w-96 my-2  h-80 border border-accent rounded cursor-pointer transform-gpu hover:scale-105 duration-150 ease-in ${className}`}
+      >
+        <section className="image">
+          <img
+            src={imageUrl}
+            alt={`An image related to ${productName}`}
+            className="w-full h-full object-cover"
+          />
         </section>
 
-        <section className="rating flex items-center gap-x-1">
-          <Text className="">Sales:</Text>
+        <section className="p-1">
+          <section className="title my-2">
+            <p className="capitalize font-bold">{productName}</p>
+          </section>
 
-          <p className="font-bold">{productSales}</p>
-        </section>
+          <section className="rating flex items-center gap-x-1">
+            <Text className="">Sales:</Text>
 
-        <section className="price flex items-center gap-x-1">
-          <Text className="">Revenue:</Text>
+            <p className="font-bold">{productSales}</p>
+          </section>
 
-          <p className="font-bold">₦ {productRevenue}</p>
-        </section>
+          <section className="price flex items-center gap-x-1">
+            <Text className="">Revenue:</Text>
 
-        <section className="breaker border-t-[1px] border-primary w-full mt-2"></section>
+            <p className="font-bold">₦ {productRevenue}</p>
+          </section>
 
-        <section className="price flex items-center justify-between p-2">
-          <h2 className="font-bold text-[18px]">₦ {productPrice}</h2>
-          <section className="bookmark">
-            {isPublished ? publishedIcon : notPublishedIcon}
+          <section className="breaker border-t-[1px] border-primary w-full mt-2"></section>
+
+          <section className="price flex items-center justify-between p-2">
+            <h2 className="font-bold text-[18px]">₦ {productPrice}</h2>
+            <section className="bookmark">
+              {isPublished ? publishedIcon : notPublishedIcon}
+            </section>
           </section>
         </section>
       </section>
-    </section>
+    </Link>
   );
 };
 

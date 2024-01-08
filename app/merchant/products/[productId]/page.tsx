@@ -74,7 +74,7 @@ const ProductId = ({ params }: { params: { productId: string } }) => {
                     <p className="p-4 text-sm">{product?.description}</p>
                   </section>
 
-                  <section className="p-1 border-t-[1px] border-accent flex items-center justify-center p-5">
+                  <section className="border-t-[1px] border-accent flex items-center justify-center p-5">
                     <section className="w-full flex items-center justify-center">
                       {product?.unpublish ? (
                         <section className="status-badge text-black rounded bg-yellow-300 flex items-center justify-center h-10 w-32">
@@ -97,7 +97,10 @@ const ProductId = ({ params }: { params: { productId: string } }) => {
           </main>
         </section>
       )}
-      <Link href={`/merchant/products/${params.productId}/edit`} title="">
+      <Link
+        href={`/merchant/products/${params.productId}/edit?pId=${params.productId}`}
+        title=""
+      >
         <section className="fixed bottom-20 right-10">
           <section
             className={`w-14 h-14 flex items-center justify-center  bg-accent rounded-full shadow cursor-pointer relative transform-gpu transition-transform duration-200 scale-100 hover:scale-110 `}

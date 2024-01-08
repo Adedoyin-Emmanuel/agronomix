@@ -8,8 +8,8 @@ interface ProductLabel {
   href: string;
   productImage: string;
   productName: string;
-  createdAt?: Date;
-  isPublished: boolean;
+  createdAt: Date;
+  unpublish: boolean;
 }
 
 const ProductLabel = ({
@@ -18,12 +18,12 @@ const ProductLabel = ({
   productImage,
   productName,
   createdAt,
-  isPublished,
+  unpublish,
 }: ProductLabel) => {
-  const status = isPublished ? "published" : "unpublished";
+  const status = unpublish ? "unpublished" : "published";
   let defaultStatus = (
-    <section className="status-badge text-black rounded bg-yellow-300 flex items-center justify-center h-5 w-20">
-      <Text className="text-[12px] font-bold">unpublished</Text>
+    <section className="status-badge text-black rounded bg-green-300 flex items-center justify-center h-5 w-20">
+      <Text className="text-[12px] font-bold">published</Text>
     </section>
   );
 
@@ -60,13 +60,12 @@ const ProductLabel = ({
         />
 
         <section className="other-content w-11/12 flex items-center justify-around">
-          <Text className="text-sm">11/04/2024</Text>
-          <Text className="text-sm font-bold" noCapitalize={true}>
-            @
-            {productName?.length > 12
-              ? productName?.substring(0, 12) + "..."
+          <Text className="text-sm font-bold">
+            {productName?.length > 6
+              ? productName?.substring(0, 6) + "..."
               : productName}
           </Text>
+          <Text className="text-sm">{formattedDate.formattedDate}</Text>
           <section className="status-badge text-black rounded bg-accent flex items-center justify-center h-5 w-20">
             {defaultStatus}
           </section>

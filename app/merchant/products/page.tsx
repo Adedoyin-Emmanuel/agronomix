@@ -57,7 +57,19 @@ const Index = () => {
             <h3 className="font-bold text-2xl capitalize text-accent">
               products
             </h3>
-            <Text className="text-sm">manage your products</Text>
+            <Text className="text-sm flex items-center gap-x-2">
+              manage your products
+              <span
+                className="bg-accent  text-center flex items-center justify-center font-bold h-6 w-6
+             text-white rounded-full text-[12px]"
+              >
+                <span className="text-[12px]">
+                  {merchantProductPageProductInfo?.length! > 100
+                    ? `${99}+`
+                    : merchantProductPageProductInfo?.length!}
+                </span>
+              </span>
+            </Text>
           </section>
 
           <section

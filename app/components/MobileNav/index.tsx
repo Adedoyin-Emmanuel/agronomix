@@ -172,7 +172,7 @@ export const MerchantMobileNav = ({
       </Link>
 
       <Link
-        href={"/buyer/products"}
+        href={"/merchant/products"}
         className={`${
           currentPath.includes("appointments") && "text-secondary"
         } transition-colors hover:text-secondary duration-100 ease-in flex flex-col items-center justify-center gap-y-2`}

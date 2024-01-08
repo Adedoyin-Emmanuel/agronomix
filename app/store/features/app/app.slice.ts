@@ -324,11 +324,8 @@ export const appApiCall = apiSlice.injectEndpoints({
 
     getProductById: builder.query({
       query: (data) => ({
-        url: PRODUCT_URL,
+        url: `${PRODUCT_URL}/${data}`,
         method: "GET",
-        params: {
-          id: data,
-        },
       }),
 
       providesTags: ["Buyer", "Merchant"],

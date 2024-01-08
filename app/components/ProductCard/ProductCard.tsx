@@ -9,7 +9,7 @@ interface ProductCardProps {
   productSales: number;
   productRevenue: number;
   productPrice: number;
-  isPublished: boolean;
+  unpublish: boolean;
   href: string;
 }
 
@@ -20,7 +20,7 @@ const ProductCard = ({
   productSales,
   productRevenue,
   productPrice,
-  isPublished,
+  unpublish,
   href,
 }: ProductCardProps) => {
   const publishedIcon = (
@@ -97,7 +97,7 @@ const ProductCard = ({
           <section className="price flex items-center justify-between p-2">
             <h2 className="font-bold text-[18px]">₦ {productPrice}</h2>
             <section className="bookmark">
-              {isPublished ? publishedIcon : notPublishedIcon}
+              {unpublish ? notPublishedIcon : publishedIcon}
             </section>
           </section>
         </section>

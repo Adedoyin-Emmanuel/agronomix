@@ -20,9 +20,7 @@ import {
   useGetMerchantLatestProductsQuery,
 } from "@/app/store/features/app/app.slice";
 import { updateAuthInfo } from "@/app/store/features/auth/auth.slice";
-import {
-  saveMerchantDashboardProducts,
-} from "@/app/store/features/app/app.slice";
+import { saveMerchantDashboardProducts } from "@/app/store/features/app/app.slice";
 import { Product } from "@/types/app.interface";
 import toast from "react-hot-toast";
 

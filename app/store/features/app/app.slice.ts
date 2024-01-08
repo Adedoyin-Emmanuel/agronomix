@@ -23,8 +23,15 @@ const initialState = {
       : null,
   merchantDashboardProductInfo:
     typeof window !== "undefined"
+      ? (loadFromLocalStorage("agronomixMerchantDashboardProductInfo", null) as
+          | Product[]
+          | null)
+      : null,
+
+  merchantProductPageProductInfo:
+    typeof window !== "undefined"
       ? (loadFromLocalStorage(
-          "agronomixMerchantDashboardProductInfo",
+          "agronomixMerchantProductPageProductInfo",
           null
         ) as Product[] | null)
       : null,
@@ -55,6 +62,15 @@ const appSlice = createSlice({
       );
     },
 
+    saveMerchantProductPageProducts: (state, action) => {
+      state.merchantProductPageProductInfo = action.payload;
+
+      saveToLocalStorage(
+        "agronomixMerchantProductPageProductInfo",
+        JSON.stringify(action.payload)
+      );
+    },
+
     /**
      * @see clear data reducers, basically resets the state and removes data from local storage.
      *
@@ -64,6 +80,7 @@ const appSlice = createSlice({
     resetApp: (state, action) => {
       localStorage.removeItem("agronomixDashboardInfo");
       localStorage.removeItem("agronomixMerchantDashboardProductInfo");
+      localStorage.removeItem("agronomixMerchantProductPageProductInfo");
     },
   },
 });
@@ -307,11 +324,8 @@ export const appApiCall = apiSlice.injectEndpoints({
 
     getProductById: builder.query({
       query: (data) => ({
-        url: PRODUCT_URL,
+        url: `${PRODUCT_URL}/${data}`,
         method: "GET",
-        params: {
-          id: data,
-        },
       }),
 
       providesTags: ["Buyer", "Merchant"],
@@ -332,6 +346,14 @@ export const appApiCall = apiSlice.injectEndpoints({
         method: "GET",
       }),
 
+      providesTags: ["Buyer", "Merchant"],
+    }),
+
+    getMerchantAllProducts: builder.query({
+      query: (data) => ({
+        url: `${PRODUCT_URL}/me`,
+        method: "GET",
+      }),
       providesTags: ["Buyer", "Merchant"],
     }),
 
@@ -393,7 +415,12 @@ export const {
   useGetAllProductsQuery,
   useSearchProductsQuery,
   useGetMerchantLatestProductsQuery,
+  useGetMerchantAllProductsQuery,
 } = appApiCall;
-export const { saveDashboardInfo, saveMerchantDashboardProducts, resetApp } =
-  appSlice.actions;
+export const {
+  saveDashboardInfo,
+  saveMerchantDashboardProducts,
+  saveMerchantProductPageProducts,
+  resetApp,
+} = appSlice.actions;
 export default appSlice.reducer;

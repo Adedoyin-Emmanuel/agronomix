@@ -44,6 +44,10 @@ export interface Product {
   tags: string[];
   rating: number;
   reviews: string[];
+  unpublish: boolean;
+  createdAt: Date;
+  updatedAt: Date;
+  _id: string;
 }
 
 export interface DashboardInfo extends Buyer, Merchant {

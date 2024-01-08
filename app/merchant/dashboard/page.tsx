@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import { MerchantSidebarLayout } from "@/app/components/SidebarLayout";
 import Text from "@/app/components/Text";
@@ -15,13 +15,23 @@ import { useAppSelector } from "@/app/store/store";
 import { AppDispatch } from "@/app/store/store";
 import Skeleton from "@/app/components/Skeleton/Skeleton";
 import ProductLabel from "@/app/components/ProductLabel/ProductLabel";
-import { useGetCurrentMerchantQuery } from "@/app/store/features/app/app.slice";
+import {
+  useGetCurrentMerchantQuery,
+  useGetMerchantLatestProductsQuery,
+} from "@/app/store/features/app/app.slice";
 import { updateAuthInfo } from "@/app/store/features/auth/auth.slice";
+import {
+  useGetProductByIdQuery,
+  saveMerchantDashboardProducts,
+} from "@/app/store/features/app/app.slice";
+import { Product } from "@/types/app.interface";
 
 const Dashboard = () => {
   const pathname = usePathname();
   const dispatch = useDispatch<AppDispatch>();
   const { userAuthInfo } = useAppSelector((state) => state.auth);
+  const { merchantDashboardProductInfo } = useAppSelector((state) => state.app);
+
   const {
     data,
     isLoading: currentMerchantDataLoading,
@@ -29,6 +39,14 @@ const Dashboard = () => {
     isSuccess,
     refetch,
   } = useGetCurrentMerchantQuery({});
+
+  const {
+    data: productData,
+    isLoading: productLoading,
+    isError: productError,
+    isSuccess: productSuccess,
+    refetch: productRefetch,
+  } = useGetMerchantLatestProductsQuery({});
 
   useEffect(() => {
     if (isSuccess && data) {
@@ -41,6 +59,18 @@ const Dashboard = () => {
 
       refetchData().then((data) => {});
       dispatch(updateAuthInfo(data?.data));
+
+      // the latest data is here
+      if (userAuthInfo && userAuthInfo.products.length > 0) {
+        const refetchData = async () => {
+          const response = await productRefetch();
+          console.log(response?.data);
+
+          dispatch(saveMerchantDashboardProducts(response?.data?.data));
+        };
+
+        refetchData();
+      }
     }
   }, [data]);
   const transactions = [
@@ -213,12 +243,24 @@ const Dashboard = () => {
             </h3>
 
             <section className="my-5">
-              <ProductLabel
-                href="#"
-                productImage="/assets/potato.jpg"
-                productName="Potato"
-                isPublished
-              />
+              {userAuthInfo?.products.length === 0 ? (
+                <Text>No products found</Text>
+              ) : productLoading ? (
+                <Skeleton className="w-full h-14 rounded" />
+              ) : (
+                merchantDashboardProductInfo!.map((product: Product) => {
+                  return (
+                    <ProductLabel
+                      productName={product.name}
+                      unpublish={product.unpublish}
+                      createdAt={product.createdAt}
+                      href={`/merchant/products/${product._id}`}
+                      productImage={product.image}
+                      key={product._id}
+                    />
+                  );
+                })
+              )}
             </section>
 
             <Button className="text-center">View all products</Button>

@@ -3,7 +3,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { apiSlice } from "../api/api.slice";
 import { saveToLocalStorage, loadFromLocalStorage } from "@/app/helpers/utils";
-import { Buyer, Merchant, DashboardInfo } from "@/types/app.interface";
+import { Buyer, Merchant, DashboardInfo, Product } from "@/types/app.interface";
 
 const BUYER_URL = "/buyer";
 const MERCHANT_URL = "/merchant";
@@ -19,7 +19,14 @@ const initialState = {
       ? (loadFromLocalStorage(
           "agronomixDashboardInfo",
           null
-        ) as DashboardInfo | null) // TODO change the any type to the userDashboard Interface
+        ) as DashboardInfo | null)
+      : null,
+  merchantDashboardProductInfo:
+    typeof window !== "undefined"
+      ? (loadFromLocalStorage(
+          "agronomixMerchantDashboardProductInfo",
+          null
+        ) as Product[] | null)
       : null,
 };
 
@@ -40,8 +47,13 @@ const appSlice = createSlice({
       );
     },
 
-    
-
+    saveMerchantDashboardProducts: (state, action) => {
+      state.merchantDashboardProductInfo = action.payload;
+      saveToLocalStorage(
+        "agronomixMerchantDashboardProductInfo",
+        JSON.stringify(action.payload)
+      );
+    },
 
     /**
      * @see clear data reducers, basically resets the state and removes data from local storage.
@@ -51,6 +63,7 @@ const appSlice = createSlice({
     // Resets the entire app state to the initial state, used when user logs out
     resetApp: (state, action) => {
       localStorage.removeItem("agronomixDashboardInfo");
+      localStorage.removeItem("agronomixMerchantDashboardProductInfo");
     },
   },
 });
@@ -313,6 +326,15 @@ export const appApiCall = apiSlice.injectEndpoints({
       providesTags: ["Buyer", "Merchant"],
     }),
 
+    getMerchantLatestProducts: builder.query({
+      query: (data) => ({
+        url: `${PRODUCT_URL}/latest`,
+        method: "GET",
+      }),
+
+      providesTags: ["Buyer", "Merchant"],
+    }),
+
     searchProducts: builder.query({
       query: (data) => ({
         url: `${PRODUCT_URL}/search`,
@@ -370,6 +392,8 @@ export const {
   useGetProductByIdQuery,
   useGetAllProductsQuery,
   useSearchProductsQuery,
+  useGetMerchantLatestProductsQuery,
 } = appApiCall;
-export const { saveDashboardInfo, resetApp } = appSlice.actions;
+export const { saveDashboardInfo, saveMerchantDashboardProducts, resetApp } =
+  appSlice.actions;
 export default appSlice.reducer;

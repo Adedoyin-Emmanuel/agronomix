@@ -14,7 +14,7 @@
     "@reduxjs/toolkit": "^2.0.1",
     "@smastrom/react-rating": "^1.4.0",
     "@uploadfly/js": "^1.0.7",
-    "axios": "^1.6.2",
+    "axios": "^1.7.4",
     "chance": "^1.1.11",
     "jsonwebtoken": "^9.0.2",
     "moment": "^2.29.4",
